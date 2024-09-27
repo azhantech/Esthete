@@ -13,7 +13,9 @@ import {vh, vw, width} from '../../Utils/helpers';
 import colors from '../../Utils/colors';
 import AuthHeader from '../../component/authHeader';
 import {navigationRef} from '../../Utils/navigation';
-
+import styles from './styles';
+import {appShadow} from '../../Utils/helpers';
+import Seprator from '../../component/Seprator';
 // Validation schema with Yup
 const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -23,29 +25,25 @@ const validationSchema = Yup.object({
 });
 
 const LoginScreen = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const passwordInputRef = useRef<TextInput>(null); // Create a ref for the password input field
-
   const handleSignIn = (values: {email: string; password: string}) => {
-    // Handle sign-in logic here
-    // navigationRef.navigate('PasswordRecovery');
-    console.log('Form values:', values);
     navigationRef.navigate('DrawerNavigator');
   };
   const socialLogin = [
-    {id: 1, icons: icons.facebook},
-    {id: 2, icons: icons.google},
-    {id: 3, icons: icons.apple},
+    {id: 2, icons: icons.google, txt: 'Continue With Google'},
+    {id: 3, icons: icons.apple, txt: 'Continue With Apple'},
   ];
   return (
     <ScreenWrapper
       scroll
       style={styles.container}
+      showsVerticalScrollIndicator={false}
       contentContainerStyle={{
         alignItems: 'center',
       }}>
-      <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer}>
-        <AuthHeader title={'Login to your account'} />
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}>
+        <AuthHeader title={'Your Journey Start Here!'} />
         <Formik
           initialValues={{email: '', password: ''}}
           validationSchema={validationSchema}
@@ -89,13 +87,12 @@ const LoginScreen = () => {
 
               {/* Remember Me */}
               <View style={styles.rememberMeContainer}>
-                <TouchableOpacity>
-                  <Image
-                    source={icons.rememberMeCheckBox}
-                    style={styles.rememberMe}
-                  />
+                <TouchableOpacity
+                  onPress={() => navigationRef.navigate('PasswordRecovery')}>
+                  <CustomText style={{marginLeft: 10}}>
+                    Forgot Your Password?
+                  </CustomText>
                 </TouchableOpacity>
-                <CustomText style={{marginLeft: 10}}>Remember Me</CustomText>
               </View>
 
               {/* Sign In Button */}
@@ -104,30 +101,21 @@ const LoginScreen = () => {
                 onPress={handleSubmit}
                 style={styles.btn}
               />
-
-              {/* Forgot Password */}
-              <TouchableOpacity
-                onPress={() => navigationRef.navigate('PasswordRecovery')}>
-                <CustomText style={styles.forgotText}>
-                  Forgot Your Password?
-                </CustomText>
-              </TouchableOpacity>
             </View>
           )}
         </Formik>
-
-        {/* Or Continue With */}
-        <View style={{alignItems: 'center', marginVertical: 20}}>
-          <CustomText weight="bold">Or Continue With</CustomText>
+        <Seprator txt={'or use'} />
+        <View style={{alignItems: 'center'}}>
           <View style={styles.socialIcons}>
             {socialLogin.map(val => (
-              <View style={styles.socialIconContainer} key={val?.id}>
-                <Image
-                  source={val?.icons}
-                  key={val?.id}
-                  style={styles.socialImg}
-                />
-              </View>
+              <Button
+                text={val?.txt}
+                icon={val?.icons}
+                key={val?.id}
+                style={styles.socialLoginBtn}
+                textStyle={styles.socialBtnTxt}
+                onPress={() => console.log('Here')}
+              />
             ))}
           </View>
         </View>
@@ -139,76 +127,13 @@ const LoginScreen = () => {
         onPress={() => navigationRef.navigate('Signup')}>
         <CustomText>
           Don't Have An Account?{' '}
-          <CustomText style={styles.signUpText}>Sign Up</CustomText>
+          <CustomText style={styles.signUpText} weight="bold">
+            Sign Up
+          </CustomText>
         </CustomText>
       </TouchableOpacity>
     </ScreenWrapper>
   );
-};
-
-const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: colors.black,
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    width: vw * 85,
-  },
-  rememberMeContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  rememberMe: {
-    height: vh * 4,
-    width: vw * 4,
-    resizeMode: 'contain',
-  },
-  error: {
-    color: colors.red,
-    marginTop: 5,
-    marginBottom: 10,
-    width: vw * 85,
-  },
-  forgotText: {
-    color: 'red',
-    textAlign: 'center',
-    marginTop: 10,
-    textDecorationLine: 'underline',
-  },
-  socialIcons: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '60%',
-    height: vh * 7,
-    marginTop: vh * 2.5,
-  },
-  socialImg: {
-    height: vh * 5,
-    width: vw * 5,
-    resizeMode: 'contain',
-  },
-  socialIconContainer: {
-    width: '28%',
-    borderWidth: 1,
-    borderColor: colors.gray,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-  },
-  signUpText: {
-    color: 'red',
-    textDecorationLine: 'underline',
-  },
-  btn: {
-    alignSelf: 'center',
-    marginVertical: vh * 2.5,
-  },
-  signupbtn: {
-    marginVertical: vh * 2.5,
-  },
 };
 
 export default LoginScreen;

@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  resendCode: {
+    color: colors.primary,
+    textDecorationLine: 'underline',
+    marginVertical: vh * 2,
+    marginLeft: vh,
+  },
   contentContainer: {
     alignItems: 'center',
     paddingVertical: vh * 2,
@@ -22,7 +28,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.black,
   },
-
+  subtitle: {
+    fontSize: vh * 1.8,
+    color: colors.gray,
+    width: vw * 90,
+    marginTop: -vh,
+  },
   error: {
     color: colors.red,
     marginTop: vh * 1,
@@ -43,4 +54,5 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
 });
+
 export default styles;

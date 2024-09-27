@@ -15,17 +15,14 @@ interface CustomTextProps extends TextProps {
   rest?: TextProps;
 }
 
-const CustomText: React.FC<CustomTextProps> = ({
-  fontFamily,
-  weight,
-  style,
-  children,
-  rest,
-}) => {
+const CustomText: React.FC<CustomTextProps> = props => {
+  const {fontFamily, weight, style, children} = props;
   const fontFamilyStyle = fonts.OpenSans[weight as keyof typeof fonts.OpenSans];
 
   return (
-    <Text {...rest} style={[styles.text, {fontFamily: fontFamilyStyle}, style]}>
+    <Text
+      {...props}
+      style={[styles.text, {fontFamily: fontFamilyStyle}, style]}>
       {children}
     </Text>
   );

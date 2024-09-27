@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -31,7 +31,7 @@ const SignUpScreen = () => {
   const handleSignUp = (values: any) => {
     // You can handle the signup logic here with form values
     console.log(values);
-    navigationRef.navigate('QuestionnaireScreen');
+    navigationRef.navigate('Signin');
   };
 
   return (
@@ -153,6 +153,17 @@ const SignUpScreen = () => {
           )}
         </Formik>
       </KeyboardAwareScrollView>
+
+      <TouchableOpacity
+        style={styles.signupbtn}
+        onPress={() => navigationRef.navigate('Signin')}>
+        <CustomText>
+          Already Have An Account?{' '}
+          <CustomText style={styles.signUpText} weight="bold">
+            Sign in
+          </CustomText>
+        </CustomText>
+      </TouchableOpacity>
     </ScreenWrapper>
   );
 };
@@ -176,6 +187,14 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 10,
     width: vw * 85,
+  },
+  signUpText: {
+    color: colors.primary,
+    textDecorationLine: 'underline',
+  },
+
+  signupbtn: {
+    marginVertical: vh * 2.5,
   },
 });
 

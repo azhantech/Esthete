@@ -11,7 +11,7 @@ import {vh, vw} from '../../Utils/helpers';
 import colors from '../../Utils/colors';
 import AuthHeader from '../../component/authHeader';
 import {navigationRef} from '../../Utils/navigation';
-
+import styles from './styles';
 // Validation schema with Yup
 const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -29,10 +29,10 @@ const PasswordRecovery = () => {
       scroll
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
-      <AuthHeader title={'Password Recovery'} />
-      <CustomText style={styles.subtitle}>
-        Enter email address to get a verification code
-      </CustomText>
+      <AuthHeader
+        title={'Password Recovery'}
+        subTitle={'Enter email address to get a verification code'}
+      />
 
       {/* Formik Form */}
       <Formik
@@ -58,7 +58,6 @@ const PasswordRecovery = () => {
               value={values.email}
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
-              right={icons.emailIcon} // Use your email icon
             />
             {touched.email && errors.email && (
               <CustomText style={styles.error}>{errors.email}</CustomText>
@@ -78,58 +77,13 @@ const PasswordRecovery = () => {
       <View style={styles.bottomContainer}>
         <CustomText>Back To - </CustomText>
         <TouchableOpacity onPress={() => navigationRef.navigate('Signin')}>
-          <CustomText style={styles.loginText}>Login</CustomText>
+          <CustomText style={styles.loginText} weight="bold">
+            Login
+          </CustomText>
         </TouchableOpacity>
       </View>
     </ScreenWrapper>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-  },
-  contentContainer: {
-    alignItems: 'center',
-    paddingVertical: vh * 2,
-  },
-  logo: {
-    width: vw * 60,
-    height: vh * 20,
-    resizeMode: 'contain',
-    marginBottom: vh * 3,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: colors.black,
-  },
-  subtitle: {
-    fontSize: vh * 1.8,
-    color: colors.gray,
-    width: vw * 90,
-    marginTop: -vh,
-  },
-  error: {
-    color: colors.red,
-    marginTop: vh * 1,
-    marginBottom: vh * 1,
-  },
-  continueButton: {
-    alignSelf: 'center',
-    marginTop: vh * 3,
-    width: vw * 80,
-  },
-  bottomContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: vh * 4,
-  },
-  loginText: {
-    color: colors.red,
-    textDecorationLine: 'underline',
-  },
-});
 
 export default PasswordRecovery;
