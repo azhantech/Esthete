@@ -37,12 +37,6 @@ const routes = [
     notification: true,
   },
   {
-    route_name: 'GroupBundles',
-    drawer: true,
-    logo: true,
-    notification: true,
-  },
-  {
     route_name: 'GroupListScreen',
     drawer: true,
     logo: true,

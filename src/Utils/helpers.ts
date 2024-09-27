@@ -31,7 +31,7 @@ function normalize(size: number, based: 'width' | 'height' = 'width'): number {
   return Math.round(PixelRatio.roundToNearestPixel(newSize));
 }
 
-const heightPixel = (size: number): number => {
+export const heightPixel = (size: number): number => {
   return normalize(size, 'height');
 };
 

@@ -9,22 +9,12 @@ import {
 
 import {IInput} from '../../Interfaces';
 import colors from '../../Utils/colors';
-import Text from '../Text';
 import styles from './style';
 import {icons} from '../../Assets/Images';
 import CustomText from '../Text';
 
 const Input: FC<IInput> = props => {
-  const {
-    label,
-    required,
-    placeholder,
-    left,
-    right,
-    type,
-    multiline,
-    input_wrapper,
-  } = props;
+  const {label, required, left, right, type, multiline, input_wrapper} = props;
 
   const [secure, setSecure] = useState<boolean>(type === 'password');
 
@@ -48,11 +38,7 @@ const Input: FC<IInput> = props => {
         <RightView style={styles.icon_wrapper} onPress={toggleSecure}>
           <Image
             source={
-              type === 'password'
-                ? secure
-                  ? icons.password
-                  : icons.eyeIcon
-                : right
+              type === 'password' ? (secure ? icons.eye_off : icons.eye) : right
             }
             style={styles.icon}
           />
@@ -102,8 +88,7 @@ const Input: FC<IInput> = props => {
         <View style={[styles.textinput_wrapper, {flex}]}>
           <TextInput
             style={styles.textinput}
-            placeholder={placeholder}
-            placeholderTextColor={colors.placeHolderText}
+            placeholderTextColor={colors.light_text}
             cursorColor={colors.primary}
             secureTextEntry={secure}
             {...multiline_props}

@@ -7,6 +7,7 @@ import RecoverPassword from '../../Screens/RecoverPassword';
 import SocialSignInScreen from '../../Screens/SocialSignInScreen';
 import QuestionnaireScreen from '../../Screens/QuestionnaireScreen';
 import {StackOptions} from '../Options';
+import OnBoarding from '../../Screens/OnBoarding';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ const AuthNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false, animationEnabled: false}}>
+      <Stack.Screen name="OnBoarding" component={OnBoarding} />
       <Stack.Screen name="SocialSignInScreen" component={SocialSignInScreen} />
       <Stack.Screen
         name="Signin"

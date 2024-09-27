@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     elevation: 2,
     backgroundColor: colors.white,
-    shadowColor: colors.gray,
+    shadowColor: colors.shadow,
   },
   textinput_wrapper: {
     justifyContent: 'center',
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   textinput: {
     flex: 1,
     color: colors.black,
-    // fontFamily: fonts.Montserrat.regular,
+    fontFamily: fonts.OpenSans.regular,
     fontSize: 14,
   },
   icon_wrapper: {

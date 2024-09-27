@@ -1,15 +1,15 @@
-import { FC, memo } from 'react';
-import { Image, TouchableOpacity, View } from 'react-native';
+import {FC, memo} from 'react';
+import {Image, TouchableOpacity, View} from 'react-native';
 import styles from './style';
 
 import colors from '../../Utils/colors';
 
-import { ITabBar } from '../../Interfaces';
-import { icons } from '../../Assets/Images';
+import {ITabBar} from '../../Interfaces';
+import {icons} from '../../Assets/Images';
 
-const TabBar: FC<ITabBar> = ({ navigation, descriptors, state }) => {
+const TabBar: FC<ITabBar> = ({navigation, descriptors, state}) => {
   return (
-    <View style={[styles.bar]} >
+    <View style={[styles.bar]}>
       {state.routes.map((route, index) => {
         const isFocused = state.index === index;
 
@@ -35,23 +35,15 @@ const TabBar: FC<ITabBar> = ({ navigation, descriptors, state }) => {
         let icon;
         let name;
         if (route.name === 'HomeNavigator') {
-          icon = icons.Home;
+          icon = icons.google;
           name = 'Home';
         } else if (route.name === 'GroupListScreen') {
-          icon = icons.group;
+          icon = icons.eye;
           name = 'Cart';
         } else if (route.name === 'ProfileScreen') {
-          icon = icons.profile;
+          icon = icons.apple;
           name = 'Profile';
-        } else if (route.name === 'GroupBundles') {
-          icon = icons.subscription;
-          name = 'Subscription';
         }
-        // GroupBundles
-        // else if (route.name === 'MenuNavigator') {
-        //   icon = icons.menu;
-        //   name = 'menu';
-        // }
 
         return (
           <TouchableOpacity
@@ -63,7 +55,7 @@ const TabBar: FC<ITabBar> = ({ navigation, descriptors, state }) => {
               style={[
                 styles.icon,
                 {
-                  tintColor: isFocused ? colors.selectionColor : colors.black,
+                  tintColor: isFocused ? colors.primary : colors.black,
                 },
               ]}
             />

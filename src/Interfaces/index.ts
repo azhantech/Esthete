@@ -68,19 +68,24 @@ export type ITabBar = BottomTabBarProps;
 export interface IInput extends TextInput {
   label?: string;
   required?: boolean;
-  placeholder: string;
+  placeholder?: string;
   type?: string;
   left?: ImageRequireSource;
   right?: ImageRequireSource;
   multiline?: boolean;
   value?: string;
-  input_wrapper: StyleProp<ViewProps>;
+  input_wrapper?: StyleProp<ViewProps>;
 }
 
 export interface IScreenWrapper extends ViewProps, ScrollViewProps {
   scroll?: boolean;
   children?: ReactNode;
   mainContainerStyles?: StyleProp<ViewStyle>;
+}
+
+export interface IScrollView {
+  children: ReactNode | ReactNode[],
+  style?: StyleProp<ViewStyle>
 }
 
 export interface RadioLabelButtonProps {
@@ -98,4 +103,7 @@ export interface GroupCardProps {
   imageContainer: StyleProp<ViewStyle>;
   rating: number;
   common: boolean;
+}
+export interface IForget {
+  onPress: (e: number) => void
 }
