@@ -47,7 +47,9 @@ const styles = StyleSheet.create({
   bottomContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: vh * 4,
+    // marginTop: vh * 4,
+    alignSelf: 'center',
+    marginBottom: vh * 4,
   },
   loginText: {
     color: colors.primary,

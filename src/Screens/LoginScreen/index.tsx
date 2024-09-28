@@ -1,5 +1,5 @@
-import React, {useState, useRef} from 'react';
-import {View, TextInput, TouchableOpacity, Image} from 'react-native';
+import React from 'react';
+import {View, TouchableOpacity} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -9,12 +9,9 @@ import CustomText from '../../component/Text';
 import Button from '../../component/Button';
 import Input from '../../component/Input';
 import {icons} from '../../Assets/Images';
-import {vh, vw, width} from '../../Utils/helpers';
-import colors from '../../Utils/colors';
 import AuthHeader from '../../component/authHeader';
 import {navigationRef} from '../../Utils/navigation';
 import styles from './styles';
-import {appShadow} from '../../Utils/helpers';
 import Seprator from '../../component/Seprator';
 // Validation schema with Yup
 const validationSchema = Yup.object({
@@ -65,7 +62,7 @@ const LoginScreen = () => {
                 value={values.email}
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
-                right={icons.emailIcon}
+                // right={icons.emailIcon}
               />
               {touched.email && errors.email && (
                 <CustomText style={styles.error}>{errors.email}</CustomText>

@@ -30,4 +30,7 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     width: '30%',
   },
+  white_logo: {
+    tintColor: colors.white,
+  },
 });

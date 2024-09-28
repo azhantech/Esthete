@@ -30,66 +30,68 @@ const RecoverPassword = () => {
   };
 
   return (
-    <ScreenWrapper
-      scroll
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}>
-      <AuthHeader title={'Password Recovery'} />
-      {/* Formik Form */}
-      <Formik
-        initialValues={{password: '', Cnfrmpassword: ''}}
-        validationSchema={validationSchema}
-        onSubmit={handlePasswordRecovery}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-        }) => (
-          <View
-            style={{
-              width: vw * 90,
-            }}>
-            {/* Email Input */}
-            <Input
-              label="New password"
-              placeholder="Enter your password"
-              value={values.password}
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              type="password"
-              required
-            />
-            {touched.password && errors.password && (
-              <CustomText style={styles.error}>{errors.password}</CustomText>
-            )}
-            <Input
-              label="Confirm password"
-              placeholder="Confirm password"
-              value={values.Cnfrmpassword}
-              onChangeText={handleChange('Cnfrmpassword')}
-              onBlur={handleBlur('Cnfrmpassword')}
-              type="password"
-              required
-              // Use your email icon
-            />
-            {touched.Cnfrmpassword && errors.Cnfrmpassword && (
-              <CustomText style={styles.error}>
-                {errors.Cnfrmpassword}
-              </CustomText>
-            )}
+    <View style={styles.container}>
+      <ScreenWrapper
+        scroll
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}>
+        <AuthHeader title={'Password Recovery'} />
+        {/* Formik Form */}
+        <Formik
+          initialValues={{password: '', Cnfrmpassword: ''}}
+          validationSchema={validationSchema}
+          onSubmit={handlePasswordRecovery}>
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <View
+              style={{
+                width: vw * 90,
+              }}>
+              {/* Email Input */}
+              <Input
+                label="New password"
+                placeholder="Enter your password"
+                value={values.password}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                type="password"
+                required
+              />
+              {touched.password && errors.password && (
+                <CustomText style={styles.error}>{errors.password}</CustomText>
+              )}
+              <Input
+                label="Confirm password"
+                placeholder="Confirm password"
+                value={values.Cnfrmpassword}
+                onChangeText={handleChange('Cnfrmpassword')}
+                onBlur={handleBlur('Cnfrmpassword')}
+                type="password"
+                required
+                // Use your email icon
+              />
+              {touched.Cnfrmpassword && errors.Cnfrmpassword && (
+                <CustomText style={styles.error}>
+                  {errors.Cnfrmpassword}
+                </CustomText>
+              )}
 
-            {/* Continue Button */}
-            <Button
-              text="Updated"
-              onPress={handleSubmit}
-              style={styles.continueButton}
-            />
-          </View>
-        )}
-      </Formik>
+              {/* Continue Button */}
+              <Button
+                text="Updated"
+                onPress={handleSubmit}
+                style={styles.continueButton}
+              />
+            </View>
+          )}
+        </Formik>
+      </ScreenWrapper>
 
       {/* Back to Login Link */}
       <View style={styles.bottomContainer}>
@@ -114,7 +116,7 @@ const RecoverPassword = () => {
         ]}
         headingStyle={{color: colors.black}}
       />
-    </ScreenWrapper>
+    </View>
   );
 };
 

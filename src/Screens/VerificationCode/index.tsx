@@ -23,64 +23,66 @@ const VerificationCode = () => {
   };
 
   return (
-    <ScreenWrapper
-      scroll
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}>
-      <AuthHeader
-        title={'Password Recovery'}
-        subTitle={
-          'Please check your email for verification code. Your code is 6 digit in length'
-        }
-        subTitleStyle={{textAlign: 'center'}}
-      />
+    <View style={styles.container}>
+      <ScreenWrapper
+        scroll
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}>
+        <AuthHeader
+          title={'Password Recovery'}
+          subTitle={
+            'Please check your email for verification code. Your code is 6 digit in length'
+          }
+          subTitleStyle={{textAlign: 'center'}}
+        />
 
-      {/* Formik Form */}
-      <Formik
-        initialValues={{email: ''}}
-        validationSchema={validationSchema}
-        onSubmit={handlePasswordRecovery}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-        }) => (
-          <View
-            style={{
-              width: vw * 90,
-            }}>
-            {/* Email Input */}
-            <Input
-              keyboardType="number-pad"
-              label="Verification Code"
-              placeholder="Enter verification code"
-              value={values.email}
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              // Use your email icon
-            />
-            {touched.email && errors.email && (
-              <CustomText style={styles.error}>{errors.email}</CustomText>
-            )}
+        {/* Formik Form */}
+        <Formik
+          initialValues={{email: ''}}
+          validationSchema={validationSchema}
+          onSubmit={handlePasswordRecovery}>
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <View
+              style={{
+                width: vw * 90,
+              }}>
+              {/* Email Input */}
+              <Input
+                keyboardType="number-pad"
+                label="Verification Code"
+                placeholder="Enter verification code"
+                value={values.email}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                // Use your email icon
+              />
+              {touched.email && errors.email && (
+                <CustomText style={styles.error}>{errors.email}</CustomText>
+              )}
 
-            <CustomText
-              weight="bold"
-              style={styles.resendCode}
-              onPress={() => console.log('Here')}>
-              Resend Verification Code
-            </CustomText>
-            {/* Continue Button */}
-            <Button
-              text="Continue"
-              onPress={handleSubmit}
-              style={styles.continueButton}
-            />
-          </View>
-        )}
-      </Formik>
+              <CustomText
+                weight="bold"
+                style={styles.resendCode}
+                onPress={() => console.log('Here')}>
+                Resend Verification Code
+              </CustomText>
+              {/* Continue Button */}
+              <Button
+                text="Continue"
+                onPress={handleSubmit}
+                style={styles.continueButton}
+              />
+            </View>
+          )}
+        </Formik>
+      </ScreenWrapper>
 
       {/* Back to Login Link */}
       <View style={styles.bottomContainer}>
@@ -91,7 +93,7 @@ const VerificationCode = () => {
           </CustomText>
         </TouchableOpacity>
       </View>
-    </ScreenWrapper>
+    </View>
   );
 };
 

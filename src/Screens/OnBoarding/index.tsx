@@ -1,123 +1,68 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  Dimensions,
-  Image,
-} from 'react-native';
-import Dropdown from '../../component/Dropdown';
-import Input from '../../component/Input';
+import styles from './style';
 import CustomText from '../../component/Text';
+import useOnBoardingController from '../../Controllers/useOnBoardingController';
+import {ImageBackground, View} from 'react-native';
+import {backgroundImages} from '../../Assets/Images';
 import Button from '../../component/Button';
-import {icons} from '../../Assets/Images';
-import styles from './styles';
-import {navigate} from '../../Utils/navigation';
-
-const {width} = Dimensions.get('window');
-
-const packages = [
-  {id: '1', name: 'Basic Bundle'},
-  {id: '2', name: 'Standard Bundle'},
-  {id: '3', name: 'Premium Bundle'},
-];
+import AuthHeader from '../../component/authHeader';
 
 const OnBoarding = () => {
-  const [currentPackageIndex, setCurrentPackageIndex] = useState(0);
+  const {values, functions} = useOnBoardingController();
 
-  const purchaseBundle = () => navigate('PaymentScreen');
-
-  const onScroll = (event: any) => {
-    const index = Math.round(event.nativeEvent.contentOffset.x / width);
-    setCurrentPackageIndex(index);
-  };
-
-  const renderPackage = ({item}: any) => (
-    <View style={styles.packageContainer}>
-      <View style={{width: '100%'}}>
-        {item.id > 1 && (
-          <CustomText style={styles.priceInfo}>{'Save 20%'}</CustomText>
-        )}
-      </View>
-
-      <Input label="Includes" placeholder="Access To 1 Paid Group" />
-
-      {item.id != 3 && (
-        <Dropdown
-          label="Select Group"
-          placeholder="$ 2.00 / Monthly / $ 10.00 / Yearly"
-        />
-      )}
-
-      <View style={styles.groupList}>
-        {item.id == 2 && (
-          <TouchableOpacity activeOpacity={0.7} style={styles.tag}>
-            <Image source={icons.cross} />
-            <Text style={styles.removeGroup}>Group 1</Text>
-          </TouchableOpacity>
-        )}
-
-        {item.id == 2 && (
-          <TouchableOpacity activeOpacity={0.7} style={styles.tag}>
-            <Image source={icons.cross} />
-            <Text style={styles.removeGroup}>Group 2</Text>
-          </TouchableOpacity>
-        )}
-      </View>
-    </View>
-  );
-
-  const renderDots = () => {
-    return (
-      <View style={styles.dotsContainer}>
-        {packages.map((_, index) => (
-          <View
-            key={index}
-            style={[
-              styles.dot,
-              currentPackageIndex === index
-                ? styles.activeDot
-                : styles.inactiveDot,
-            ]}
-          />
-        ))}
-      </View>
-    );
-  };
+  const TABS = [
+    {
+      title: 'Create',
+      subtitle:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      button: 'Get Started!',
+      background: backgroundImages.on_boarding_1,
+    },
+    {
+      title: 'Connect',
+      subtitle:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      button: 'Get Started!',
+      background: backgroundImages.on_boarding_2,
+    },
+    {
+      title: 'Explore',
+      subtitle:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+      button: 'Get Started!',
+      background: backgroundImages.on_boarding_3,
+    },
+  ];
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headingContainer}>
-        <CustomText weight="bold" style={styles.header}>
-          Group Bundles
-        </CustomText>
-        <CustomText weight="bold" style={styles.subHeader}>
-          {packages[currentPackageIndex].name}
-        </CustomText>
+    <ImageBackground
+      source={TABS[values.index]?.background}
+      style={styles.container}>
+      <View style={styles.header_wrapper}>
+        <AuthHeader logo_white />
       </View>
-
-      <FlatList
-        data={packages}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onScroll={onScroll}
-        keyExtractor={item => item.id}
-        renderItem={renderPackage}
-        style={styles.flatList}
-        snapToInterval={width} // Adjusts snapping to full screen width
-        decelerationRate="fast" // Smooth scrolling for better UX
-      />
-
-      <Button
-        text={'Purchase Bundle'}
-        onPress={purchaseBundle}
-        style={styles.mainBtn}
-      />
-
-      <View>{renderDots()}</View>
-    </View>
+      <View style={styles.content_view}>
+        <CustomText style={styles.title} weight="semiBold">
+          {TABS[values.index]?.title}
+        </CustomText>
+        <CustomText style={styles.text}>
+          {TABS[values.index]?.subtitle}
+        </CustomText>
+        <View style={styles.paging_wrapper}>
+          {[0, 1, 2].map(item => (
+            <View
+              style={[styles.dot, values.index == item && styles.active_dot]}
+            />
+          ))}
+        </View>
+        <Button
+          weight="semiBold"
+          text={TABS[values.index]?.button}
+          style={styles.button}
+          onPress={functions.onPress}
+          textStyle={styles.button_text}
+        />
+      </View>
+    </ImageBackground>
   );
 };
 

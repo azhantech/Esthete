@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
-import {vh, vw} from '../../Utils/helpers';
+import {heightPixel, vh, vw} from '../../Utils/helpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    width: vw * 85,
+    width: vw * 80,
   },
   rememberMeContainer: {
     flexDirection: 'row',
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     color: colors.red,
     marginTop: 5,
     marginBottom: 10,
-    width: vw * 85,
+    width: vw * 80,
   },
   forgotText: {
     color: 'red',
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   socialIcons: {
     // flexDirection: 'row',
     justifyContent: 'space-around',
-    width: vw * 85,
+    width: vw * 80,
     // height: vh * 7,
     marginVertical: vh * 2.5,
   },
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     borderColor: colors.borderColor,
     marginTop: vh,
     alignItems: 'center',
+    borderRadius: heightPixel(4),
   },
   socialBtnTxt: {
     color: colors.primary,

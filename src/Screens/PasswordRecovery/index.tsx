@@ -1,14 +1,12 @@
-import React, {useState} from 'react';
-import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import React from 'react';
+import {View, TouchableOpacity} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import CustomText from '../../component/Text';
 import Button from '../../component/Button';
 import Input from '../../component/Input';
-import {icons} from '../../Assets/Images';
-import {vh, vw} from '../../Utils/helpers';
-import colors from '../../Utils/colors';
+import {vw} from '../../Utils/helpers';
 import AuthHeader from '../../component/authHeader';
 import {navigationRef} from '../../Utils/navigation';
 import styles from './styles';
@@ -25,53 +23,55 @@ const PasswordRecovery = () => {
   };
 
   return (
-    <ScreenWrapper
-      scroll
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}>
-      <AuthHeader
-        title={'Password Recovery'}
-        subTitle={'Enter email address to get a verification code'}
-      />
+    <View style={styles.container}>
+      <ScreenWrapper
+        scroll
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}>
+        <AuthHeader
+          title={'Password Recovery'}
+          subTitle={'Enter email address to get a verification code'}
+        />
 
-      {/* Formik Form */}
-      <Formik
-        initialValues={{email: ''}}
-        validationSchema={validationSchema}
-        onSubmit={handlePasswordRecovery}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-        }) => (
-          <View
-            style={{
-              width: vw * 90,
-            }}>
-            {/* Email Input */}
-            <Input
-              label="Enter Your Email Address"
-              placeholder="Info@Example.Com"
-              value={values.email}
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-            />
-            {touched.email && errors.email && (
-              <CustomText style={styles.error}>{errors.email}</CustomText>
-            )}
+        {/* Formik Form */}
+        <Formik
+          initialValues={{email: ''}}
+          validationSchema={validationSchema}
+          onSubmit={handlePasswordRecovery}>
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <View
+              style={{
+                width: vw * 80,
+              }}>
+              {/* Email Input */}
+              <Input
+                label="Enter Your Email Address"
+                placeholder="Info@Example.Com"
+                value={values.email}
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+              />
+              {touched.email && errors.email && (
+                <CustomText style={styles.error}>{errors.email}</CustomText>
+              )}
 
-            {/* Continue Button */}
-            <Button
-              text="Continue"
-              onPress={handleSubmit}
-              style={styles.continueButton}
-            />
-          </View>
-        )}
-      </Formik>
+              {/* Continue Button */}
+              <Button
+                text="Continue"
+                onPress={handleSubmit}
+                style={styles.continueButton}
+              />
+            </View>
+          )}
+        </Formik>
+      </ScreenWrapper>
 
       {/* Back to Login Link */}
       <View style={styles.bottomContainer}>
@@ -82,7 +82,7 @@ const PasswordRecovery = () => {
           </CustomText>
         </TouchableOpacity>
       </View>
-    </ScreenWrapper>
+    </View>
   );
 };
 

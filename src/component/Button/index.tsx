@@ -28,7 +28,7 @@ const Button: FC<IButton> = ({
   text,
   style,
   textStyle,
-  weight = 'regular',
+  weight = 'bold',
   fontFamily = 'OpenSans',
   icon,
 }) => {

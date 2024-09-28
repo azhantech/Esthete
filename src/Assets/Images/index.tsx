@@ -10,3 +10,9 @@ export const icons = {
 };
 export const dummyImages = {};
 export const drawerIcon = {};
+
+export const backgroundImages = {
+  on_boarding_1: require('./backgroundImages/on-boarding-1.png'),
+  on_boarding_2: require('./backgroundImages/on-boarding-2.png'),
+  on_boarding_3: require('./backgroundImages/on-boarding-3.png'),
+};

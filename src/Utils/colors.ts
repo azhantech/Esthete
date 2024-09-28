@@ -10,6 +10,8 @@ const colors = {
   red: 'red',
   borderColor: 'rgba(0,0,0,0.20)',
   seprator: '#999999',
+  dot_brown: '#977B7B',
+  auth_button: '#E8DDD7',
 };
 
 export default colors;
