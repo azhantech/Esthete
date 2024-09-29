@@ -1,69 +1,86 @@
 import {StyleSheet} from 'react-native';
-import {vh, vw, width} from '../../Utils/helpers';
+import {
+  appShadow,
+  font,
+  heightPixel,
+  vw,
+  widthPixel,
+} from '../../Utils/helpers';
 import colors from '../../Utils/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    alignItems: 'center',
+    flex: 1,
   },
-  greetingSection: {
+  sliding_banner: {
+    height: heightPixel(186),
+    width: widthPixel(312),
+    borderRadius: heightPixel(10),
+    borderBottomRightRadius: 0,
+    alignSelf: 'center',
+    resizeMode: 'cover',
+  },
+  slider_container: {
+    height: heightPixel(186),
+    marginTop: heightPixel(25),
+  },
+  service_card: {
+    width: vw * 80,
     flexDirection: 'row',
+    // alignSelf: 'center',
+    marginTop: heightPixel(30),
     justifyContent: 'space-between',
+    backgroundColor: colors.white,
+  },
+  service_icon_container: {
+    height: heightPixel(71),
+    width: widthPixel(69),
+    borderRadius: heightPixel(5),
     alignItems: 'center',
-    marginTop: vh * 2,
-    width: width,
+    justifyContent: 'center',
+    backgroundColor: colors.white,
+    ...appShadow,
+  },
+  service_text_container: {
+    width: widthPixel(234),
+  },
+  service_name: {
+    color: colors.dark_text,
+  },
+  service_detail: {
+    color: colors.dark_text,
+    fontSize: font(12),
+  },
+  services_wrapper: {
+    alignItems: 'center',
+    marginVertical: heightPixel(10),
+  },
+  question: {
+    fontSize: font(22),
+    color: colors.dark_text,
+  },
+  question_container: {
+    width: vw * 80,
+    alignSelf: 'center',
+    marginTop: heightPixel(30),
+    marginBottom: heightPixel(15),
   },
   line: {
-    height: 1,
-    backgroundColor: colors.questionnairColor,
-    marginVertical: vh * 1,
-    width: '100%',
+    marginTop: heightPixel(7),
+    borderWidth: 1,
+    width: widthPixel(68),
+    borderColor: colors.primary,
   },
-  greeting: {
-    fontSize: vh * 2.6,
-    textTransform: 'capitalize',
-  },
-  emergencyButton: {
-    backgroundColor: 'red',
-    borderRadius: 10,
-    width: '40%',
-    height: vh * 5.5,
-  },
-  warningSection: {
-    backgroundColor: colors.warningColor,
-    width: width,
-    marginVertical: vh * 2,
-    borderRadius: 10,
+  concern_card: {
     alignItems: 'center',
-    padding: vw * 3,
+  },
+  concern_wrapper: {
+    flexDirection: 'row',
+    width: vw * 80,
+    alignSelf: 'center',
     justifyContent: 'space-between',
-    height: vh * 20,
   },
-  warningIcon: {
-    width: vw * 10,
-    height: vh * 5,
-    resizeMode: 'contain',
-  },
-  warningText: {
-    fontSize: vh * 1.7,
-    color: colors.gray,
-    textAlign: 'center',
-  },
-  groupsSection: {
-    marginTop: vh * 2,
-    width: width,
-  },
-  groupsTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: vh * 1,
-  },
-  viewAll: {
-    fontSize: 14,
-    color: colors.primary,
-    textAlign: 'right',
-    marginTop: vh * 2,
-    textDecorationLine: 'underline',
+  concern_name: {
+    marginTop: heightPixel(10),
   },
 });

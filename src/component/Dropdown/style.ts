@@ -76,10 +76,10 @@
 
 // export default styles;
 
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import fonts from '../../Assets/Fonts';
 import colors from '../../Utils/colors';
-import {vh} from '../../Utils/helpers';
+import { vh } from '../../Utils/helpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     marginTop: vh * 1.5,
   },
   label_wrapper: {
-    height: '40%',
+    // height: '40%',
     paddingHorizontal: 15,
     justifyContent: 'center',
   },
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   input_wrapper: {
     flexDirection: 'row',
-    alignItems:'center',
+    alignItems: 'center',
     borderRadius: 8,
     paddingHorizontal: 15,
     paddingVertical: 5,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontFamily: fonts.OpenSans.regular,
     fontSize: 14,
-    textAlignVertical:'center'
+    textAlignVertical: 'center'
   },
   icon_wrapper: {
     flex: 0.1,

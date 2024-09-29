@@ -1,4 +1,3 @@
-
 // import { FC, memo, useEffect, useState } from 'react';
 // import { LayoutAnimation, View } from 'react-native';
 // import DropDownPicker from 'react-native-dropdown-picker';
@@ -95,24 +94,27 @@
 
 // export default memo(Dropdown);
 
-import { FC, memo, useCallback, useState } from 'react';
-import {
-  DimensionValue,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FC, memo, useCallback, useState} from 'react';
+import {DimensionValue, Image, TouchableOpacity, View} from 'react-native';
 
-import { IInput } from '../../Interfaces';
-import colors from '../../Utils/colors';
-import Text from '../Text';
+import {IInput} from '../../Interfaces';
 import styles from './style';
-import { icons } from '../../Assets/Images';
+import {icons} from '../../Assets/Images';
 import CustomText from '../Text';
+import {heightPixel} from '../../Utils/helpers';
 
 const Dropdown: FC<IInput> = props => {
-  const { label, required, placeholder, left, right, type, multiline, value } = props;
+  const {
+    label,
+    required,
+    placeholder,
+    left,
+    right,
+    type,
+    multiline,
+    value,
+    container_style,
+  } = props;
 
   const [secure, setSecure] = useState<boolean>(type === 'password');
 
@@ -132,23 +134,23 @@ const Dropdown: FC<IInput> = props => {
   const renderRight = () => {
     return (
       <View style={styles.icon_wrapper}>
-        <Image
+        {/* <Image
           source={
             right ? right : icons.dropdown
           }
           style={styles.icon}
-        />
+        /> */}
       </View>
     );
-  }
+  };
 
   let flex: number =
     left && (type === 'password' || right)
       ? 0.8
       : left || type === 'password' || right
-        ? 0.9
-        : 1;
-  let height = multiline ? 250 : label ? 100 : 60;
+      ? 0.9
+      : 1;
+  let height = multiline ? 250 : label ? heightPixel(71) : heightPixel(46);
   let input_height: DimensionValue = multiline ? '80%' : label ? '60%' : '100%';
   let label_height: DimensionValue = multiline ? '20%' : '40%';
   let multiline_props = {};
@@ -162,23 +164,28 @@ const Dropdown: FC<IInput> = props => {
   }
 
   return (
-    <View style={[styles.container, { height }]}>
+    <View style={[styles.container, {height}, container_style]}>
       {label && (
-        <View style={[styles.label_wrapper, { height: label_height }]}>
+        <View style={[styles.label_wrapper, {height: label_height}]}>
           <CustomText weight="semiBold" style={styles.label}>
             {label}{' '}
             {required && (
-              <CustomText weight="semiBold" style={{ color: 'red' }}>
+              <CustomText weight="semiBold" style={{color: 'red'}}>
                 *
               </CustomText>
             )}
           </CustomText>
         </View>
       )}
-      <TouchableOpacity {...props} activeOpacity={0.7} style={[styles.input_wrapper, { height: input_height }]}>
+      <TouchableOpacity
+        {...props}
+        activeOpacity={0.7}
+        style={[styles.input_wrapper, {height: input_height}]}>
         {renderLeft()}
-        <View style={[styles.textinput_wrapper, { flex }]}>
-          <CustomText style={styles.textinput}>{value ?? placeholder}</CustomText>
+        <View style={[styles.textinput_wrapper, {flex}]}>
+          <CustomText style={styles.textinput}>
+            {value ?? placeholder}
+          </CustomText>
         </View>
         {renderRight()}
       </TouchableOpacity>

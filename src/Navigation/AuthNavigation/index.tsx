@@ -8,6 +8,7 @@ import SocialSignInScreen from '../../Screens/SocialSignInScreen';
 import QuestionnaireScreen from '../../Screens/QuestionnaireScreen';
 import {StackOptions} from '../Options';
 import OnBoarding from '../../Screens/OnBoarding';
+import Subscription from '../../Screens/Subscription';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const AuthNavigator = () => {
     <Stack.Navigator
       screenOptions={{headerShown: false, animationEnabled: false}}>
       <Stack.Screen name="OnBoarding" component={OnBoarding} />
+      <Stack.Screen name="Subscription" component={Subscription} />
       <Stack.Screen name="Signup" component={SignUpScreen} />
       <Stack.Screen name="SocialSignInScreen" component={SocialSignInScreen} />
       <Stack.Screen name="Signin" component={LoginScreen} />

@@ -3035,6 +3035,7 @@ __metadata:
     react-native-gesture-handler: ^2.20.0
     react-native-keyboard-aware-scroll-view: ^0.9.5
     react-native-reanimated: ^3.15.3
+    react-native-reanimated-carousel: ^3.5.1
     react-native-safe-area-context: ^4.11.0
     react-native-screens: ^3.34.0
     react-test-renderer: 18.3.1
@@ -8122,6 +8123,18 @@ __metadata:
   peerDependencies:
     react-native: ">=0.48.4"
   checksum: 5eec2aedb886213dfed4c8428a443b565dce80ba9fcf5897171e4c8829d4dd64c5011ac004d93f29adfc83ad6f88c2838d1a5b45255dc4a49bd1c0a169245800
+  languageName: node
+  linkType: hard
+
+"react-native-reanimated-carousel@npm:^3.5.1":
+  version: 3.5.1
+  resolution: "react-native-reanimated-carousel@npm:3.5.1"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-native: ">=0.6.0"
+    react-native-gesture-handler: ">=2.0.0"
+    react-native-reanimated: ">=3.0.0"
+  checksum: a2eb640453fa35f659c1fb5575f903364d513fb7f621104afa14fee2284132674dfaf0d87cb29e8c119f7513094a5967d5193f3dfa24043af167c6f26abcfe73
   languageName: node
   linkType: hard
 

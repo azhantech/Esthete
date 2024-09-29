@@ -12,9 +12,19 @@ import colors from '../../Utils/colors';
 import styles from './style';
 import {icons} from '../../Assets/Images';
 import CustomText from '../Text';
+import {heightPixel} from '../../Utils/helpers';
 
 const Input: FC<IInput> = props => {
-  const {label, required, left, right, type, multiline, input_wrapper} = props;
+  const {
+    label,
+    required,
+    left,
+    right,
+    type,
+    multiline,
+    input_wrapper,
+    container_style,
+  } = props;
 
   const [secure, setSecure] = useState<boolean>(type === 'password');
 
@@ -55,7 +65,7 @@ const Input: FC<IInput> = props => {
       : left || type === 'password' || right
       ? 0.9
       : 1;
-  let height = multiline ? 250 : label ? 100 : 60;
+  let height = multiline ? 250 : label ? heightPixel(71) : heightPixel(46);
   let input_height: DimensionValue = multiline ? '80%' : label ? '60%' : '100%';
   let label_height: DimensionValue = multiline ? '20%' : '40%';
   let multiline_props = {};
@@ -69,7 +79,7 @@ const Input: FC<IInput> = props => {
   }
 
   return (
-    <View style={[styles.container, {height}]}>
+    <View style={[styles.container, {height}, container_style]}>
       {label && (
         <View style={[styles.label_wrapper, {height: label_height}]}>
           <CustomText weight="semiBold" style={styles.label}>

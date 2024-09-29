@@ -51,3 +51,10 @@ export const EditProfileFormValidator = Yup.object().shape({
     age: Yup.number().required('Age is required'),
     about: Yup.string().required('About is required'),
 })
+
+export const PaymentFormValidator = Yup.object().shape({
+    card_holder_name: Yup.string().required('Card Holder name is required'),
+    card_number: Yup.number().required('Card number is required'),
+    cvv_number: Yup.number().required('CVV number is required'),
+    expiry_date: Yup.string().required('Expiry Date is required'),
+})

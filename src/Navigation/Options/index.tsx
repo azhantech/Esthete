@@ -7,46 +7,23 @@ import CustomText from '../../component/Text';
 import {icons} from '../../Assets/Images';
 import colors from '../../Utils/colors';
 import {DrawerNavigationOptions} from '@react-navigation/drawer';
+import {widthPixel} from '../../Utils/helpers';
 
 const routes = [
   {
-    route_name: 'Signin',
-    title: '',
-    back: true,
-    header_style: {
-      borderBottomWidth: 0,
-    },
-  },
-  {
-    route_name: 'Signup',
-    title: '',
-    back: true,
-    header_style: {
-      borderBottomWidth: 0,
-    },
-  },
-  {
-    route_name: 'QuestionnaireScreen',
-    title: 'Questionnaire',
-    back: true,
-  },
-  {
     route_name: 'ProfileScreen',
     drawer: true,
-    logo: true,
-    notification: true,
+    search: true,
   },
   {
     route_name: 'GroupListScreen',
     drawer: true,
-    logo: true,
-    notification: true,
+    search: true,
   },
   {
     route_name: 'Home',
     drawer: true,
-    logo: true,
-    notification: true,
+    search: true,
   },
   {
     route_name: 'EditProfile',
@@ -79,23 +56,8 @@ const routes = [
     back: true,
   },
   {
-    route_name: 'OtherUserProfile',
-    title: '',
-    notification: false,
-
-    back: true,
-    header_style: {
-      borderBottomWidth: 0,
-    },
-  },
-  {
     route_name: 'PaymentScreen',
     title: 'Payment Information',
-    back: true,
-  },
-  {
-    route_name: 'QuestionnaireScreen',
-    title: 'Questionnaire',
     back: true,
   },
   {
@@ -124,14 +86,13 @@ const routes = [
 
 const renderLeft = (props: any) => {
   let route = routes.find(item => item.route_name === props?.route?.name);
-  let style = route?.back_style || {};
 
   if (route?.back) {
     return (
       <TouchableOpacity
         style={[styles.icon, styles.left_margin]}
         onPress={goBack}>
-        <Image style={[styles.left_icon, style]} source={icons.backBtn} />
+        <Image style={styles.left_icon} source={icons.back} />
       </TouchableOpacity>
     );
   }
@@ -140,7 +101,7 @@ const renderLeft = (props: any) => {
       <TouchableOpacity
         style={[styles.icon, styles.left_margin]}
         onPress={props.navigation.toggleDrawer}>
-        <Image style={[styles.left_icon, style]} source={icons.drawer} />
+        <Image style={styles.left_icon} source={icons.drawer} />
       </TouchableOpacity>
     );
   }
@@ -151,12 +112,12 @@ const renderLeft = (props: any) => {
 const renderRight = (props: any) => {
   let route = routes.find(item => item.route_name === props?.route?.name);
 
-  if (route?.notification) {
+  if (route?.search) {
     return (
       <TouchableOpacity onPress={() => navigate('Notification')}>
         <Image
           style={[styles.icon, styles.right_icon]}
-          source={icons.notification}
+          source={icons.search_round}
         />
       </TouchableOpacity>
     );
@@ -167,54 +128,22 @@ const renderRight = (props: any) => {
 
 const renderTitle = (props: any) => {
   let route = routes.find(item => item.route_name === props?.route?.name);
-  let style = route?.title_style || {};
 
   if (route?.title) {
     return (
-      <CustomText style={[styles.title, style]} weight="semiBold">
+      <CustomText style={styles.title} weight="semiBold">
         {route.title}
       </CustomText>
     );
-  }
-  if (route?.logo) {
-    return <Image source={icons.headerLogo} />;
   }
 
   return null;
 };
 
-// const getHeaderColor = (props: any) => {
-//   let route = routes.find(item => item.route_name === props?.route?.name);
-
-//   if (route?.header_color) {
-//     return {
-//       backgroundColor: route?.header_color,
-//     }
-//   }
-
-//   return {
-//     backgroundColor: 'transparent',
-//   };
-// };
-
-const getHeaderStyle = (props: any) => {
-  let route = routes.find(item => item.route_name === props?.route?.name);
-
-  if (route?.header_style) {
-    return {
-      ...styles.header,
-      ...route?.header_style,
-    };
-  }
-
-  return styles.header;
-};
-
 const StackOptions = (props: any): StackNavigationOptions => {
   return {
-    // headerBackgroundContainerStyle: getHeaderColor(props),
     headerShown: true,
-    headerStyle: getHeaderStyle(props),
+    headerStyle: styles.header,
     headerTitle: () => renderTitle(props),
     headerTitleAlign: 'center',
     headerLeft: () => renderLeft(props),
@@ -225,31 +154,27 @@ const StackOptions = (props: any): StackNavigationOptions => {
 
 const DrawerOptions = (props: any): DrawerNavigationOptions => {
   return {
-    // headerBackgroundContainerStyle: getHeaderColor(props),
     headerShown: true,
-    headerStyle: getHeaderStyle(props),
+    headerStyle: styles.header,
     headerTitle: () => renderTitle(props),
     headerTitleAlign: 'center',
     headerLeft: () => renderLeft(props),
     headerRight: () => renderRight(props),
     drawerStyle: {
-      width: '100%', // Full screen drawer,
-      backgroundColor: colors.drawerColor,
+      width: widthPixel(286),
+      backgroundColor: colors.primary,
     },
   };
 };
 
 const TabbarOptions = (props: any): BottomTabNavigationOptions => ({
   headerShown: true,
-  headerStyle: getHeaderStyle(props),
+  headerStyle: styles.header,
   headerTitle: () => renderTitle(props),
   headerTitleAlign: 'center',
-  // headerBackgroundContainerStyle: getHeaderColor(props),
   headerLeft: () => renderLeft(props),
   headerRight: () => renderRight(props),
-  // tabBarActiveTintColor: colors.selectionColor,
   tabBarShowLabel: true,
-  // tabBarStyle: styles.tabBarStyle,
 });
 
 export {StackOptions, TabbarOptions, DrawerOptions};

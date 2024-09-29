@@ -1,32 +1,31 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../Utils/colors';
-import { appShadow, vh, vw } from '../../Utils/helpers';
+import { font, heightPixel, vh, vw } from '../../Utils/helpers';
 
 const styles = StyleSheet.create({
     title: {
-        color: colors.placeHolderText,
-        fontSize: vh * 2.2,
+        color: colors.dark_text,
+        fontSize: font(30),
     },
     icon: {
-        width: vh * 4,
-        height: vh * 4,
+        width: heightPixel(28),
+        height: heightPixel(28),
         justifyContent: 'center',
         alignItems: 'center',
     },
     left_margin: {
-        marginLeft: vw * 5,
+        marginLeft: vw * 10,
     },
     left_icon: {
-        width: vh * 4,
-        height: vh * 4,
+        width: heightPixel(28),
+        height: heightPixel(28),
         resizeMode: 'contain',
     },
     right_icon: {
-        marginRight: vw * 5,
+        marginRight: vw * 10,
     },
     header: {
-        height: vh * 10,
-        borderBottomWidth: 1,
+        height: vh * 7,
         backgroundColor: colors.white,
         elevation: 0,
         shadowOpacity: 0,

@@ -1,5 +1,5 @@
-import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import {Dispatch, ReactNode, SetStateAction} from 'react';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import {
   ImageRequireSource,
   ImageSourcePropType,
@@ -75,6 +75,7 @@ export interface IInput extends TextInput {
   multiline?: boolean;
   value?: string;
   input_wrapper?: StyleProp<ViewProps>;
+  container_style?: StyleProp<ViewProps>;
 }
 
 export interface IScreenWrapper extends ViewProps, ScrollViewProps {

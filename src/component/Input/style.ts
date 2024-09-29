@@ -1,7 +1,7 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import fonts from '../../Assets/Fonts';
 import colors from '../../Utils/colors';
-import {vh} from '../../Utils/helpers';
+import { vh } from '../../Utils/helpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 8,
     paddingHorizontal: 15,
-    paddingVertical: 5,
     elevation: 2,
     backgroundColor: colors.white,
     shadowColor: colors.shadow,

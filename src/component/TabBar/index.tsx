@@ -35,13 +35,16 @@ const TabBar: FC<ITabBar> = ({navigation, descriptors, state}) => {
         let icon;
         let name;
         if (route.name === 'HomeNavigator') {
-          icon = icons.google;
+          icon = icons.home;
           name = 'Home';
-        } else if (route.name === 'GroupListScreen') {
-          icon = icons.eye;
+        } else if (route.name === 'Notification') {
+          icon = icons.notification;
           name = 'Cart';
+        } else if (route.name === 'Forum') {
+          icon = icons.forum;
+          name = 'Profile';
         } else if (route.name === 'ProfileScreen') {
-          icon = icons.apple;
+          icon = icons.profile;
           name = 'Profile';
         }
 
@@ -50,15 +53,31 @@ const TabBar: FC<ITabBar> = ({navigation, descriptors, state}) => {
             style={styles.item}
             onPress={onPress}
             onLongPress={onLongPress}>
-            <Image
-              source={icon}
-              style={[
-                styles.icon,
-                {
-                  tintColor: isFocused ? colors.primary : colors.black,
-                },
-              ]}
-            />
+            {isFocused ? (
+              <View style={styles.selected_view}>
+                <Image
+                  source={icon}
+                  style={[
+                    styles.icon,
+                    {
+                      height: '50%',
+                      width: '50%',
+                      tintColor: colors.white,
+                    },
+                  ]}
+                />
+              </View>
+            ) : (
+              <Image
+                source={icon}
+                style={[
+                  styles.icon,
+                  {
+                    tintColor: colors.black,
+                  },
+                ]}
+              />
+            )}
           </TouchableOpacity>
         );
       })}

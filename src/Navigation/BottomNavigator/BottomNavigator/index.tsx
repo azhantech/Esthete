@@ -16,7 +16,8 @@ const BottomNavigator = () => {
         component={HomeNavigator}
         options={{headerShown: false}}
       />
-      <Tab.Screen name="GroupListScreen" component={GroupListScreen} />
+      <Tab.Screen name="Notification" component={GroupListScreen} />
+      <Tab.Screen name="Forum" component={ProfileScreen} />
       <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
     </Tab.Navigator>
   );

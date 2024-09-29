@@ -31,7 +31,7 @@ const SignUpScreen = () => {
   const handleSignUp = (values: any) => {
     // You can handle the signup logic here with form values
     console.log(values);
-    navigationRef.navigate('Signin');
+    navigationRef.navigate('Subscription');
   };
 
   return (

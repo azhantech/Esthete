@@ -31,7 +31,7 @@ const CustomText: React.FC<CustomTextProps> = props => {
 const styles = StyleSheet.create({
   text: {
     // Default text styling
-    color: colors.black,
+    color: colors.dark_text,
     fontSize: font(14),
   },
 });
