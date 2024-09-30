@@ -37,7 +37,7 @@ const TabBar: FC<ITabBar> = ({navigation, descriptors, state}) => {
         if (route.name === 'HomeNavigator') {
           icon = icons.home;
           name = 'Home';
-        } else if (route.name === 'Notification') {
+        } else if (route.name === 'ProductRecommendation') {
           icon = icons.notification;
           name = 'Cart';
         } else if (route.name === 'Forum') {

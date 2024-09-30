@@ -16,7 +16,7 @@ const routes = [
     search: true,
   },
   {
-    route_name: 'GroupListScreen',
+    route_name: 'ProductRecommendation',
     drawer: true,
     search: true,
   },
@@ -63,6 +63,11 @@ const routes = [
   {
     route_name: 'ChatScreen',
     title: 'Emergency',
+    back: true,
+  },
+  {
+    route_name: 'ProductDetail',
+    title: 'Product Detail',
     back: true,
   },
   {

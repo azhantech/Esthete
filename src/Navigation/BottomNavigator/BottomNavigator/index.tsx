@@ -1,9 +1,10 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import TabBar from '../../../component/TabBar';
 import ProfileScreen from '../../../Screens/ProfileScreen';
-import GroupListScreen from '../../../Screens/GroupListScreen';
 import HomeNavigator from '../../HomeNavigator';
 import {TabbarOptions} from '../../Options';
+import ProductRecommendation from '../../../Screens/ProductRecommendation';
+
 const Tab = createBottomTabNavigator();
 
 const BottomNavigator = () => {
@@ -16,7 +17,10 @@ const BottomNavigator = () => {
         component={HomeNavigator}
         options={{headerShown: false}}
       />
-      <Tab.Screen name="Notification" component={GroupListScreen} />
+      <Tab.Screen
+        name="ProductRecommendation"
+        component={ProductRecommendation}
+      />
       <Tab.Screen name="Forum" component={ProfileScreen} />
       <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
     </Tab.Navigator>

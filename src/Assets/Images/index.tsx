@@ -33,6 +33,8 @@ export const dummyImages = {
   black: require('./dummyImages/black.png'),
   red: require('./dummyImages/red.png'),
   profile: require('./dummyImages/profile.png'),
+  product_1: require('./dummyImages/product-1.png'),
+  product_2: require('./dummyImages/product-2.png'),
 };
 
 export const drawerIcon = {};
