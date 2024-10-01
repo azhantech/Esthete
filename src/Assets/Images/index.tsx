@@ -22,6 +22,7 @@ export const icons = {
   saved_products: require('./icons/saved-products.png'),
   subscription_log: require('./icons/subscription-log.png'),
   forward: require('./icons/forward.png'),
+  selectedImage: require('./icons/selectImage.png'),
 };
 
 export const banners = {
@@ -35,6 +36,27 @@ export const dummyImages = {
   profile: require('./dummyImages/profile.png'),
   product_1: require('./dummyImages/product-1.png'),
   product_2: require('./dummyImages/product-2.png'),
+  skin: {
+    skinDry: require('./icons/skinDry.png'),
+    NormalSkin: require('./icons/NormalSkin.png'),
+    skinOily: require('./icons/skinOily.png'),
+    skinAcne: require('./icons/skinAcne.png'),
+    skinCombination: require('./icons/skinCombination.png'),
+    skinNormal: require('./icons/skinNormal.png'),
+  },
+  tone: {
+    Dark: require('./dummyImages/Dark.png'),
+    MediumSkin: require('./dummyImages/MediumSkin.png'),
+    MediumTone: require('./dummyImages/MediumTone.png'),
+    MediumDark: require('./dummyImages/MediumDark.png'),
+    Medium: require('./dummyImages/Medium.png'),
+    Light: require('./dummyImages/Light.png'),
+  },
+  hair: {
+    curly: require('./dummyImages/curly.png'),
+    colly: require('./dummyImages/colly.png'),
+    straight: require('./dummyImages/straight.png'),
+  },
 };
 
 export const drawerIcon = {};
