@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, ScrollView, Image} from 'react-native';
+import {View, Image} from 'react-native';
 import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import {generalImages} from '../../Assets/Images';
 import CustomText from '../../component/Text';
-import {vh, width} from '../../Utils/helpers';
+import {vh} from '../../Utils/helpers';
 import Button from '../../component/Button';
 
 const WelcomeScreen = () => {

@@ -75,6 +75,11 @@ const routes = [
     title: 'Notifications',
     back: true,
   },
+  {
+    route_name: 'EducationalContent',
+    title: 'Educational Content',
+    drawer: true,
+  },
   // {
   //   route_name: 'GiftPayment',
   //   title: 'Payment Method',

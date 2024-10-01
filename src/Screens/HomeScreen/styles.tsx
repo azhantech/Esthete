@@ -3,7 +3,7 @@ import {
   appShadow,
   font,
   heightPixel,
-  vw,
+  width,
   widthPixel,
 } from '../../Utils/helpers';
 import colors from '../../Utils/colors';
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     marginTop: heightPixel(25),
   },
   service_card: {
-    width: vw * 80,
+    width: width,
     flexDirection: 'row',
     // alignSelf: 'center',
     marginTop: heightPixel(30),
@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
     color: colors.dark_text,
   },
   question_container: {
-    width: vw * 80,
+    width: width,
     alignSelf: 'center',
     marginTop: heightPixel(30),
     marginBottom: heightPixel(15),
@@ -76,7 +76,7 @@ export const styles = StyleSheet.create({
   },
   concern_wrapper: {
     flexDirection: 'row',
-    width: vw * 80,
+    width: width,
     alignSelf: 'center',
     justifyContent: 'space-between',
   },

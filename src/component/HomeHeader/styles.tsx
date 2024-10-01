@@ -1,10 +1,10 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../Utils/colors';
-import {font, vw} from '../../Utils/helpers';
+import {font, vw, width} from '../../Utils/helpers';
 
 export const styles = StyleSheet.create({
   container: {
-    width: vw * 80,
+    width: width,
     alignSelf: 'center',
   },
   we_beauty: {

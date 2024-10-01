@@ -57,6 +57,11 @@ const CustomDrawerContent = (props: any) => {
       name: 'Privacy Policy',
       route: 'PrivacyPolicy',
     },
+    {
+      id: 8,
+      name: 'Educational Content',
+      route: 'EducationalContent',
+    },
   ];
   return (
     <DrawerContentScrollView

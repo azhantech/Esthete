@@ -1,18 +1,20 @@
 import React from 'react';
-import {TouchableOpacity, Image, Text, View} from 'react-native';
-import {vw, vh} from '../../Utils/helpers'; // Assuming you have these helpers
-import colors from '../../Utils/colors'; // Assuming colors file exists
+import {TouchableOpacity, Image, View} from 'react-native';
 import styles from './styles';
 import {icons} from '../../Assets/Images';
 import CustomText from '../Text';
+
 const CircleImage = ({image, text, isSelected, onPress}: any) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.mainContainer}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={onPress}
+      style={styles.mainContainer}>
       <View
         style={[
           styles.imageContainer,
           {
-            borderColor: isSelected ? colors.primary : colors.red,
+            borderWidth: isSelected ? 1 : 0,
           },
         ]}>
         <Image source={image} style={styles.image} />
@@ -22,7 +24,7 @@ const CircleImage = ({image, text, isSelected, onPress}: any) => {
           </View>
         )}
       </View>
-      <CustomText>{text}</CustomText>
+      {text && <CustomText style={styles.text}>{text}</CustomText>}
     </TouchableOpacity>
   );
 };

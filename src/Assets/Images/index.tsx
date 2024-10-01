@@ -23,6 +23,7 @@ export const icons = {
   subscription_log: require('./icons/subscription-log.png'),
   forward: require('./icons/forward.png'),
   selectedImage: require('./icons/selectImage.png'),
+  cross: require('./icons/cross.png'),
 };
 
 export const banners = {
@@ -36,6 +37,7 @@ export const dummyImages = {
   profile: require('./dummyImages/profile.png'),
   product_1: require('./dummyImages/product-1.png'),
   product_2: require('./dummyImages/product-2.png'),
+  video_small: require('./dummyImages/video-small.png'),
   skin: {
     skinDry: require('./icons/skinDry.png'),
     NormalSkin: require('./icons/NormalSkin.png'),

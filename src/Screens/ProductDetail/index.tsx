@@ -5,9 +5,15 @@ import RecommendationCard from '../../component/RecommendationCard';
 import CustomText from '../../component/Text';
 import {View} from 'react-native';
 import Button from '../../component/Button';
+import Modal from '../../component/Modal';
+import {icons} from '../../Assets/Images';
+import useToggle from '../../Hooks/useToggle';
+import {goBack} from '../../Utils/navigation';
 
 const ProductDetail = ({route}: any) => {
   const item = route?.params?.item;
+
+  const [open, setOpen, toggle] = useToggle();
 
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
@@ -37,7 +43,7 @@ const ProductDetail = ({route}: any) => {
 
         <View style={styles.button_view}>
           <View style={styles.button_container}>
-            <Button text="Accept" onPress={() => {}} />
+            <Button text="Accept" onPress={toggle} />
           </View>
           <View style={styles.button_container}>
             <Button
@@ -49,6 +55,14 @@ const ProductDetail = ({route}: any) => {
           </View>
         </View>
       </View>
+      <Modal
+        open={open}
+        setOpen={setOpen}
+        icon={icons.success}
+        title="Action Successful"
+        text="The approved product has been added to “Saved Products” List"
+        buttons={[{text: 'Ok', onPress: goBack}]}
+      />
     </ScreenWrapper>
   );
 };

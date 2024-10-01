@@ -14,11 +14,11 @@ const Stack = createStackNavigator();
 const MainNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="AuthNavigator"
         component={AuthNavigator}
         options={{headerShown: false}}
-      />
+      /> */}
       <Stack.Screen
         name="DrawerNavigator"
         component={DrawerNavigator}

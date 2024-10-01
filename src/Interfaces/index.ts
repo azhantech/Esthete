@@ -6,6 +6,7 @@ import {
   ScrollViewProps,
   StyleProp,
   TextInput,
+  TextInputProps,
   TextProps,
   TextStyle,
   ViewProps,
@@ -38,7 +39,6 @@ export interface IModal {
   buttonsWrapperStyle?: StyleProp<ViewStyle>;
   modalView?: StyleProp<ViewStyle>;
   input_wrapper?: StyleProp<ViewStyle>;
-  input: boolean;
   headingStyle?: StyleProp<TextStyle>;
 }
 export interface ISuggestedGroupModal {
@@ -65,7 +65,7 @@ export interface ISuggestedGroupModal {
   headingStyle?: StyleProp<TextStyle>;
 }
 export type ITabBar = BottomTabBarProps;
-export interface IInput extends TextInput {
+export interface IInput extends TextInputProps {
   label?: string;
   required?: boolean;
   placeholder?: string;
@@ -75,7 +75,7 @@ export interface IInput extends TextInput {
   multiline?: boolean;
   value?: string;
   input_wrapper?: StyleProp<ViewProps>;
-  container_style?: StyleProp<ViewProps>;
+  container_style?: ViewStyle;
 }
 
 export interface IScreenWrapper extends ViewProps, ScrollViewProps {

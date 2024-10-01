@@ -8,6 +8,7 @@ import {Formik} from 'formik';
 import useSubscriptionController from '../../Controllers/useSubscriptionController';
 import Input from '../../component/Input';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {navigate} from '../../Utils/navigation';
 
 const DATA = [
   {
@@ -65,7 +66,9 @@ const Subscription = () => {
     <Formik
       initialValues={values.initial}
       validationSchema={validator}
-      onSubmit={values => {}}>
+      onSubmit={values => {
+        navigate('ProfileCompletion');
+      }}>
       {({
         handleChange,
         handleBlur,
@@ -124,7 +127,7 @@ const Subscription = () => {
             value={data.cvv_number}
             onChangeText={handleChange('cvv_number')}
             onBlur={handleBlur('cvv_number')}
-            keyboardType="cvv_number-pad"
+            keyboardType="number-pad"
             container_style={styles.input_spacing}
           />
           {touched.cvv_number && errors.cvv_number && (
@@ -149,7 +152,7 @@ const Subscription = () => {
           {item.package_name}
         </CustomText>
       </View>
-      {item.features.map(feature => (
+      {item.features.map((feature: any) => (
         <CustomText key={feature.id + item.id} style={styles.feature_text}>
           {feature.feature}
         </CustomText>

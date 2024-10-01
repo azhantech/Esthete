@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {font, heightPixel, vw, widthPixel} from '../../Utils/helpers';
+import {font, heightPixel, width, widthPixel} from '../../Utils/helpers';
 import colors from '../../Utils/colors';
 
 export const styles = StyleSheet.create({
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content_view: {
-    width: vw * 80,
+    width: width,
   },
   label: {
     fontSize: font(18),

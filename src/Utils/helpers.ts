@@ -10,7 +10,7 @@ export const BOTTOMBAR_HEIGHT =
 export const vh = (Dimensions.get('window').height - STATUSBAR_HEIGHT) * 0.01
 export const vw = Dimensions.get('window').width * 0.01
 
-export const width = "90%"
+export const width = vw * 80
 
 export const appShadow = {
   shadowColor: "#000",

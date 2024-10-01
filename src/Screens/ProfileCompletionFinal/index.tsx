@@ -6,9 +6,9 @@ import Button from '../../component/Button';
 import CircleImage from '../../component/CircularImage';
 import CustomText from '../../component/Text';
 import styles from './styles';
-import {goBack, navigate} from '../../Utils/navigation';
+import {goBack} from '../../Utils/navigation';
 
-const ProfileCompletion = () => {
+const ProfileCompletionFinal = () => {
   const [selectedSkinConcerns, setSelectedSkinConcerns] = useState([]);
   const [selectedHairTypes, setSelectedHairTypes] = useState([]);
 
@@ -19,18 +19,12 @@ const ProfileCompletion = () => {
     {id: 4, text: 'Combination', image: dummyImages.skin.skinCombination},
     {id: 5, text: 'Acne', image: dummyImages.skin.skinAcne},
     {id: 6, text: 'Normal', image: dummyImages.skin.NormalSkin},
-    {id: 7, text: 'Combination', image: dummyImages.skin.skinCombination},
-    {id: 8, text: 'Acne', image: dummyImages.skin.skinAcne},
-    {id: 9, text: 'Normal', image: dummyImages.skin.NormalSkin},
   ];
 
   const hairTypes = [
     {id: 1, text: 'Colly', image: dummyImages.hair.colly},
     {id: 2, text: 'Curly', image: dummyImages.hair.curly},
     {id: 3, text: 'Wavy', image: dummyImages.hair.straight},
-    {id: 4, text: 'Straight', image: dummyImages.hair.straight},
-    {id: 5, text: 'Colly', image: dummyImages.hair.curly},
-    {id: 6, text: 'Curly', image: dummyImages.hair.colly},
   ];
 
   const handleSelect = (id, type) => {
@@ -91,14 +85,14 @@ const ProfileCompletion = () => {
       <View style={styles.buttonContainer}>
         <Button text="Previous" style={styles.prevButton} onPress={goBack} />
         <Button
-          text="Next"
+          text="Save"
           style={styles.nextButton}
           textStyle={styles.nextButtonText}
-          onPress={() => navigate('ProfileCompletionFinal')}
+          onPress={() => console.log('')}
         />
       </View>
     </ScreenWrapper>
   );
 };
 
-export default ProfileCompletion;
+export default ProfileCompletionFinal;

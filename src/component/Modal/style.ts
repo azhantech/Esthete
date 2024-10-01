@@ -1,9 +1,9 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 // import { font, vh } from "src/Utils/helper";
 import colors from '../../Utils/colors';
 
-import {vw, vh} from '../../Utils/helpers';
+import { vw, vh, font, heightPixel } from '../../Utils/helpers';
 
 const icon_size = 4;
 
@@ -34,13 +34,6 @@ const styles = StyleSheet.create({
   },
   modalText: {
     textAlign: 'center',
-    fontSize: vh * 1.6,
-    color: colors.black,
-  },
-  modalText2: {
-    textAlign: 'center',
-    fontSize: vh * 1.6,
-    color: colors.questionnairColor,
   },
   itemsWrapper: {
     width: '100%',
@@ -66,8 +59,9 @@ const styles = StyleSheet.create({
   },
   heading: {
     textAlign: 'center',
-    fontSize: vh * 2.2,
-    color: colors.questionnairColor,
+    fontSize: font(26),
+    color: colors.dark_text,
+    marginBottom: heightPixel(5)
   },
   cancel_button: {
     height: vh * 3,

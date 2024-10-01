@@ -5,7 +5,7 @@ import { font, heightPixel, vh, vw } from '../../Utils/helpers';
 const styles = StyleSheet.create({
     title: {
         color: colors.dark_text,
-        fontSize: font(30),
+        fontSize: font(24),
     },
     icon: {
         width: heightPixel(28),

@@ -8,6 +8,7 @@ import SocialSignInScreen from '../../Screens/SocialSignInScreen';
 import OnBoarding from '../../Screens/OnBoarding';
 import Subscription from '../../Screens/Subscription';
 import ProfileCompletion from '../../Screens/ProfileCompletion';
+import ProfileCompletionFinal from '../../Screens/ProfileCompletionFinal';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,10 @@ const AuthNavigator = () => {
     <Stack.Navigator
       screenOptions={{headerShown: false, animationEnabled: false}}>
       <Stack.Screen name="ProfileCompletion" component={ProfileCompletion} />
+      <Stack.Screen
+        name="ProfileCompletionFinal"
+        component={ProfileCompletionFinal}
+      />
 
       <Stack.Screen name="OnBoarding" component={OnBoarding} />
       <Stack.Screen name="Subscription" component={Subscription} />

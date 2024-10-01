@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -8,8 +8,7 @@ import CustomText from '../../component/Text';
 import Input from '../../component/Input';
 import Button from '../../component/Button';
 import colors from '../../Utils/colors';
-import {vh, vw, width} from '../../Utils/helpers';
-import {generalImages} from '../../Assets/Images';
+import {vh, vw} from '../../Utils/helpers';
 import AuthHeader from '../../component/authHeader';
 import {navigationRef} from '../../Utils/navigation';
 

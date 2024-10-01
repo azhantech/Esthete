@@ -1,19 +1,19 @@
 import {StyleSheet} from 'react-native';
-import {vh, vw} from '../../Utils/helpers';
+import {font, heightPixel} from '../../Utils/helpers';
 import colors from '../../Utils/colors';
-
 const styles = StyleSheet.create({
   mainContainer: {
     alignItems: 'center',
+    marginTop: heightPixel(15),
   },
   imageContainer: {
-    width: vh * 15,
-    height: vh * 15,
-    borderRadius: (vh * 15) / 2,
-    borderWidth: 1,
+    width: heightPixel(85),
+    height: heightPixel(85),
+    borderRadius: heightPixel(85) / 2,
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
+    borderColor: colors.auth_button,
   },
   selectedContainer: {
     position: 'absolute',
@@ -23,7 +23,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  selectedImage: {width: '100%', height: '100%'},
-  image: {width: '100%', height: '100%'},
+  selectedImage: {
+    width: '100%',
+    height: '100%',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  text: {
+    fontSize: font(12),
+    marginTop: heightPixel(5),
+  },
 });
 export default styles;

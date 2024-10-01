@@ -37,7 +37,6 @@ const Modal: FC<IModal> = props => {
     buttonStyle,
     row,
     buttonsWrapperStyle,
-    input,
     headingStyle,
     close,
     input_wrapper,
@@ -80,7 +79,7 @@ const Modal: FC<IModal> = props => {
             )}
 
             <View style={styles.itemsWrapper}>
-              <Text style={[styles.heading, headingStyle]} weight="bold">
+              <Text style={[styles.heading, headingStyle]} weight="semiBold">
                 {title}
               </Text>
               {text && (
@@ -89,7 +88,7 @@ const Modal: FC<IModal> = props => {
                 </Text>
               )}
               {text1 && (
-                <Text style={styles.modalText2} weight="regular">
+                <Text style={styles.modalText} weight="regular">
                   {text1}
                 </Text>
               )}
