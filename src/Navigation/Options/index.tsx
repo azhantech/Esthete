@@ -90,6 +90,11 @@ const routes = [
     title: 'Articles',
     back: true,
   },
+  {
+    route_name: 'ArticleDetail',
+    title: 'ArticleDetail',
+    back: true,
+  },
   // {
   //   route_name: 'GiftPayment',
   //   title: 'Payment Method',

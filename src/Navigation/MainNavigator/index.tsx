@@ -4,6 +4,7 @@ import DrawerNavigator from '../DrawerNavigator';
 import {StackOptions} from '../Options';
 import Videos from '../../Screens/Videos';
 import Articles from '../../Screens/Articles';
+import ArticleDetail from '../../Screens/ArticleDetail';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ const MainNavigator = () => {
       />
       <Stack.Screen name="Videos" component={Videos} />
       <Stack.Screen name="Articles" component={Articles} />
+      <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
       {/* <Stack.Screen name="TakeSelfieScreen" component={TakeSelfieScreen} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />

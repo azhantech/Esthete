@@ -5,6 +5,7 @@ import {dummyImages} from '../../Assets/Images';
 import {FlatList, View} from 'react-native';
 import CommonCard from '../../component/CommonCard';
 import {heightPixel} from '../../Utils/helpers';
+import {navigate} from '../../Utils/navigation';
 
 const PRODUCTS = [
   {
@@ -30,9 +31,16 @@ const PRODUCTS = [
   },
 ];
 
+const navigateToDetails = () => navigate('ArticleDetail');
+
 const Articles = () => {
   const renderItems = ({item}: any) => (
-    <CommonCard item={item} image_height={heightPixel(123)} is_more_details />
+    <CommonCard
+      item={item}
+      onPress={navigateToDetails}
+      image_height={heightPixel(123)}
+      is_more_details
+    />
   );
 
   const renderSeperator = () => <View style={styles.seperator} />;
