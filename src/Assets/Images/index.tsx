@@ -24,6 +24,7 @@ export const icons = {
   forward: require('./icons/forward.png'),
   selectedImage: require('./icons/selectImage.png'),
   cross: require('./icons/cross.png'),
+  play: require('./icons/play.png'),
 };
 
 export const banners = {
@@ -59,6 +60,9 @@ export const dummyImages = {
     colly: require('./dummyImages/colly.png'),
     straight: require('./dummyImages/straight.png'),
   },
+  video_1: require('./dummyImages/video-1.png'),
+  video_2: require('./dummyImages/video-2.png'),
+  video_3: require('./dummyImages/video-3.png'),
 };
 
 export const drawerIcon = {};

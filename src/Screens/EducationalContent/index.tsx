@@ -7,6 +7,7 @@ import CircleImage from '../../component/CircularImage';
 import CustomText from '../../component/Text';
 import styles from './styles';
 import HorizontalVideoCard from '../../component/HorizontalVideoCard';
+import {navigate} from '../../Utils/navigation';
 
 const EducationalContent = () => {
   const [selectedSkinConcerns, setSelectedSkinConcerns] = useState([]);
@@ -68,7 +69,7 @@ const EducationalContent = () => {
       <Button
         text="View All Articles"
         style={styles.button}
-        onPress={() => {}}
+        onPress={() => navigate('Articles')}
       />
 
       <CustomText style={styles.sectionTitle}>Videos</CustomText>
@@ -82,7 +83,11 @@ const EducationalContent = () => {
           ItemSeparatorComponent={renderSeperator}
         />
       </View>
-      <Button text="View All Videos" style={styles.button} onPress={() => {}} />
+      <Button
+        text="View All Videos"
+        style={styles.button}
+        onPress={() => navigate('Videos')}
+      />
     </ScreenWrapper>
   );
 };

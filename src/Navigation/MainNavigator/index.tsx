@@ -1,19 +1,15 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import AuthNavigator from '../AuthNavigation';
-// import TakeSelfieScreen from '../../Screens/TakeSelfieScreen';
-// import EditProfile from '../../Screens/EditProfile';
-// import ChangePassword from '../../Screens/ChangePassword';
 import DrawerNavigator from '../DrawerNavigator';
-// import ChatScreen from '../../Screens/ChatScreen';
-// import Notification from '../../Screens/Notification';
-// import OtherUserProfile from '../../Screens/OtherUserProfile';
 import {StackOptions} from '../Options';
+import Videos from '../../Screens/Videos';
+import Articles from '../../Screens/Articles';
 
 const Stack = createStackNavigator();
 
 const MainNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator screenOptions={StackOptions}>
       {/* <Stack.Screen
         name="AuthNavigator"
         component={AuthNavigator}
@@ -24,6 +20,8 @@ const MainNavigator = () => {
         component={DrawerNavigator}
         options={{headerShown: false}}
       />
+      <Stack.Screen name="Videos" component={Videos} />
+      <Stack.Screen name="Articles" component={Articles} />
       {/* <Stack.Screen name="TakeSelfieScreen" component={TakeSelfieScreen} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />

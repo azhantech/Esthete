@@ -80,6 +80,16 @@ const routes = [
     title: 'Educational Content',
     drawer: true,
   },
+  {
+    route_name: 'Videos',
+    title: 'Videos',
+    back: true,
+  },
+  {
+    route_name: 'Articles',
+    title: 'Articles',
+    back: true,
+  },
   // {
   //   route_name: 'GiftPayment',
   //   title: 'Payment Method',

@@ -108,3 +108,11 @@ export interface GroupCardProps {
 export interface IForget {
   onPress: (e: number) => void
 }
+
+export interface ICommonCard {
+  item: any;
+  onPress?: () => void;
+  image_height: number;
+  is_video?: boolean;
+  is_more_details?: boolean;
+}
