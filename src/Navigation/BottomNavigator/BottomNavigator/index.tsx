@@ -4,7 +4,7 @@ import ProfileScreen from '../../../Screens/ProfileScreen';
 import HomeNavigator from '../../HomeNavigator';
 import {TabbarOptions} from '../../Options';
 import ProductRecommendation from '../../../Screens/ProductRecommendation';
-
+import CommunityForum from '../../../Screens/CommunityForum';
 const Tab = createBottomTabNavigator();
 
 const BottomNavigator = () => {
@@ -21,7 +21,7 @@ const BottomNavigator = () => {
         name="ProductRecommendation"
         component={ProductRecommendation}
       />
-      <Tab.Screen name="Forum" component={ProfileScreen} />
+      <Tab.Screen name="Forum" component={CommunityForum} />
       <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
     </Tab.Navigator>
   );

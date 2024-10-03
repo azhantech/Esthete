@@ -16,12 +16,6 @@ const AuthNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false, animationEnabled: false}}>
-      <Stack.Screen name="ProfileCompletion" component={ProfileCompletion} />
-      <Stack.Screen
-        name="ProfileCompletionFinal"
-        component={ProfileCompletionFinal}
-      />
-
       <Stack.Screen name="OnBoarding" component={OnBoarding} />
       <Stack.Screen name="Subscription" component={Subscription} />
       <Stack.Screen name="Signup" component={SignUpScreen} />
@@ -30,6 +24,12 @@ const AuthNavigator = () => {
       <Stack.Screen name="PasswordRecovery" component={PasswordRecovery} />
       <Stack.Screen name="VerificationCode" component={VerificationCode} />
       <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
+
+      <Stack.Screen name="ProfileCompletion" component={ProfileCompletion} />
+      <Stack.Screen
+        name="ProfileCompletionFinal"
+        component={ProfileCompletionFinal}
+      />
 
       {/* <Stack.Screen
         name="QuestionnaireScreen"

@@ -25,6 +25,9 @@ export const icons = {
   selectedImage: require('./icons/selectImage.png'),
   cross: require('./icons/cross.png'),
   play: require('./icons/play.png'),
+  searchIcon: require('./icons/searchIcon.png'),
+  search: require('./icons/search.png'),
+  messagesIcon: require('./icons/messagesIcon.png'),
 };
 
 export const banners = {
@@ -63,6 +66,12 @@ export const dummyImages = {
   video_1: require('./dummyImages/video-1.png'),
   video_2: require('./dummyImages/video-2.png'),
   video_3: require('./dummyImages/video-3.png'),
+  communityForum: {
+    community1: require('./dummyImages/community1.png'),
+    community2: require('./dummyImages/community1.png'),
+    community3: require('./dummyImages/community1.png'),
+    community4: require('./dummyImages/community1.png'),
+  },
 };
 
 export const drawerIcon = {};

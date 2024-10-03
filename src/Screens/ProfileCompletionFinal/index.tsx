@@ -6,7 +6,7 @@ import Button from '../../component/Button';
 import CircleImage from '../../component/CircularImage';
 import CustomText from '../../component/Text';
 import styles from './styles';
-import {goBack} from '../../Utils/navigation';
+import {goBack, navigationRef} from '../../Utils/navigation';
 
 const ProfileCompletionFinal = () => {
   const [selectedSkinConcerns, setSelectedSkinConcerns] = useState([]);
@@ -88,7 +88,7 @@ const ProfileCompletionFinal = () => {
           text="Save"
           style={styles.nextButton}
           textStyle={styles.nextButtonText}
-          onPress={() => console.log('')}
+          onPress={() => navigationRef.navigate('DrawerNavigator')}
         />
       </View>
     </ScreenWrapper>
