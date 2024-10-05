@@ -5,6 +5,12 @@ import {StackOptions} from '../Options';
 import Videos from '../../Screens/Videos';
 import Articles from '../../Screens/Articles';
 import ArticleDetail from '../../Screens/ArticleDetail';
+import ExpertConsultation from '../../Screens/ExpertConsultation';
+import CommunityForumAnswers from '../../Screens/CommunityForumAnswers';
+import RequestNewThread from '../../Screens/RequestNewThread';
+import EditProfile from '../../Screens/EditProfile';
+import ProfileQuestionnaire from '../../Screens/ProfileQuestionnaire';
+import ProfileQuestionnaireNavigator from '../ProfileQuestionnaireNavigator';
 
 const Stack = createStackNavigator();
 
@@ -24,8 +30,19 @@ const MainNavigator = () => {
       <Stack.Screen name="Videos" component={Videos} />
       <Stack.Screen name="Articles" component={Articles} />
       <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
-      {/* <Stack.Screen name="TakeSelfieScreen" component={TakeSelfieScreen} />
+      <Stack.Screen name="ExpertConsultation" component={ExpertConsultation} />
+      <Stack.Screen
+        name="CommunityForumAnswers"
+        component={CommunityForumAnswers}
+      />
+      <Stack.Screen name="RequestNewThread" component={RequestNewThread} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
+      <Stack.Screen
+        name="ProfileQuestionnaireNavigator"
+        component={ProfileQuestionnaireNavigator}
+        options={{headerShown: false}}
+      />
+      {/* <Stack.Screen name="TakeSelfieScreen" component={TakeSelfieScreen} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
       <Stack.Screen name="ChatScreen" component={ChatScreen} />
       <Stack.Screen name="OtherUserProfile" component={OtherUserProfile} />

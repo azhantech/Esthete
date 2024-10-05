@@ -12,29 +12,37 @@ const OPTIONS = [
     id: '1',
     icon: icons.profile_questionnaire,
     name: 'Profile Questionnaire',
+    onPress: () => navigate('ProfileQuestionnaireNavigator'),
   },
   {
     id: '2',
     icon: icons.saved_products,
     name: 'Saved Products',
+    onPress: () => navigate('ProfileQuestionnaire'),
   },
   {
     id: '3',
     icon: icons.my_goals,
     name: 'My Goals',
+    onPress: () => navigate('ProfileQuestionnaire'),
   },
   {
     id: '4',
     icon: icons.subscription_log,
     name: 'Subscription Log',
+    onPress: () => navigate('ProfileQuestionnaire'),
   },
 ];
 
 export default function ProfileScreen() {
   const navigateToEdit = () => navigate('EditProfile');
 
-  const renderOptions = ({id, icon, name}: any) => (
-    <TouchableOpacity key={id} activeOpacity={0.7} style={styles.option}>
+  const renderOptions = ({id, icon, name, onPress}: any) => (
+    <TouchableOpacity
+      key={id}
+      activeOpacity={0.7}
+      onPress={onPress}
+      style={styles.option}>
       <View style={styles.icon_container}>
         <Image source={icon} />
       </View>

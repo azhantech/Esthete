@@ -8,6 +8,7 @@ import {heightPixel, vw} from '../../Utils/helpers';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {banners, dummyImages, icons} from '../../Assets/Images';
 import CustomText from '../../component/Text';
+import {navigate} from '../../Utils/navigation';
 
 const SERVICES = [
   {
@@ -16,6 +17,7 @@ const SERVICES = [
     name: 'Expert’s Consultation',
     detail:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet velit orci, morbi sociis feugiat eros quam.',
+    onPress: () => navigate('ExpertConsultation'),
   },
   {
     id: '2',
@@ -23,6 +25,7 @@ const SERVICES = [
     name: 'Product Recommendation',
     detail:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet velit orci, morbi sociis feugiat eros quam.',
+    onPress: () => {},
   },
 ];
 
@@ -55,8 +58,12 @@ const Home = () => {
     />
   );
 
-  const renderService = ({id, icon, name, detail}: any) => (
-    <TouchableOpacity key={id} activeOpacity={0.7} style={styles.service_card}>
+  const renderService = ({id, icon, name, detail, onPress}: any) => (
+    <TouchableOpacity
+      key={id}
+      activeOpacity={0.7}
+      style={styles.service_card}
+      onPress={onPress}>
       <View style={styles.service_icon_container}>
         <Image source={icon} />
       </View>

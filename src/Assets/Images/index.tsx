@@ -28,6 +28,8 @@ export const icons = {
   searchIcon: require('./icons/searchIcon.png'),
   search: require('./icons/search.png'),
   messagesIcon: require('./icons/messagesIcon.png'),
+  send: require('./icons/send.png'),
+  edit: require('./icons/edit.png'),
 };
 
 export const banners = {
@@ -72,6 +74,7 @@ export const dummyImages = {
     community3: require('./dummyImages/community1.png'),
     community4: require('./dummyImages/community1.png'),
   },
+  consultation: require('./dummyImages/consultation.png'),
 };
 
 export const drawerIcon = {};

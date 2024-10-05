@@ -24,6 +24,7 @@ const Input: FC<IInput> = props => {
     multiline,
     input_wrapper,
     container_style,
+    onPressRight,
   } = props;
 
   const [secure, setSecure] = useState<boolean>(type === 'password');
@@ -41,18 +42,21 @@ const Input: FC<IInput> = props => {
 
     return null;
   };
-  const RightView = right ? View : TouchableOpacity;
+  const _onPress = right ? onPressRight : toggleSecure;
   const renderRight = () => {
     if (type === 'password' || right) {
       return (
-        <RightView style={styles.icon_wrapper} onPress={toggleSecure}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.icon_wrapper}
+          onPress={_onPress}>
           <Image
             source={
               type === 'password' ? (secure ? icons.eye_off : icons.eye) : right
             }
             style={styles.icon}
           />
-        </RightView>
+        </TouchableOpacity>
       );
     }
 

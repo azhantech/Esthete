@@ -1,8 +1,7 @@
-import {View, Text, ScrollView, ViewProps, ScrollViewProps} from 'react-native';
-import React, {FC, ReactNode} from 'react';
-import {IScreenWrapper} from '../../Interfaces'; // Assuming you have an interface for props
-import {styles} from './styles'
-// Update the IScreenWrapper interface with the necessary props
+import {View, ScrollView} from 'react-native';
+import React, {FC} from 'react';
+import {IScreenWrapper} from '../../Interfaces';
+import {styles} from './styles';
 
 export const ScreenWrapper: FC<IScreenWrapper> = ({
   scroll,

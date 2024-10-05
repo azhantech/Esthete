@@ -40,7 +40,7 @@ const TabBar: FC<ITabBar> = ({navigation, descriptors, state}) => {
         } else if (route.name === 'ProductRecommendation') {
           icon = icons.notification;
           name = 'Cart';
-        } else if (route.name === 'Forum') {
+        } else if (route.name === 'CommunityForum') {
           icon = icons.forum;
           name = 'Profile';
         } else if (route.name === 'ProfileScreen') {

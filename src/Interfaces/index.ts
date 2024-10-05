@@ -74,8 +74,9 @@ export interface IInput extends TextInputProps {
   right?: ImageRequireSource;
   multiline?: boolean;
   value?: string;
-  input_wrapper?: StyleProp<ViewProps>;
+  input_wrapper?: ViewStyle;
   container_style?: ViewStyle;
+  onPressRight?: () => void
 }
 
 export interface IScreenWrapper extends ViewProps, ScrollViewProps {

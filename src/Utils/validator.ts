@@ -58,3 +58,8 @@ export const PaymentFormValidator = Yup.object().shape({
     cvv_number: Yup.number().required('CVV number is required'),
     expiry_date: Yup.string().required('Expiry Date is required'),
 })
+
+export const RequestThreadFormValidator = Yup.object().shape({
+    title: Yup.string().required('Thread Title is required'),
+    details: Yup.string().required('Post Details are required'),
+})

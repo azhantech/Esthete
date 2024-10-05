@@ -21,13 +21,18 @@ const routes = [
     search: true,
   },
   {
+    route_name: 'CommunityForum',
+    drawer: true,
+    search: true,
+  },
+  {
     route_name: 'Home',
     drawer: true,
     search: true,
   },
   {
     route_name: 'EditProfile',
-    title: 'Edit Profile',
+    title: '',
     back: true,
   },
   {
@@ -93,6 +98,26 @@ const routes = [
   {
     route_name: 'ArticleDetail',
     title: 'ArticleDetail',
+    back: true,
+  },
+  {
+    route_name: 'ExpertConsultation',
+    title: "Expert's Consultation",
+    back: true,
+  },
+  {
+    route_name: 'CommunityForumAnswers',
+    title: 'Community Forum',
+    back: true,
+  },
+  {
+    route_name: 'RequestNewThread',
+    title: 'Community Forum',
+    back: true,
+  },
+  {
+    route_name: 'ProfileQuestionnaire',
+    title: 'Profile Questionnaire',
     back: true,
   },
   // {

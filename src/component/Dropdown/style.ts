@@ -104,6 +104,8 @@ const styles = StyleSheet.create({
     elevation: 2,
     backgroundColor: colors.white,
     shadowColor: colors.shadow,
+    borderWidth: 1,
+    borderColor: colors.borderColor,
   },
   textinput_wrapper: {
     justifyContent: 'center',

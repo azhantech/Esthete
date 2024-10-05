@@ -21,7 +21,7 @@ const BottomNavigator = () => {
         name="ProductRecommendation"
         component={ProductRecommendation}
       />
-      <Tab.Screen name="Forum" component={CommunityForum} />
+      <Tab.Screen name="CommunityForum" component={CommunityForum} />
       <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
     </Tab.Navigator>
   );

@@ -4,15 +4,19 @@ import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import Input from '../../component/Input';
 import {dummyImages, icons} from '../../Assets/Images';
-import {appShadow, vh, vw, width} from '../../Utils/helpers';
+import {width} from '../../Utils/helpers';
 import colors from '../../Utils/colors';
 import CustomText from '../../component/Text';
 import Button from '../../component/Button';
-import {navigationRef} from '../../Utils/navigation';
+import {navigate} from '../../Utils/navigation';
+
 const CommunityForum = () => {
   const renderItem = () => {
     return (
-      <View style={styles.renderItem}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => navigate('CommunityForumAnswers')}
+        style={styles.renderItem}>
         <Image
           source={dummyImages.communityForum.community1}
           style={styles.image}
@@ -34,7 +38,7 @@ const CommunityForum = () => {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
   return (
@@ -57,7 +61,7 @@ const CommunityForum = () => {
         showsVerticalScrollIndicator={false}
         ListFooterComponent={() => (
           <Button
-            onPress={() => console.log('Here')}
+            onPress={() => navigate('RequestNewThread')}
             text="Request New Thread"
             style={styles.btn}
           />
