@@ -30,6 +30,11 @@ export const icons = {
   messagesIcon: require('./icons/messagesIcon.png'),
   send: require('./icons/send.png'),
   edit: require('./icons/edit.png'),
+  star_1: require('./icons/1-star.png'),
+  star_2: require('./icons/2-star.png'),
+  star_3: require('./icons/3-star.png'),
+  star_4: require('./icons/4-star.png'),
+  star_5: require('./icons/5-star.png'),
 };
 
 export const banners = {

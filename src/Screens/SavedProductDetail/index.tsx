@@ -3,9 +3,10 @@ import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import RecommendationCard from '../../component/RecommendationCard';
 import CustomText from '../../component/Text';
-import {View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import Button from '../../component/Button';
-import {dummyImages} from '../../Assets/Images';
+import {dummyImages, icons} from '../../Assets/Images';
+import colors from '../../Utils/colors';
 
 const item = {
   true: {
@@ -245,25 +246,31 @@ const radioStep3 = [
   {
     id: '3',
     question: 'What Will Be This Products’ Overall Rating?',
+    rating: true,
     options: [
       {
         id: '1',
-        option: 'Anti-Acne',
+        option: icons.star_5,
         isSelected: true,
       },
       {
         id: '2',
-        option: 'Blemish Control',
+        option: icons.star_4,
         isSelected: false,
       },
       {
         id: '3',
-        option: 'Oil-Free',
+        option: icons.star_3,
         isSelected: false,
       },
       {
         id: '4',
-        option: 'Oily',
+        option: icons.star_2,
+        isSelected: false,
+      },
+      {
+        id: '5',
+        option: icons.star_1,
         isSelected: false,
       },
     ],
@@ -272,46 +279,131 @@ const radioStep3 = [
 
 const SavedProductDetail = ({route}: any) => {
   const [submittingFeedback, setSubmittingFeedback] = useState(false);
+  const [step, setStep] = useState(0);
 
-  const renderRadioCard = () => (
-    <View>
-      <CustomText></CustomText>
+  const renderRadioOptions = (item: any) => (
+    <TouchableOpacity activeOpacity={0.7} style={styles.radio_item}>
+      <View
+        key={item.id}
+        style={[
+          styles.dot,
+          item.isSelected && {backgroundColor: colors.primary},
+        ]}
+      />
+      <CustomText style={styles.option}>{item.option}</CustomText>
+    </TouchableOpacity>
+  );
+
+  const renderRadioRating = (item: any) => (
+    <TouchableOpacity activeOpacity={0.7} style={styles.rating_item}>
+      <View
+        key={item.id}
+        style={[
+          styles.dot,
+          item.isSelected && {backgroundColor: colors.primary},
+        ]}
+      />
+      <Image source={item.option} style={styles.image} />
+    </TouchableOpacity>
+  );
+
+  const renderRadioCard = (item: any) => (
+    <View key={item.id} style={styles.radio_card}>
+      <CustomText weight="semiBold">{item?.question}</CustomText>
+      {item?.rating ? (
+        <View style={styles.rating_container}>
+          {item?.options?.map(renderRadioRating)}
+        </View>
+      ) : (
+        <View style={styles.options_container}>
+          {item?.options?.map(renderRadioOptions)}
+        </View>
+      )}
     </View>
   );
+
+  const handleSteps = () => {
+    if (step == 0) {
+      setSubmittingFeedback(true);
+    } else if (step == 3) {
+      setSubmittingFeedback(false);
+    }
+    setStep(prev => prev + 1);
+  };
+
+  const renderSteps = {
+    1: radioStep1.map(renderRadioCard),
+    2: radioStep2.map(renderRadioCard),
+    3: radioStep3.map(renderRadioCard),
+  };
+
+  const renderFullButtonText = {
+    0: 'Submit Feedback',
+    1: 'Next',
+  };
+
+  const renderSmallButtonText = {
+    2: 'Next',
+    3: 'Submit',
+  };
+
+  const renderButtons = () =>
+    step < 2 ? (
+      <View style={styles.button_view}>
+        <Button
+          text={renderFullButtonText[step as keyof typeof renderFullButtonText]}
+          onPress={handleSteps}
+        />
+      </View>
+    ) : step <= 3 ? (
+      <View style={styles.button_view}>
+        <Button
+          text="Previous"
+          style={styles.prevButton}
+          onPress={() => setStep(prev => prev - 1)}
+        />
+        <Button
+          text={
+            renderSmallButtonText[step as keyof typeof renderSmallButtonText]
+          }
+          style={styles.nextButton}
+          textStyle={styles.nextButtonText}
+          onPress={handleSteps}
+        />
+      </View>
+    ) : null;
 
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
       <RecommendationCard item={item[submittingFeedback]} />
 
-      <View style={styles.content_view}>
-        <CustomText weight="semiBold" style={styles.label}>
-          Ingredients
-        </CustomText>
-        <CustomText style={styles.value}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s
-        </CustomText>
-        <CustomText style={styles.value}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text.
-        </CustomText>
-        <CustomText weight="semiBold" style={styles.label}>
-          Benefits
-        </CustomText>
-        <CustomText style={styles.value}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s
-        </CustomText>
-
-        <View style={styles.button_view}>
-          <Button
-            text="Submit Feedback"
-            onPress={() => setSubmittingFeedback(true)}
-          />
+      {submittingFeedback ? (
+        renderSteps[step as keyof typeof renderSteps]
+      ) : (
+        <View style={styles.content_view}>
+          <CustomText weight="semiBold" style={styles.label}>
+            Ingredients
+          </CustomText>
+          <CustomText style={styles.value}>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s
+          </CustomText>
+          <CustomText style={styles.value}>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text.
+          </CustomText>
+          <CustomText weight="semiBold" style={styles.label}>
+            Benefits
+          </CustomText>
+          <CustomText style={styles.value}>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s
+          </CustomText>
         </View>
-      </View>
+      )}
+      {renderButtons()}
     </ScreenWrapper>
   );
 };
