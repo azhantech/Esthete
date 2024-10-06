@@ -67,7 +67,9 @@ const Subscription = () => {
       initialValues={values.initial}
       validationSchema={validator}
       onSubmit={values => {
-        navigate('ProfileCompletion');
+        navigate('ProfileQuestionnaireNavigator', {
+          screen: 'ProfileCompletion',
+        });
       }}>
       {({
         handleChange,

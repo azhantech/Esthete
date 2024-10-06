@@ -10,7 +10,7 @@ import Button from '../../component/Button';
 import colors from '../../Utils/colors';
 import {vh, vw} from '../../Utils/helpers';
 import AuthHeader from '../../component/authHeader';
-import {navigationRef} from '../../Utils/navigation';
+import {goBack, navigationRef} from '../../Utils/navigation';
 
 // Form validation schema using Yup
 const SignUpSchema = Yup.object().shape({
@@ -30,7 +30,7 @@ const SignUpScreen = () => {
   const handleSignUp = (values: any) => {
     // You can handle the signup logic here with form values
     console.log(values);
-    navigationRef.navigate('Subscription');
+    goBack();
   };
 
   return (

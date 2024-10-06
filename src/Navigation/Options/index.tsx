@@ -120,6 +120,16 @@ const routes = [
     title: 'Profile Questionnaire',
     back: true,
   },
+  {
+    route_name: 'SavedProducts',
+    title: 'Saved Products',
+    back: true,
+  },
+  {
+    route_name: 'SavedProductDetail',
+    title: 'Saved Product Details',
+    back: true,
+  },
   // {
   //   route_name: 'GiftPayment',
   //   title: 'Payment Method',

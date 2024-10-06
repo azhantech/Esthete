@@ -18,7 +18,7 @@ const OPTIONS = [
     id: '2',
     icon: icons.saved_products,
     name: 'Saved Products',
-    onPress: () => navigate('ProfileQuestionnaire'),
+    onPress: () => navigate('SavedProductsNavigator'),
   },
   {
     id: '3',

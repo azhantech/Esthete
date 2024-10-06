@@ -1,11 +1,9 @@
 import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import CustomText from '../../component/Text';
-
 import Button from '../../component/Button';
 import Input from '../../component/Input';
 import {icons} from '../../Assets/Images';
@@ -13,22 +11,26 @@ import AuthHeader from '../../component/authHeader';
 import {navigationRef} from '../../Utils/navigation';
 import styles from './styles';
 import Seprator from '../../component/Seprator';
-// Validation schema with Yup
-const validationSchema = Yup.object({
-  email: Yup.string().email('Invalid email').required('Email is required'),
-  password: Yup.string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required'),
-});
+import {useDispatch} from 'react-redux';
+import {setLogin} from '../../Redux/Slices/auth';
+import {LoginFormValidator} from '../../Utils/validator';
 
 const LoginScreen = () => {
-  const handleSignIn = (values: {email: string; password: string}) => {
-    navigationRef.navigate('DrawerNavigator');
+  const dispatch = useDispatch();
+
+  // const handleSignIn = (values: {email: string; password: string}) => {
+  //   navigationRef.navigate('DrawerNavigator');
+  // };
+
+  const onSubmit = () => {
+    dispatch(setLogin());
   };
+
   const socialLogin = [
     {id: 2, icons: icons.google, txt: 'Continue With Google'},
     {id: 3, icons: icons.apple, txt: 'Continue With Apple'},
   ];
+
   return (
     <ScreenWrapper
       scroll
@@ -43,8 +45,8 @@ const LoginScreen = () => {
         <AuthHeader title={'Your Journey Start Here!'} />
         <Formik
           initialValues={{email: '', password: ''}}
-          validationSchema={validationSchema}
-          onSubmit={handleSignIn}>
+          validationSchema={LoginFormValidator}
+          onSubmit={onSubmit}>
           {({
             handleChange,
             handleBlur,

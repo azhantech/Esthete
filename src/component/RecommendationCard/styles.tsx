@@ -49,4 +49,13 @@ export const styles = StyleSheet.create({
     color: colors.black,
     lineHeight: font(35),
   },
+  title_row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  cross_container: {
+    height: heightPixel(16),
+    width: heightPixel(16),
+  },
 });

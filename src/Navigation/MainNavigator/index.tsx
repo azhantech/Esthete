@@ -9,44 +9,63 @@ import ExpertConsultation from '../../Screens/ExpertConsultation';
 import CommunityForumAnswers from '../../Screens/CommunityForumAnswers';
 import RequestNewThread from '../../Screens/RequestNewThread';
 import EditProfile from '../../Screens/EditProfile';
-import ProfileQuestionnaire from '../../Screens/ProfileQuestionnaire';
 import ProfileQuestionnaireNavigator from '../ProfileQuestionnaireNavigator';
+import {useSelector} from 'react-redux';
+import {selectLoggedIn} from '../../Redux/Slices/auth';
+import Subscription from '../../Screens/Subscription';
+import SavedProductsNavigator from '../SavedProductsNavigator';
 
 const Stack = createStackNavigator();
 
 const MainNavigator = () => {
+  const is_logged_in = useSelector(selectLoggedIn);
+  console.log('is_logged_in: ', is_logged_in);
+
   return (
     <Stack.Navigator screenOptions={StackOptions}>
-      {/* <Stack.Screen
-        name="AuthNavigator"
-        component={AuthNavigator}
-        options={{headerShown: false}}
-      /> */}
-      <Stack.Screen
-        name="DrawerNavigator"
-        component={DrawerNavigator}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen name="Videos" component={Videos} />
-      <Stack.Screen name="Articles" component={Articles} />
-      <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
-      <Stack.Screen name="ExpertConsultation" component={ExpertConsultation} />
-      <Stack.Screen
-        name="CommunityForumAnswers"
-        component={CommunityForumAnswers}
-      />
-      <Stack.Screen name="RequestNewThread" component={RequestNewThread} />
-      <Stack.Screen name="EditProfile" component={EditProfile} />
-      <Stack.Screen
-        name="ProfileQuestionnaireNavigator"
-        component={ProfileQuestionnaireNavigator}
-        options={{headerShown: false}}
-      />
-      {/* <Stack.Screen name="TakeSelfieScreen" component={TakeSelfieScreen} />
-      <Stack.Screen name="ChangePassword" component={ChangePassword} />
-      <Stack.Screen name="ChatScreen" component={ChatScreen} />
-      <Stack.Screen name="OtherUserProfile" component={OtherUserProfile} />
-      <Stack.Screen name="Notification" component={Notification} /> */}
+      {!is_logged_in ? (
+        <Stack.Screen
+          name="AuthNavigator"
+          component={AuthNavigator}
+          options={{headerShown: false}}
+        />
+      ) : (
+        <>
+          <Stack.Screen
+            name="Subscription"
+            component={Subscription}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="DrawerNavigator"
+            component={DrawerNavigator}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen name="Videos" component={Videos} />
+          <Stack.Screen name="Articles" component={Articles} />
+          <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
+          <Stack.Screen
+            name="ExpertConsultation"
+            component={ExpertConsultation}
+          />
+          <Stack.Screen
+            name="CommunityForumAnswers"
+            component={CommunityForumAnswers}
+          />
+          <Stack.Screen name="RequestNewThread" component={RequestNewThread} />
+          <Stack.Screen name="EditProfile" component={EditProfile} />
+          <Stack.Screen
+            name="ProfileQuestionnaireNavigator"
+            component={ProfileQuestionnaireNavigator}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="SavedProductsNavigator"
+            component={SavedProductsNavigator}
+            options={{headerShown: false}}
+          />
+        </>
+      )}
     </Stack.Navigator>
   );
 };

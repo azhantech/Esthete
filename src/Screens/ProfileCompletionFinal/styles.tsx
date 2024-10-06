@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   prevButton: {
-    backgroundColor: colors.black,
     width: '45%',
   },
   nextButton: {
