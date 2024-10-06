@@ -24,7 +24,7 @@ const OPTIONS = [
     id: '3',
     icon: icons.my_goals,
     name: 'My Goals',
-    onPress: () => navigate('ProfileQuestionnaire'),
+    onPress: () => navigate('MyGoals'),
   },
   {
     id: '4',

@@ -130,6 +130,16 @@ const routes = [
     title: 'Saved Product Details',
     back: true,
   },
+  {
+    route_name: 'MyGoals',
+    title: 'My Goals',
+    back: true,
+  },
+  {
+    route_name: 'GoalDetails',
+    title: 'Goal Details',
+    back: true,
+  },
   // {
   //   route_name: 'GiftPayment',
   //   title: 'Payment Method',

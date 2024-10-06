@@ -14,6 +14,8 @@ import {useSelector} from 'react-redux';
 import {selectLoggedIn} from '../../Redux/Slices/auth';
 import Subscription from '../../Screens/Subscription';
 import SavedProductsNavigator from '../SavedProductsNavigator';
+import MyGoals from '../../Screens/MyGoals';
+import GoalDetails from '../../Screens/GoalDetails';
 
 const Stack = createStackNavigator();
 
@@ -64,6 +66,8 @@ const MainNavigator = () => {
             component={SavedProductsNavigator}
             options={{headerShown: false}}
           />
+          <Stack.Screen name="MyGoals" component={MyGoals} />
+          <Stack.Screen name="GoalDetails" component={GoalDetails} />
         </>
       )}
     </Stack.Navigator>
