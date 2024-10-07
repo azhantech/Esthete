@@ -9,7 +9,7 @@ import AboutUs from '../../Screens/AboutUs';
 import {DrawerOptions} from '../Options';
 import ProductDetail from '../../Screens/ProductDetail';
 import EducationalContent from '../../Screens/EducationalContent';
-
+import SetGoals from '../../Screens/SetGoals';
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
@@ -25,6 +25,8 @@ const DrawerNavigator = () => {
       <Drawer.Screen name="ProductDetail" component={ProductDetail} />
       <Drawer.Screen name="Contactus" component={Contactus} />
       <Drawer.Screen name="EducationalContent" component={EducationalContent} />
+      <Drawer.Screen name="SetGoals" component={SetGoals} />
+
       <Drawer.Screen name="Terms" component={TermsAndConditions} />
       <Drawer.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
       <Drawer.Screen name="AboutUs" component={AboutUs} />

@@ -61,6 +61,11 @@ const routes = [
     back: true,
   },
   {
+    route_name: 'SetGoals',
+    title: 'Set Goals',
+    back: true,
+  },
+  {
     route_name: 'ProductDetail',
     title: 'Product Detail',
     back: true,
