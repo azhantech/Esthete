@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { heightPixel, vh, vw } from "../../Utils/helpers";
+import { heightPixel, vh, vw, widthPixel } from "../../Utils/helpers";
 import colors from "../../Utils/colors";
 
 const styles = StyleSheet.create({
@@ -22,6 +22,16 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         alignSelf: 'flex-end',
         marginTop: heightPixel(10)
+    },
+    images_container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: heightPixel(30)
+    },
+    image: {
+        height: heightPixel(134),
+        width: widthPixel(144)
     }
 })
 

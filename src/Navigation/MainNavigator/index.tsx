@@ -16,6 +16,7 @@ import Subscription from '../../Screens/Subscription';
 import SavedProductsNavigator from '../SavedProductsNavigator';
 import MyGoals from '../../Screens/MyGoals';
 import GoalDetails from '../../Screens/GoalDetails';
+import SubscriptionLogs from '../../Screens/SubscriptionLogs';
 
 const Stack = createStackNavigator();
 
@@ -68,6 +69,7 @@ const MainNavigator = () => {
           />
           <Stack.Screen name="MyGoals" component={MyGoals} />
           <Stack.Screen name="GoalDetails" component={GoalDetails} />
+          <Stack.Screen name="SubscriptionLogs" component={SubscriptionLogs} />
         </>
       )}
     </Stack.Navigator>

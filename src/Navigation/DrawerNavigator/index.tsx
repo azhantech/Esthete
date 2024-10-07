@@ -3,7 +3,6 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import CustomDrawerContent from '../../component/CustomDrawerContent';
 import BottomNavigator from '../BottomNavigator/BottomNavigator';
 import Contactus from '../../Screens/Contactus';
-import SubscriptionNavigator from '../SubscriptionNavigator';
 import TermsAndConditions from '../../Screens/TermsAndConditions';
 import PrivacyPolicy from '../../Screens/PrivacyPolicy';
 import AboutUs from '../../Screens/AboutUs';
@@ -26,11 +25,6 @@ const DrawerNavigator = () => {
       <Drawer.Screen name="ProductDetail" component={ProductDetail} />
       <Drawer.Screen name="Contactus" component={Contactus} />
       <Drawer.Screen name="EducationalContent" component={EducationalContent} />
-      <Drawer.Screen
-        name="SubscriptionLogs"
-        component={SubscriptionNavigator}
-        options={{headerShown: false}}
-      />
       <Drawer.Screen name="Terms" component={TermsAndConditions} />
       <Drawer.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
       <Drawer.Screen name="AboutUs" component={AboutUs} />

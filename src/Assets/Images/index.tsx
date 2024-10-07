@@ -80,6 +80,8 @@ export const dummyImages = {
     community4: require('./dummyImages/community1.png'),
   },
   consultation: require('./dummyImages/consultation.png'),
+  goal_1: require('./dummyImages/goal-1.png'),
+  goal_2: require('./dummyImages/goal-2.png'),
 };
 
 export const drawerIcon = {};

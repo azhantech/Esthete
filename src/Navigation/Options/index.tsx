@@ -61,16 +61,6 @@ const routes = [
     back: true,
   },
   {
-    route_name: 'PaymentScreen',
-    title: 'Payment Information',
-    back: true,
-  },
-  {
-    route_name: 'ChatScreen',
-    title: 'Emergency',
-    back: true,
-  },
-  {
     route_name: 'ProductDetail',
     title: 'Product Detail',
     back: true,
@@ -138,6 +128,11 @@ const routes = [
   {
     route_name: 'GoalDetails',
     title: 'Goal Details',
+    back: true,
+  },
+  {
+    route_name: 'SubscriptionLogs',
+    title: 'Subscription Logs',
     back: true,
   },
   // {

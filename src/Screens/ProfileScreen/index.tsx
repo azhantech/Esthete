@@ -30,7 +30,7 @@ const OPTIONS = [
     id: '4',
     icon: icons.subscription_log,
     name: 'Subscription Log',
-    onPress: () => navigate('ProfileQuestionnaire'),
+    onPress: () => navigate('SubscriptionLogs'),
   },
 ];
 
