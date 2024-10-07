@@ -49,16 +49,21 @@ const CustomDrawerContent = (props: any) => {
     },
     {
       id: 6,
+      name: 'Set Goals',
+      route: 'SetGoals',
+    },
+    {
+      id: 7,
       name: 'About Us',
       route: 'AboutUs',
     },
     {
-      id: 7,
+      id: 8,
       name: 'Privacy Policy',
       route: 'PrivacyPolicy',
     },
     {
-      id: 8,
+      id: 9,
       name: 'Educational Content',
       route: 'EducationalContent',
     },
