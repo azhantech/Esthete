@@ -63,21 +63,18 @@ const CommunityForumAnswers = () => {
         style={{flex: 1, backgroundColor: colors.white}}
         contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
-        ListFooterComponent={() => (
-          <Input
-            right={icons.send}
-            container_style={styles.input_container}
-            placeholderTextColor={colors.white}
-            placeholder="Write An Answer"
-            input_wrapper={styles.input_style}
-            style={styles.input_text_style}
-            onPressRight={() => {}}
-            editable={true} // Ensure it is editable
-            focusable={true} // Ensure it can receive focus
-            onChangeText={(val) => console.log("Val ===>", val)
-            }
-          />
-        )}
+      />
+      <Input
+        right={icons.send}
+        container_style={styles.input_container}
+        placeholderTextColor={colors.white}
+        placeholder="Write An Answer"
+        input_wrapper={styles.input_style}
+        style={styles.input_text_style}
+        // onPressRight={() => {}}
+        editable={true} // Ensure it is editable
+        focusable={true} // Ensure it can receive focus
+        // onChangeText={val => console.log('Val ===>', val)}
       />
     </ScreenWrapper>
   );

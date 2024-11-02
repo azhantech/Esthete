@@ -69,7 +69,7 @@ export const styles = StyleSheet.create({
   },
   input_container: {
     width: width,
-    marginTop: heightPixel(20),
+    marginVertical: heightPixel(20),
   },
   input_style: {
     borderColor: colors.auth_button,
