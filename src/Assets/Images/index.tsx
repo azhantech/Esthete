@@ -49,6 +49,7 @@ export const dummyImages = {
   product_1: require('./dummyImages/product-1.png'),
   product_2: require('./dummyImages/product-2.png'),
   video_small: require('./dummyImages/video-small.png'),
+  banner: require('./dummyImages/banner.png'),
   skin: {
     skinDry: require('./icons/skinDry.png'),
     NormalSkin: require('./icons/NormalSkin.png'),

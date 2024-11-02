@@ -184,7 +184,7 @@ const renderRight = (props: any) => {
 
   if (route?.search) {
     return (
-      <TouchableOpacity onPress={() => navigate('Notification')}>
+      <TouchableOpacity>
         <Image
           style={[styles.icon, styles.right_icon]}
           source={icons.search_round}

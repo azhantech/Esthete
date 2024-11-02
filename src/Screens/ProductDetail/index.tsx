@@ -14,6 +14,7 @@ const ProductDetail = ({route}: any) => {
   const item = route?.params?.item;
 
   const [open, setOpen, toggle] = useToggle();
+  const [visible, setVisible, visibility] = useToggle();
 
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
@@ -48,7 +49,7 @@ const ProductDetail = ({route}: any) => {
           <View style={styles.button_container}>
             <Button
               text="Reject"
-              onPress={() => {}}
+              onPress={visibility}
               style={styles.button}
               textStyle={styles.button_text}
             />
@@ -61,6 +62,14 @@ const ProductDetail = ({route}: any) => {
         icon={icons.success}
         title="Action Successful"
         text="The approved product has been added to “Saved Products” List"
+        buttons={[{text: 'Ok', onPress: goBack}]}
+      />
+      <Modal
+        open={visible}
+        setOpen={setVisible}
+        icon={icons.success}
+        title="Reject Successful"
+        text="The product has been rejected successfully."
         buttons={[{text: 'Ok', onPress: goBack}]}
       />
     </ScreenWrapper>

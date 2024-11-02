@@ -120,11 +120,12 @@ const Modal: FC<IModal> = props => {
                     buttonStyle,
                     {
                       backgroundColor:
-                        index % 2 != 0
-                          ? colors.questionnairColor
-                          : colors.primary,
+                        index % 2 != 0 ? colors.white : colors.primary,
                     },
                   ]}
+                  textStyle={{
+                    color: index % 2 != 0 ? colors.primary : colors.white,
+                  }}
                   text={item?.text}
                   onPress={() => {
                     setOpen(!open);

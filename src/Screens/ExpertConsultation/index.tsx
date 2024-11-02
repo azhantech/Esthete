@@ -1,13 +1,39 @@
-import React, {useState} from 'react';
+import React, {useLayoutEffect, useState} from 'react';
 import {FlatList, Image, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
-import {dummyImages} from '../../Assets/Images';
+import {dummyImages, icons} from '../../Assets/Images';
 import CustomText from '../../component/Text';
+import {goBack} from '../../Utils/navigation';
+import {useNavigation} from '@react-navigation/native';
 
-const ExpertConsultation = () => {
+const ExpertConsultation = props => {
   const [accept, setAccept] = useState<boolean>(false);
-
+  const navigation = useNavigation();
+  // console.log('navigation ===>', navigationRef);
+  useLayoutEffect(() => {
+    props?.navigation.setOptions({
+      headerLeft: () => {
+        if (props?.route?.params?.back) {
+          return (
+            <TouchableOpacity
+              style={[styles.icon, styles.left_margin]}
+              onPress={goBack}>
+              <Image style={styles.left_icon} source={icons.back} />
+            </TouchableOpacity>
+          );
+        } else {
+          return (
+            <TouchableOpacity
+              style={[styles.icon, styles.left_margin]}
+              onPress={props.navigation.toggleDrawer}>
+              <Image style={styles.left_icon} source={icons.drawer} />
+            </TouchableOpacity>
+          );
+        }
+      },
+    });
+  }, [props?.navigation, props?.route?.params?.back]);
   const renderItem = () => {
     return (
       <TouchableOpacity activeOpacity={0.7} style={styles.renderItem}>

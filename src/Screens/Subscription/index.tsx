@@ -9,6 +9,7 @@ import useSubscriptionController from '../../Controllers/useSubscriptionControll
 import Input from '../../component/Input';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {navigate} from '../../Utils/navigation';
+import {heightPixel, vw} from '../../Utils/helpers';
 
 const DATA = [
   {
@@ -168,10 +169,15 @@ const Subscription = () => {
   const packageSeperator = () => <View style={styles.seperator} />;
 
   return (
-    <ScreenWrapper style={styles.container}>
+    <ScreenWrapper style={styles.container} scroll>
       <ImageBackground
         style={styles.package_wrapper}
-        source={backgroundImages.subscription}>
+        source={backgroundImages.subscription}
+        imageStyle={{
+          resizeMode: 'cover',
+          width: '100%',
+          height: heightPixel(480),
+        }}>
         <CustomText style={styles.title}>Subscription Package</CustomText>
         <View style={styles.package_list_container}>
           <FlatList

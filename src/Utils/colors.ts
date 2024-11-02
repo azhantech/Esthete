@@ -12,7 +12,8 @@ const colors = {
   seprator: '#999999',
   dot_brown: '#977B7B',
   auth_button: '#E8DDD7',
-  light_green: '#BDFF00'
+  light_green: '#BDFF00',
+  notificationHightlighted: '#F7EDED',
 };
 
 export default colors;

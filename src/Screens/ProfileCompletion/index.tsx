@@ -13,21 +13,21 @@ const ProfileCompletion = () => {
   const [selectedHairTypes, setSelectedHairTypes] = useState([]);
 
   const skinConcerns = [
-    {id: 1, text: 'Normal', image: dummyImages.skin.skinAcne},
-    {id: 2, text: 'Dry', image: dummyImages.skin.skinDry},
-    {id: 3, text: 'Oily', image: dummyImages.skin.skinOily},
-    {id: 4, text: 'Combination', image: dummyImages.skin.skinCombination},
-    {id: 5, text: 'Acne', image: dummyImages.skin.skinAcne},
-    {id: 6, text: 'Normal', image: dummyImages.skin.NormalSkin},
-    {id: 7, text: 'Combination', image: dummyImages.skin.skinCombination},
-    {id: 8, text: 'Acne', image: dummyImages.skin.skinAcne},
-    {id: 9, text: 'Normal', image: dummyImages.skin.NormalSkin},
+    {id: 1, text: 'Acne Scars', image: dummyImages.product_1},
+    {id: 2, text: 'Black/WhiteHeads', image: dummyImages.skin.skinOily},
+    {id: 3, text: 'Dark Undereyes', image: dummyImages.skin.skinDry},
+    {id: 4, text: 'Dullness', image: dummyImages.skin.skinCombination},
+    {id: 5, text: 'Hyper-Pigmentation', image: dummyImages.skin.skinAcne},
+    {id: 6, text: 'Roughness', image: dummyImages.tone.Light},
+    {id: 7, text: 'Large Pores', image: dummyImages.tone.Dark},
+    {id: 8, text: 'Sensitivity', image: dummyImages.tone.MediumDark},
+    {id: 9, text: 'Wrinkles', image: dummyImages.tone.Medium},
   ];
 
   const hairTypes = [
     {id: 1, text: 'Colly', image: dummyImages.hair.colly},
-    {id: 2, text: 'Curly', image: dummyImages.hair.curly},
-    {id: 3, text: 'Wavy', image: dummyImages.hair.straight},
+    {id: 2, text: 'Curly', image: dummyImages.hair.straight},
+    {id: 3, text: 'Wavy', image: dummyImages.hair.curly},
     {id: 4, text: 'Straight', image: dummyImages.hair.straight},
     {id: 5, text: 'Colly', image: dummyImages.hair.curly},
     {id: 6, text: 'Curly', image: dummyImages.hair.colly},

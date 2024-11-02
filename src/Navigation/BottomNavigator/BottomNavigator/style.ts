@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
-import colors from "src/Utils/colors";
-import { BOTTOMBAR_HEIGHT, vh } from "src/Utils/helper";
+import { BOTTOMBAR_HEIGHT, vh } from "../../../Utils/helpers";
 
 const styles = StyleSheet.create({
     icon: {

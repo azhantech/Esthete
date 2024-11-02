@@ -4,11 +4,13 @@ import {ScreenWrapper} from '../../component/ScreenWrapper';
 import useHomeController from '../../Controllers/useHomeController';
 import HomeHeader from '../../component/HomeHeader';
 import Carousel from 'react-native-reanimated-carousel';
-import {heightPixel, vw} from '../../Utils/helpers';
+import {heightPixel, vw, widthPixel} from '../../Utils/helpers';
 import {Image, TouchableOpacity, View} from 'react-native';
 import {banners, dummyImages, icons} from '../../Assets/Images';
 import CustomText from '../../component/Text';
 import {navigate} from '../../Utils/navigation';
+import colors from '../../Utils/colors';
+import Button from '../../component/Button';
 
 const SERVICES = [
   {
@@ -17,7 +19,7 @@ const SERVICES = [
     name: 'Expert’s Consultation',
     detail:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet velit orci, morbi sociis feugiat eros quam.',
-    onPress: () => navigate('ExpertConsultation'),
+    onPress: () => navigate('ExpertConsultation', {back: true}),
   },
   {
     id: '2',
@@ -25,7 +27,7 @@ const SERVICES = [
     name: 'Product Recommendation',
     detail:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet velit orci, morbi sociis feugiat eros quam.',
-    onPress: () => {},
+    onPress: () => navigate('ProductRecommendation'),
   },
 ];
 
@@ -51,11 +53,68 @@ const Home = () => {
   const {values, functions} = useHomeController();
 
   const renderBanners = ({index}: any) => (
-    <Image
-      key={index}
-      source={banners.home_banner}
-      style={styles.sliding_banner}
-    />
+    // <Image
+    //   key={index}
+    //   source={banners.home_banner}
+    //   style={styles.sliding_banner}
+    // />
+    <View
+      style={{
+        height: heightPixel(186),
+        width: widthPixel(312),
+        borderRadius: heightPixel(10),
+        backgroundColor: colors.primary,
+        flexDirection: 'row',
+        overflow: 'hidden',
+        alignItems: 'center',
+        alignSelf: 'center',
+        paddingLeft: widthPixel(20),
+      }}>
+      <View
+        style={{
+          width: '48%',
+          height: '67%',
+          justifyContent: 'space-between',
+        }}>
+        <View>
+          <CustomText weight="semiBold" style={styles.bannerHeading}>
+            We Beauty
+          </CustomText>
+          <CustomText style={styles.bannerTxt}>
+            Beauty never been so easy
+          </CustomText>
+        </View>
+
+        <CustomText style={[styles.bannerTxt]}>
+          Lorem Ipsum dummy text of the printing and typesetting industry Lorem
+          Ipsum
+        </CustomText>
+        <Button
+          text="Learn more about us"
+          onPress={() => navigate('AboutUs')}
+          style={styles.bannerBtn}
+          textStyle={styles.bannerBtnTxt}
+        />
+        {/* <CustomText style={styles.question}></CustomText> */}
+      </View>
+      <View
+        style={{
+          width: '50%',
+          overflow: 'hidden',
+          position: 'absolute',
+          right: 0,
+          height: '100%',
+        }}>
+        <Image
+          source={dummyImages.banner}
+          style={{
+            height: '100%',
+            width: '100%',
+            resizeMode: 'cover',
+          }}
+        />
+      </View>
+    </View>
   );
 
   const renderService = ({id, icon, name, detail, onPress}: any) => (
@@ -109,7 +168,7 @@ const Home = () => {
         <CustomText weight="semiBold" style={styles.question}>
           What’s Your Hair Concern?
         </CustomText>
-        <View style={styles.line} />
+        {/* <View style={styles.line} /> */}
       </View>
 
       {/* Hair Concern Options */}

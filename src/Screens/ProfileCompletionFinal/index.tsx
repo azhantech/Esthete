@@ -18,18 +18,18 @@ const ProfileCompletionFinal = () => {
   const [selectedHairTypes, setSelectedHairTypes] = useState([]);
 
   const skinConcerns = [
-    {id: 1, text: 'Normal', image: dummyImages.skin.skinAcne},
-    {id: 2, text: 'Dry', image: dummyImages.skin.skinDry},
-    {id: 3, text: 'Oily', image: dummyImages.skin.skinOily},
-    {id: 4, text: 'Combination', image: dummyImages.skin.skinCombination},
-    {id: 5, text: 'Acne', image: dummyImages.skin.skinAcne},
-    {id: 6, text: 'Normal', image: dummyImages.skin.NormalSkin},
+    {id: 2, text: 'Hair Loss', image: dummyImages.hair.straight},
+    {id: 1, text: 'Split Ends', image: dummyImages.hair.colly},
+    {id: 3, text: 'Dandruff', image: dummyImages.hair.curly},
+    {id: 4, text: 'Frizz', image: dummyImages.hair.straight},
+    {id: 6, text: 'Dullness', image: dummyImages.hair.colly},
+    {id: 5, text: 'Hair Loss', image: dummyImages.hair.curly},
   ];
 
   const hairTypes = [
-    {id: 1, text: 'Colly', image: dummyImages.hair.colly},
-    {id: 2, text: 'Curly', image: dummyImages.hair.curly},
-    {id: 3, text: 'Wavy', image: dummyImages.hair.straight},
+    {id: 1, text: 'Blonde', image: dummyImages.hair.curly},
+    {id: 2, text: 'Black', image: dummyImages.hair.colly},
+    {id: 3, text: 'Red', image: dummyImages.hair.straight},
   ];
 
   const handleSelect = (id, type) => {
@@ -54,7 +54,7 @@ const ProfileCompletionFinal = () => {
     <ScreenWrapper mainContainerStyles={styles.container}>
       {/* Skin Concerns */}
       <CustomText weight="semiBold" style={styles.sectionTitle}>
-        What's Your Skin Concern?
+        What’s your Hair Concern?
       </CustomText>
       <View style={styles.items_wrapper}>
         {skinConcerns.map((item, index) => (

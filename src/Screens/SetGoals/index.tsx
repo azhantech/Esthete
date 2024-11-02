@@ -18,27 +18,61 @@ const SetGoals = () => {
   const [step, setStep] = useState(1);
 
   const skinConcerns = [
-    {id: 1, text: 'Normal', image: dummyImages.skin.skinAcne},
+    {id: 1, text: 'Acne', image: dummyImages.skin.skinAcne},
+    {id: 2, text: 'Black/WhiteHeads', image: dummyImages.skin.skinDry},
+    {id: 3, text: 'Dark Undereyes', image: dummyImages.skin.skinOily},
+    {id: 4, text: 'Dullness', image: dummyImages.skin.skinCombination},
+    {id: 5, text: 'Hyper-Pigmentation', image: dummyImages.skin.skinAcne},
+    {id: 6, text: 'Roughness', image: dummyImages.skin.NormalSkin},
+    {id: 7, text: 'Large Pores', image: dummyImages.tone.Light},
+    {id: 8, text: 'Sensitivity', image: dummyImages.tone.MediumTone},
+    {id: 9, text: 'Wrinkles', image: dummyImages.tone.MediumSkin},
+  ];
+  const skinType = [
+    {id: 1, text: 'Normal', image: dummyImages.skin.skinNormal},
     {id: 2, text: 'Dry', image: dummyImages.skin.skinDry},
-    {id: 3, text: 'Oily', image: dummyImages.skin.skinOily},
+    {id: 3, text: 'oily', image: dummyImages.skin.skinOily},
     {id: 4, text: 'Combination', image: dummyImages.skin.skinCombination},
     {id: 5, text: 'Acne', image: dummyImages.skin.skinAcne},
     {id: 6, text: 'Normal', image: dummyImages.skin.NormalSkin},
   ];
 
   const hairTypes = [
-    {id: 1, text: 'Colly', image: dummyImages.hair.colly},
-    {id: 2, text: 'Curly', image: dummyImages.hair.curly},
-    {id: 3, text: 'Wavy', image: dummyImages.hair.straight},
+    {id: 1, text: 'Coily', image: dummyImages.hair.colly},
+    {id: 2, text: 'Curly', image: dummyImages.hair.straight},
+    {id: 3, text: 'Wavy', image: dummyImages.hair.curly},
     {id: 4, text: 'Straight', image: dummyImages.hair.straight},
+    {id: 5, text: 'Coily', image: dummyImages.hair.curly},
+    {id: 6, text: 'Curly', image: dummyImages.hair.colly},
+  ];
+  const hairConcern = [
+    {id: 1, text: 'Hair Loss', image: dummyImages.hair.straight},
+    {id: 2, text: 'Split Ends', image: dummyImages.hair.colly},
+    {id: 3, text: 'Dandruff', image: dummyImages.hair.curly},
+    {id: 4, text: 'Frizz', image: dummyImages.hair.curly},
+    {id: 5, text: 'Dullness', image: dummyImages.hair.colly},
+    {id: 6, text: 'Hair Loss', image: dummyImages.hair.straight},
+  ];
+  const hairColor = [
+    {id: 1, text: 'Blonde', image: dummyImages.hair.straight},
+    {id: 2, text: 'Black', image: dummyImages.hair.colly},
+    {id: 3, text: 'Red', image: dummyImages.hair.curly},
+  ];
+  const skinTone = [
+    {id: 1, text: 'Light', image: dummyImages.tone.Light},
+    {id: 2, text: 'Medium', image: dummyImages.tone.MediumTone},
+    {id: 3, text: 'Medium', image: dummyImages.tone.MediumSkin},
+    {id: 4, text: 'Medium', image: dummyImages.tone.Medium},
+    {id: 5, text: 'Medium Dark', image: dummyImages.tone.MediumDark},
+    {id: 6, text: 'Dark', image: dummyImages.tone.Dark},
   ];
 
   const stepArr = {
     1: {
       name: 'What’s your Skin Type?',
       subname: 'What’s Your Skin Tone?',
-      arr: skinConcerns,
-      arr1: hairTypes,
+      arr: skinType,
+      arr1: skinTone,
     },
     2: {
       name: 'What’s your Skin Concern?',
@@ -49,8 +83,8 @@ const SetGoals = () => {
     3: {
       name: 'What’s your Hair Concern?',
       subname: 'What’s your Hair Colour?',
-      arr: skinConcerns,
-      arr1: hairTypes,
+      arr: hairConcern,
+      arr1: hairColor,
     },
   };
 

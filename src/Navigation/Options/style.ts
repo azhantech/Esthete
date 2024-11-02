@@ -5,11 +5,11 @@ import { font, heightPixel, vh, vw } from '../../Utils/helpers';
 const styles = StyleSheet.create({
     title: {
         color: colors.dark_text,
-        fontSize: font(24),
+        fontSize: font(19),
     },
     icon: {
-        width: heightPixel(28),
-        height: heightPixel(28),
+        width: heightPixel(35),
+        height: heightPixel(35),
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
         marginLeft: vw * 10,
     },
     left_icon: {
-        width: heightPixel(28),
-        height: heightPixel(28),
+        width: heightPixel(35),
+        height: heightPixel(35),
         resizeMode: 'contain',
     },
     right_icon: {

@@ -16,6 +16,20 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     justifyContent: 'space-between',
   },
+  icon: {
+    width: heightPixel(28),
+    height: heightPixel(28),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  left_margin: {
+    marginLeft: vw * 10,
+  },
+  left_icon: {
+    width: heightPixel(28),
+    height: heightPixel(28),
+    resizeMode: 'contain',
+  },
   image: {
     height: heightPixel(154),
     width: widthPixel(149),

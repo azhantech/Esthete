@@ -6,6 +6,7 @@ import {dummyImages} from '../../Assets/Images';
 import {FlatList, View} from 'react-native';
 import RecommendationCard from '../../component/RecommendationCard';
 import {navigate} from '../../Utils/navigation';
+import { heightPixel } from '../../Utils/helpers';
 
 const PRODUCTS = [
   {
@@ -46,7 +47,13 @@ const ProductRecommendation = () => {
   const renderSeperator = () => <View style={styles.seperator} />;
 
   return (
-    <ScreenWrapper mainContainerStyles={styles.container}>
+    <ScreenWrapper
+      mainContainerStyles={styles.container}
+      scroll
+      contentContainerStyle={{
+        alignItems: 'center',
+        paddingBottom: heightPixel(150)
+      }}>
       {/* Common Header */}
       <HomeHeader />
 

@@ -55,6 +55,28 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: heightPixel(10),
   },
+  bannerHeading: {
+    fontSize: font(16),
+    color: colors.white,
+    textTransform: 'capitalize',
+  },
+  bannerTxt: {
+    // fontSize: font(15),
+    color: colors.dot_gray,
+    fontSize: font(12),
+
+  },
+  bannerBtn: {
+    width: '100%',
+    borderRadius: heightPixel(8),
+    height: heightPixel(34),
+    backgroundColor: colors.auth_button,
+    borderColor: colors.white,
+  },
+  bannerBtnTxt: {
+    color: colors.primary,
+    fontSize: font(12),
+  },
   question: {
     fontSize: font(22),
     color: colors.dark_text,

@@ -10,15 +10,18 @@ import {navigateAndReplace, navigationRef} from '../../Utils/navigation';
 import Modal from '../Modal';
 import useToggle from '../../Hooks/useToggle';
 import fonts from '../../Assets/Fonts';
+import {useDispatch} from 'react-redux';
+import {setLogout} from '../../Redux/Slices/auth';
 
 const CustomDrawerContent = (props: any) => {
   const [open, setOpen, toggle] = useToggle();
   const [selected, setSelected] = React.useState<number | null>(1);
   console.log('props.state.index ==>', props.state.index);
-
+  const dispatch = useDispatch();
   const handleLogout = () => {
+    // navigateAndReplace('AuthNavigator');
+    dispatch(setLogout());
     setOpen(!open);
-    navigateAndReplace('AuthNavigator');
   };
   const drawer = [
     {
@@ -26,26 +29,26 @@ const CustomDrawerContent = (props: any) => {
       name: 'Home',
       route: 'BottomNavigator',
     },
+    // {
+    //   id: 2,
+    //   name: 'My Profile',
+    //   route: 'BottomNavigator',
+    //   inner_route: 'ProfileScreen',
+    // },
     {
       id: 2,
-      name: 'My Profile',
-      route: 'BottomNavigator',
-      inner_route: 'ProfileScreen',
+      name: 'Expert’s Consultation',
+      route: 'ExpertConsultation',
     },
     {
-      id: 3,
-      name: 'Subscription Logs',
-      route: 'SubscriptionLogs',
+      id: 9,
+      name: 'Educational Content',
+      route: 'EducationalContent',
     },
     {
-      id: 4,
-      name: 'Contact Us',
-      route: 'Contactus',
-    },
-    {
-      id: 5,
-      name: 'Terms & Conditions',
-      route: 'Terms',
+      id: 10,
+      name: 'Product Recommendations',
+      route: 'ProductRecommendation',
     },
     {
       id: 6,
@@ -58,14 +61,24 @@ const CustomDrawerContent = (props: any) => {
       route: 'AboutUs',
     },
     {
+      id: 3,
+      name: 'Subscription Logs',
+      route: 'SubscriptionLogs',
+    },
+    {
+      id: 4,
+      name: 'Contact Us',
+      route: 'Contactus',
+    },
+    {
       id: 8,
       name: 'Privacy Policy',
       route: 'PrivacyPolicy',
     },
     {
-      id: 9,
-      name: 'Educational Content',
-      route: 'EducationalContent',
+      id: 5,
+      name: 'Terms & Conditions',
+      route: 'Terms',
     },
   ];
   return (
@@ -73,7 +86,14 @@ const CustomDrawerContent = (props: any) => {
       {...props}
       contentContainerStyle={styles.container}>
       {/* Profile Section */}
-      <View style={styles.profileSection}>
+      <TouchableOpacity
+        style={styles.profileSection}
+        activeOpacity={1}
+        onPress={() =>
+          navigationRef.navigate('BottomNavigator', {
+            screen: 'ProfileScreen',
+          })
+        }>
         <Image
           source={dummyImages.profile} // Replace with actual user image
           style={styles.profileImage}
@@ -86,7 +106,7 @@ const CustomDrawerContent = (props: any) => {
             lorem lipsum dolor
           </CustomText>
         </View>
-      </View>
+      </TouchableOpacity>
       {/* <View style={styles.seprator} /> */}
 
       {/* Menu Items */}
@@ -111,6 +131,7 @@ const CustomDrawerContent = (props: any) => {
               }}>
               <CustomText
                 style={styles.menuText}
+                numberOfLines={1}
                 weight={selected === val?.id ? 'bold' : 'regular'}>
                 {val?.name}
               </CustomText>
@@ -197,7 +218,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   menuText: {
-    fontSize: font(20),
+    fontSize: font(19),
     color: colors.white,
   },
   logoutButtonContainer: {

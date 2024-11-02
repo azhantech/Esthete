@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
     },
     package_wrapper: {
         width: vw * 100,
-        height: heightPixel(459),
-        alignItems: 'center'
+        height: heightPixel(480),
+        alignItems: 'center',
     },
     form_wrapper: {
         width: vw * 80,

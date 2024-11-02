@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     },
     content:{
         fontSize:vh*1.6,
-        color:colors.placeHolderText,
+        color:colors.black,
         marginBottom:vh*2
     }
 })

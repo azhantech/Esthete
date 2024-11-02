@@ -10,6 +10,7 @@ import {DrawerOptions} from '../Options';
 import ProductDetail from '../../Screens/ProductDetail';
 import EducationalContent from '../../Screens/EducationalContent';
 import SetGoals from '../../Screens/SetGoals';
+import ExpertConsultation from '../../Screens/ExpertConsultation';
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
@@ -22,6 +23,7 @@ const DrawerNavigator = () => {
         component={BottomNavigator}
         options={{headerShown: false}}
       />
+      <Drawer.Screen name="ExpertConsultation" component={ExpertConsultation} />
       <Drawer.Screen name="ProductDetail" component={ProductDetail} />
       <Drawer.Screen name="Contactus" component={Contactus} />
       <Drawer.Screen name="EducationalContent" component={EducationalContent} />

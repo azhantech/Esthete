@@ -5,6 +5,7 @@ import HomeNavigator from '../../HomeNavigator';
 import {TabbarOptions} from '../../Options';
 import ProductRecommendation from '../../../Screens/ProductRecommendation';
 import CommunityForum from '../../../Screens/CommunityForum';
+import Notification from '../../../Screens/Notification';
 const Tab = createBottomTabNavigator();
 
 const BottomNavigator = () => {
@@ -18,8 +19,8 @@ const BottomNavigator = () => {
         options={{headerShown: false}}
       />
       <Tab.Screen
-        name="ProductRecommendation"
-        component={ProductRecommendation}
+        name="Notification"
+        component={Notification}
       />
       <Tab.Screen name="CommunityForum" component={CommunityForum} />
       <Tab.Screen name="ProfileScreen" component={ProfileScreen} />

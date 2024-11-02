@@ -27,9 +27,14 @@ const MainNavigator = () => {
   return (
     <Stack.Navigator screenOptions={StackOptions}>
       {!is_logged_in ? (
+        // <Stack.Screen
+        //   name="AuthNavigator"
+        //   component={AuthNavigator}
+        //   options={{headerShown: false}}
+        // />
         <Stack.Screen
-          name="AuthNavigator"
-          component={AuthNavigator}
+          name="DrawerNavigator"
+          component={DrawerNavigator}
           options={{headerShown: false}}
         />
       ) : (

@@ -6,10 +6,11 @@ const styles = StyleSheet.create({
     container:{
         paddingHorizontal:vw*5,
         paddingVertical:vh*3,
+        flexGrow:1,
     },
     content:{
         fontSize:vh*1.6,
-        color:colors.placeHolderText,
+        color:colors.black,
         marginBottom:vh*2
     }
 })

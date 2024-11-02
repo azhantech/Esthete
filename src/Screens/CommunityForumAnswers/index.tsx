@@ -6,6 +6,7 @@ import colors from '../../Utils/colors';
 import CustomText from '../../component/Text';
 import {dummyImages, icons} from '../../Assets/Images';
 import Input from '../../component/Input';
+import {KeyboardAwareFlatList} from 'react-native-keyboard-aware-scroll-view';
 
 const CommunityForumAnswers = () => {
   const renderHeader = () => {
@@ -54,7 +55,7 @@ const CommunityForumAnswers = () => {
 
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
-      <FlatList
+      <KeyboardAwareFlatList
         data={[1, 2, 3, 4]}
         ListHeaderComponent={renderHeader}
         renderItem={renderItem}
@@ -71,6 +72,10 @@ const CommunityForumAnswers = () => {
             input_wrapper={styles.input_style}
             style={styles.input_text_style}
             onPressRight={() => {}}
+            editable={true} // Ensure it is editable
+            focusable={true} // Ensure it can receive focus
+            onChangeText={(val) => console.log("Val ===>", val)
+            }
           />
         )}
       />
