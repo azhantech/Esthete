@@ -36,7 +36,10 @@ const Notification = () => {
   const renderItem = ({item}: any) => (
     <TouchableOpacity
       activeOpacity={0.7}
-      style={[styles.itemContainer, item?.id == 1 && {backgroundColor: colors.notificationHightlighted}]}>
+      style={[
+        styles.itemContainer,
+        item?.id == 1 && {backgroundColor: colors.notificationHightlighted},
+      ]}>
       <CustomText style={styles.content}>{item.content}</CustomText>
       <View style={styles.row}>
         <CustomText style={styles.dateTime}>
@@ -58,7 +61,7 @@ const Notification = () => {
         <CustomText style={styles.showing}>Showing</CustomText>
         <TouchableOpacity style={styles.filterButton}>
           <CustomText style={styles.allText}>All</CustomText>
-          <Image source={icons.apple} style={styles.icon} />
+          <Image source={icons.downArrow} style={styles.icon} />
         </TouchableOpacity>
       </View>
       <FlatList

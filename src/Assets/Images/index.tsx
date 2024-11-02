@@ -35,6 +35,7 @@ export const icons = {
   star_3: require('./icons/3-star.png'),
   star_4: require('./icons/4-star.png'),
   star_5: require('./icons/5-star.png'),
+  downArrow: require('./icons/downArrow.png'),
 };
 
 export const banners = {

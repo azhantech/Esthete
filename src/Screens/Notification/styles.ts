@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     marginLeft: vw * 3,
   },
   icon: {
-    height: vh * 1.3,
+    height: vh * 1,
     width: vw * 3,
     resizeMode: 'contain',
     tintColor: colors.white,

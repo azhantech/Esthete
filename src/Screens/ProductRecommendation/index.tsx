@@ -1,39 +1,62 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import HomeHeader from '../../component/HomeHeader';
-import {dummyImages} from '../../Assets/Images';
-import {FlatList, View} from 'react-native';
+import {dummyImages, icons} from '../../Assets/Images';
+import {FlatList, Image, TouchableOpacity, View} from 'react-native';
 import RecommendationCard from '../../component/RecommendationCard';
-import {navigate} from '../../Utils/navigation';
-import { heightPixel } from '../../Utils/helpers';
+import {goBack, navigate} from '../../Utils/navigation';
+import {heightPixel} from '../../Utils/helpers';
 
-const PRODUCTS = [
-  {
-    id: '1',
-    image: dummyImages.product_1,
-    name: 'Product Recommendation',
-    type: 'Face Peel',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-    brand: 'Brand A',
-    purchase_link: 'www.abc.com',
-    recommendation_on: 'Profile Questionnaire',
-  },
-  {
-    id: '2',
-    image: dummyImages.product_2,
-    name: 'Facial Mask Lightening',
-    type: 'Face Peel',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-    brand: 'Brand A',
-    purchase_link: 'www.abc.com',
-    recommendation_on: 'Profile Questionnaire',
-  },
-];
+const ProductRecommendation = props => {
+  useLayoutEffect(() => {
+    props?.navigation.setOptions({
+      headerLeft: () => {
+        if (props?.route?.params?.back) {
+          return (
+            <TouchableOpacity
+              style={[styles.icon, styles.left_margin]}
+              onPress={goBack}>
+              <Image style={styles.left_icon} source={icons.back} />
+            </TouchableOpacity>
+          );
+        } else {
+          return (
+            <TouchableOpacity
+              style={[styles.icon, styles.left_margin]}
+              onPress={props.navigation.toggleDrawer}>
+              <Image style={styles.left_icon} source={icons.drawer} />
+            </TouchableOpacity>
+          );
+        }
+      },
+    });
+  }, [props?.navigation, props?.route?.params?.back]);
+  const PRODUCTS = [
+    {
+      id: '1',
+      image: dummyImages.product_1,
+      name: 'Product Recommendation',
+      type: 'Face Peel',
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
+      brand: 'Brand A',
+      purchase_link: 'www.abc.com',
+      recommendation_on: 'Profile Questionnaire',
+    },
+    {
+      id: '2',
+      image: dummyImages.product_2,
+      name: 'Facial Mask Lightening',
+      type: 'Face Peel',
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
+      brand: 'Brand A',
+      purchase_link: 'www.abc.com',
+      recommendation_on: 'Profile Questionnaire',
+    },
+  ];
 
-const ProductRecommendation = () => {
   const onPressProduct = (item: any) => {
     const _item = Object.assign({}, item);
     delete _item.name;
@@ -52,7 +75,7 @@ const ProductRecommendation = () => {
       scroll
       contentContainerStyle={{
         alignItems: 'center',
-        paddingBottom: heightPixel(150)
+        paddingBottom: heightPixel(150),
       }}>
       {/* Common Header */}
       <HomeHeader />

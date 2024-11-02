@@ -17,6 +17,7 @@ import SavedProductsNavigator from '../SavedProductsNavigator';
 import MyGoals from '../../Screens/MyGoals';
 import GoalDetails from '../../Screens/GoalDetails';
 import SubscriptionLogs from '../../Screens/SubscriptionLogs';
+import ProductRecommendation from '../../Screens/ProductRecommendation';
 
 const Stack = createStackNavigator();
 
@@ -27,14 +28,9 @@ const MainNavigator = () => {
   return (
     <Stack.Navigator screenOptions={StackOptions}>
       {!is_logged_in ? (
-        // <Stack.Screen
-        //   name="AuthNavigator"
-        //   component={AuthNavigator}
-        //   options={{headerShown: false}}
-        // />
         <Stack.Screen
-          name="DrawerNavigator"
-          component={DrawerNavigator}
+          name="AuthNavigator"
+          component={AuthNavigator}
           options={{headerShown: false}}
         />
       ) : (
@@ -72,6 +68,7 @@ const MainNavigator = () => {
             component={SavedProductsNavigator}
             options={{headerShown: false}}
           />
+
           <Stack.Screen name="MyGoals" component={MyGoals} />
           <Stack.Screen name="GoalDetails" component={GoalDetails} />
           <Stack.Screen name="SubscriptionLogs" component={SubscriptionLogs} />

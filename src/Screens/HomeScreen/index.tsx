@@ -27,7 +27,7 @@ const SERVICES = [
     name: 'Product Recommendation',
     detail:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet velit orci, morbi sociis feugiat eros quam.',
-    onPress: () => navigate('ProductRecommendation'),
+    onPress: () => navigate('ProductRecommendation', {back: true}),
   },
 ];
 
@@ -53,11 +53,6 @@ const Home = () => {
   const {values, functions} = useHomeController();
 
   const renderBanners = ({index}: any) => (
-    // <Image
-    //   key={index}
-    //   source={banners.home_banner}
-    //   style={styles.sliding_banner}
-    // />
     <View
       style={{
         height: heightPixel(186),
@@ -136,7 +131,7 @@ const Home = () => {
   );
 
   const renderHairConcern = ({id, icon, name}: any) => (
-    <TouchableOpacity key={id} activeOpacity={0.7} style={styles.concern_card}>
+    <TouchableOpacity key={id} activeOpacity={1} style={styles.concern_card}>
       <Image source={icon} />
       <CustomText style={styles.concern_name}>{name}</CustomText>
     </TouchableOpacity>
