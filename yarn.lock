@@ -2168,6 +2168,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-async-storage/async-storage@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@react-native-async-storage/async-storage@npm:2.1.0"
+  dependencies:
+    merge-options: ^3.0.4
+  peerDependencies:
+    react-native: ^0.0.0-0 || >=0.65 <1.0
+  checksum: bc6cdf3554fdd09f3e7916b105d966e56dbaca48475f33da378dd40c3823f7a6978057ca8207bc161c8e0b8c2b08161797dab48955bce1f3e3e457aeaa4ffaf9
+  languageName: node
+  linkType: hard
+
 "@react-native-community/cli-clean@npm:14.1.0":
   version: 14.1.0
   resolution: "@react-native-community/cli-clean@npm:14.1.0"
@@ -2676,9 +2687,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reduxjs/toolkit@npm:^2.2.7":
-  version: 2.2.7
-  resolution: "@reduxjs/toolkit@npm:2.2.7"
+"@reduxjs/toolkit@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@reduxjs/toolkit@npm:2.3.0"
   dependencies:
     immer: ^10.0.3
     redux: ^5.0.1
@@ -2692,7 +2703,7 @@ __metadata:
       optional: true
     react-redux:
       optional: true
-  checksum: 039d61d94cec25d07c7813f9cd234cbe83478f65df7622f2dafed609f2f0cbe00565999e33e7d22bf915c3c5bceb7be606ca17a9c55b51ce1841f541f63a3395
+  checksum: 1a0d85978f99a44f7ceabec8623f46cdd2a2dc25d809dfb0d5c9cd13e2aa12cf116cffe34a4ed949169804dc6125ef9cf68143225e9527f861b597ea701e8bb5
   languageName: node
   linkType: hard
 
@@ -3142,6 +3153,7 @@ __metadata:
     "@babel/core": ^7.20.0
     "@babel/preset-env": ^7.20.0
     "@babel/runtime": ^7.20.0
+    "@react-native-async-storage/async-storage": ^2.1.0
     "@react-native/babel-preset": 0.75.3
     "@react-native/eslint-config": 0.75.3
     "@react-native/metro-config": 0.75.3
@@ -3150,11 +3162,12 @@ __metadata:
     "@react-navigation/drawer": ^6.7.2
     "@react-navigation/native": ^6.1.18
     "@react-navigation/stack": ^6.4.1
-    "@reduxjs/toolkit": ^2.2.7
+    "@reduxjs/toolkit": ^2.3.0
     "@types/react": ^18.2.6
     "@types/react-test-renderer": ^18.0.0
     add: ^2.0.6
     babel-jest: ^29.6.3
+    dayjs: ^1.11.13
     eslint: ^8.19.0
     formik: ^2.4.6
     jest: ^29.6.3
@@ -3168,8 +3181,10 @@ __metadata:
     react-native-reanimated-carousel: ^3.5.1
     react-native-safe-area-context: ^4.11.0
     react-native-screens: ^3.34.0
+    react-native-toast-message: ^2.2.1
     react-redux: ^9.1.2
     react-test-renderer: 18.3.1
+    redux-persist: ^6.0.0
     typescript: 5.0.4
     yarn: ^1.22.22
     yup: ^1.4.0
@@ -4348,7 +4363,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.8.15":
+"dayjs@npm:^1.11.13, dayjs@npm:^1.8.15":
   version: 1.11.13
   resolution: "dayjs@npm:1.11.13"
   checksum: f388db88a6aa93956c1f6121644e783391c7b738b73dbc54485578736565c8931bdfba4bb94e9b1535c6e509c97d5deb918bbe1ae6b34358d994de735055cca9
@@ -6230,6 +6245,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-plain-obj@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "is-plain-obj@npm:2.1.0"
+  checksum: cec9100678b0a9fe0248a81743041ed990c2d4c99f893d935545cfbc42876cbe86d207f3b895700c690ad2fa520e568c44afc1605044b535a7820c1d40e38daa
+  languageName: node
+  linkType: hard
+
 "is-plain-object@npm:^2.0.4":
   version: 2.0.4
   resolution: "is-plain-object@npm:2.0.4"
@@ -7336,6 +7358,15 @@ __metadata:
   version: 5.2.1
   resolution: "memoize-one@npm:5.2.1"
   checksum: a3cba7b824ebcf24cdfcd234aa7f86f3ad6394b8d9be4c96ff756dafb8b51c7f71320785fbc2304f1af48a0467cbbd2a409efc9333025700ed523f254cb52e3d
+  languageName: node
+  linkType: hard
+
+"merge-options@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "merge-options@npm:3.0.4"
+  dependencies:
+    is-plain-obj: ^2.1.0
+  checksum: d86ddb3dd6e85d558dbf25dc944f3527b6bacb944db3fdda6e84a3f59c4e4b85231095f58b835758b9a57708342dee0f8de0dffa352974a48221487fe9f4584f
   languageName: node
   linkType: hard
 
@@ -8756,6 +8787,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-toast-message@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "react-native-toast-message@npm:2.2.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: c6b5d231b3b617b3d3d893023673534fe2cc0c5f32bb5fc4aecfe239e9de2fb9f0e9a4086d776e53daf3bc2376dce16dcec13e1b5cf1554dbf51808695fc2441
+  languageName: node
+  linkType: hard
+
 "react-native@npm:0.75.3":
   version: 0.75.3
   resolution: "react-native@npm:0.75.3"
@@ -8913,6 +8954,15 @@ __metadata:
     source-map: ~0.6.1
     tslib: ^2.0.1
   checksum: 03cc7f57562238ba258d468be67bf7446ce7a707bc87a087891dad15afead46c36e9aaeedf2130e2ab5a465244a9c62bfd4127849761cf8f4085abe2f3e5f485
+  languageName: node
+  linkType: hard
+
+"redux-persist@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "redux-persist@npm:6.0.0"
+  peerDependencies:
+    redux: ">4.0.0"
+  checksum: edaf10dbf17351ce8058d0802357adae8665b3a1ff39371834e37838ddbe1a79cccbc717b8ba54acb5307651ccf51d0f7dc1cbc8dbae0726ff952d11ef61c6b8
   languageName: node
   linkType: hard
 

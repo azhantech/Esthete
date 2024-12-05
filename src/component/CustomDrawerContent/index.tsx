@@ -11,7 +11,7 @@ import Modal from '../Modal';
 import useToggle from '../../Hooks/useToggle';
 import fonts from '../../Assets/Fonts';
 import {useDispatch} from 'react-redux';
-import {setLogout} from '../../Redux/Slices/auth';
+import { setLogout } from '../../Redux/Slices/user';
 
 const CustomDrawerContent = (props: any) => {
   const [open, setOpen, toggle] = useToggle();

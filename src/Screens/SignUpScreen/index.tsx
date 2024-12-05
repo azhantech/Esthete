@@ -10,7 +10,9 @@ import Button from '../../component/Button';
 import colors from '../../Utils/colors';
 import {vh, vw} from '../../Utils/helpers';
 import AuthHeader from '../../component/authHeader';
-import {goBack, navigationRef} from '../../Utils/navigation';
+import {goBack, navigate, navigationRef} from '../../Utils/navigation';
+import {useSignupMutation} from '../../Redux/Services/Auth';
+import Toast from 'react-native-toast-message';
 
 // Form validation schema using Yup
 const SignUpSchema = Yup.object().shape({
@@ -27,10 +29,39 @@ const SignUpSchema = Yup.object().shape({
 });
 
 const SignUpScreen = () => {
-  const handleSignUp = (values: any) => {
+  const [signup, {data, isSuccess, isLoading, isError}] = useSignupMutation();
+
+  const handleSignUp = async (values: any) => {
     // You can handle the signup logic here with form values
-    console.log(values);
-    goBack();
+
+    const data = {
+      fullName: values.name,
+      email: values?.email,
+      password: values?.password,
+      roles: 'user',
+      phone: values?.countryCode + values?.phone,
+      age: values?.age,
+      countryCode: '+1',
+    };
+    console.log('Data from Signup', data);
+
+    signup(data)
+      .unwrap()
+      .then(res => {
+        if (!res?.error) {
+          navigate('Signin');
+        }
+      })
+      .catch(err => {
+        Toast.show({
+          text1: 'Error',
+          text2: err?.data?.error,
+          type: 'error',
+        });
+
+        console.log('Error from SIgnup -------->', err);
+      });
+    // navigationRef.navigate('QuestionnaireScreen');
   };
 
   return (
@@ -147,6 +178,7 @@ const SignUpScreen = () => {
                 text="Sign Up"
                 onPress={handleSubmit}
                 style={styles.signUpButton}
+                isLoading={isLoading}
               />
             </View>
           )}

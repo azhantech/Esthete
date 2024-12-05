@@ -11,19 +11,18 @@ import RequestNewThread from '../../Screens/RequestNewThread';
 import EditProfile from '../../Screens/EditProfile';
 import ProfileQuestionnaireNavigator from '../ProfileQuestionnaireNavigator';
 import {useSelector} from 'react-redux';
-import {selectLoggedIn} from '../../Redux/Slices/auth';
 import Subscription from '../../Screens/Subscription';
 import SavedProductsNavigator from '../SavedProductsNavigator';
 import MyGoals from '../../Screens/MyGoals';
 import GoalDetails from '../../Screens/GoalDetails';
 import SubscriptionLogs from '../../Screens/SubscriptionLogs';
 import ProductRecommendation from '../../Screens/ProductRecommendation';
+import { selectLoggedIn } from '../../Redux/Slices/user';
 
 const Stack = createStackNavigator();
 
 const MainNavigator = () => {
   const is_logged_in = useSelector(selectLoggedIn);
-  console.log('is_logged_in: ', is_logged_in);
 
   return (
     <Stack.Navigator screenOptions={StackOptions}>

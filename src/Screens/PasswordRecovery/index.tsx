@@ -10,18 +10,23 @@ import {vw} from '../../Utils/helpers';
 import AuthHeader from '../../component/authHeader';
 import {navigationRef} from '../../Utils/navigation';
 import styles from './styles';
+import useForgotPasswordController from '../../Controllers/useForgotPasswordController';
 // Validation schema with Yup
 const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email').required('Email is required'),
 });
 
-const PasswordRecovery = () => {
+const PasswordRecovery = props => {
   const handlePasswordRecovery = () => {
     // Handle the password recovery logic
     // console.log('Email entered:', values.email);
     navigationRef.navigate('VerificationCode');
   };
-
+  const {
+    validator,
+    values: forgotPasswordValues,
+    functions,
+  } = useForgotPasswordController(props);
   return (
     <View style={styles.container}>
       <ScreenWrapper
@@ -37,7 +42,7 @@ const PasswordRecovery = () => {
         <Formik
           initialValues={{email: ''}}
           validationSchema={validationSchema}
-          onSubmit={handlePasswordRecovery}>
+          onSubmit={functions.onSubmit}>
           {({
             handleChange,
             handleBlur,
@@ -67,6 +72,7 @@ const PasswordRecovery = () => {
                 text="Continue"
                 onPress={handleSubmit}
                 style={styles.continueButton}
+                isLoading={forgotPasswordValues.loading}
               />
             </View>
           )}

@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {
+  ActivityIndicator,
   Image,
   StyleProp,
   TextStyle,
@@ -21,6 +22,7 @@ interface IButton {
   weight?: 'regular' | 'bold' | 'semiBold' | 'light' | 'medium';
   fontFamily?: keyof typeof fonts;
   icon?: number;
+  isLoading?: boolean;
 }
 
 const Button: FC<IButton> = ({
@@ -31,7 +33,19 @@ const Button: FC<IButton> = ({
   weight = 'bold',
   fontFamily = 'OpenSans',
   icon,
+  isLoading,
 }) => {
+  if (isLoading) {
+    return (
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={onPress}
+        disabled={true}
+        style={[styles.buttonStyle, style]}>
+        <ActivityIndicator color={'#fff'} size={'small'} />
+      </TouchableOpacity>
+    );
+  }
   return (
     <TouchableOpacity
       activeOpacity={0.7}

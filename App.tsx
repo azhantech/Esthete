@@ -12,8 +12,10 @@ import {navigationRef} from './src/Utils/navigation';
 import MainNavigator from './src/Navigation/MainNavigator';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Provider} from 'react-redux';
-import {store} from './src/Redux/store';
+
 import BootSplash from "react-native-bootsplash";
+import Toast from 'react-native-toast-message';
+import { store } from './src/Redux/store';
 
 function App(): React.JSX.Element {
   useEffect(() =>{
@@ -27,6 +29,7 @@ function App(): React.JSX.Element {
           <NavigationContainer ref={navigationRef}>
             <MainNavigator />
           </NavigationContainer>
+          <Toast />
         </Provider>
       </SafeAreaView>
     </GestureHandlerRootView>

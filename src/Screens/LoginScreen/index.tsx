@@ -12,19 +12,13 @@ import {navigationRef} from '../../Utils/navigation';
 import styles from './styles';
 import Seprator from '../../component/Seprator';
 import {useDispatch} from 'react-redux';
-import {setLogin} from '../../Redux/Slices/auth';
+
 import {LoginFormValidator} from '../../Utils/validator';
+import useLoginController from '../../Controllers/useLoginController';
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
-
-  // const handleSignIn = (values: {email: string; password: string}) => {
-  //   navigationRef.navigate('DrawerNavigator');
-  // };
-
-  const onSubmit = () => {
-    dispatch(setLogin());
-  };
+  const {values: loginValues, functions} = useLoginController();
 
   const socialLogin = [
     {id: 2, icons: icons.google, txt: 'Continue With Google'},
@@ -46,7 +40,7 @@ const LoginScreen = () => {
         <Formik
           initialValues={{email: '', password: ''}}
           validationSchema={LoginFormValidator}
-          onSubmit={onSubmit}>
+          onSubmit={functions.handleSignIn}>
           {({
             handleChange,
             handleBlur,
@@ -99,6 +93,7 @@ const LoginScreen = () => {
                 text="Sign In"
                 onPress={handleSubmit}
                 style={styles.btn}
+                isLoading={loginValues.isLoading}
               />
             </View>
           )}

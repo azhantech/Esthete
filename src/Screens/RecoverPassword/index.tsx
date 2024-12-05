@@ -13,6 +13,7 @@ import styles from './style';
 import Modal from '../../component/Modal';
 import {icons} from '../../Assets/Images';
 import colors from '../../Utils/colors';
+import useResetPasswordController from '../../Controllers/useResetPasswordController';
 // Validation schema with Yup
 const validationSchema = Yup.object({
   password: Yup.string()
@@ -24,6 +25,8 @@ const validationSchema = Yup.object({
 });
 
 const RecoverPassword = () => {
+  const {values, functions} = useResetPasswordController();
+
   const [visible, setVisible] = useState(false);
   const handlePasswordRecovery = () => {
     setVisible(true);
@@ -40,7 +43,7 @@ const RecoverPassword = () => {
         <Formik
           initialValues={{password: '', Cnfrmpassword: ''}}
           validationSchema={validationSchema}
-          onSubmit={handlePasswordRecovery}>
+          onSubmit={functions.handlePasswordRecovery}>
           {({
             handleChange,
             handleBlur,

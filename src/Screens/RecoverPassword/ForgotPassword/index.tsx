@@ -7,12 +7,16 @@ import Input from '../../../component/Input';
 import Button from '../../../component/Button';
 
 const ForgotPassword: FC<IForget> = props => {
-  const {validator, values, functions} = useForgotPasswordController(props);
+  const {
+    validator,
+    values: forgotPasswordValues,
+    functions,
+  } = useForgotPasswordController(props);
 
   return (
     <Formik
       validationSchema={validator}
-      initialValues={values.initial}
+      initialValues={forgotPasswordValues.initial}
       onSubmit={functions.onSubmit}
       validateOnChange={false}>
       {({handleChange, handleSubmit, values: data, errors}) => (
@@ -30,6 +34,7 @@ const ForgotPassword: FC<IForget> = props => {
             text={'CONTINUE'}
             style={styles.button}
             onPress={handleSubmit}
+            isLoading={forgotPasswordValues.loading}
           />
         </>
       )}

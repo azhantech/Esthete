@@ -12,6 +12,7 @@ import colors from '../../Utils/colors';
 import AuthHeader from '../../component/authHeader';
 import {navigationRef} from '../../Utils/navigation';
 import styles from './styles';
+import useVerifyPasswordController from '../../Controllers/useVerifyPasswordController';
 // Validation schema with Yup
 const validationSchema = Yup.object({
   email: Yup.string().required('Verification is required'),
@@ -21,6 +22,7 @@ const VerificationCode = () => {
   const handlePasswordRecovery = () => {
     navigationRef.navigate('RecoverPassword');
   };
+  const {values: verifyValues, functions} = useVerifyPasswordController();
 
   return (
     <View style={styles.container}>
@@ -40,7 +42,7 @@ const VerificationCode = () => {
         <Formik
           initialValues={{email: ''}}
           validationSchema={validationSchema}
-          onSubmit={handlePasswordRecovery}>
+          onSubmit={functions.handlePasswordRecovery}>
           {({
             handleChange,
             handleBlur,
@@ -78,6 +80,7 @@ const VerificationCode = () => {
                 text="Continue"
                 onPress={handleSubmit}
                 style={styles.continueButton}
+                isLoading={verifyValues.isLoading}
               />
             </View>
           )}
