@@ -35,7 +35,7 @@ const useLoginController = () => {
       .then(res => {
         console.log('response from Login ======>', res);
         if (res?.token) {
-          dispatch(setLogin({token: res?.token, user: res?.user}));
+          dispatch(setLogin({token: res?.token, user: res?.data}));
           if (values.isChecked) {
             dispatch(
               setCredentials({

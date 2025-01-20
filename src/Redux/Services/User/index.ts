@@ -4,7 +4,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://gurrl-talk.projectstagingzone.com/dev/apis/',
+    baseUrl: 'https://projectstagingzone.com:18001/grwm/v1/apis',
     prepareHeaders: (headers, {getState}) => {
       const token = (getState() as {user: {token: string}})?.user?.token;
       console.log('Bearer token ========================>', token);
@@ -24,10 +24,7 @@ export const userApi = createApi({
       query: () => `/settings`,
       keepUnusedDataFor: 0,
     }),
-    getPackages: builder.query({
-      query: () => `subscription/packages`,
-      keepUnusedDataFor: 0,
-    }),
+
     changePassword: builder.mutation({
       query: body => ({
         url: `/user/password`,
@@ -37,13 +34,9 @@ export const userApi = createApi({
     }),
     updateProfile: builder.mutation({
       query: body => ({
-        url: `user/profile`,
+        url: `user/update`,
         method: 'PUT',
         body,
-        headers: {
-          // Ensure the correct `Content-Type` is set for form data
-          'Content-Type': 'multipart/form-data',
-        },
       }),
     }),
     uploadImage: builder.mutation({
@@ -61,62 +54,33 @@ export const userApi = createApi({
       query: () => `/questionnaire`,
       keepUnusedDataFor: 0,
     }),
-    getMessages: builder.query({
-      query: conversationId =>
-        `/message/conversation/${conversationId}?limit=${200}`,
-      keepUnusedDataFor: 0,
-    }),
-    getConversations: builder.query({
-      query: () => `/message/user/conversations?limit=${200}`,
-      keepUnusedDataFor: 0,
-    }),
-    getGroups: builder.query({
-      query: () => `group?limit=${200}`,
-      keepUnusedDataFor: 0,
-    }),
-    getQuestionsList: builder.query({
-      query: () => `questionnaire`,
-      keepUnusedDataFor: 0,
-    }),
-    getSuggestedGroups: builder.query({
-      query: () => `group/suggested`,
-      keepUnusedDataFor: 0,
-    }),
-    getContent: builder.query({
-      query: body => `/content/get?type=${body}`,
-      keepUnusedDataFor: 0,
-    }),
-    // /group/{groupId}/leave
-    leaveGroup: builder.mutation({
-      query: body => ({
-        url: `group/${body}/leave`,
-        method: 'POST',
-      }),
-    }),
-    clearChat: builder.mutation({
-      query: body => ({
-        url: `message/conversation/${body}/clear`,
-        method: 'DELETE',
-      }),
-    }),
-    joinGroup: builder.mutation({
-      query: id => ({
-        url: `group/${id}/join`,
-        method: 'POST',
-      }),
-    }),
-    sendMessage: builder.mutation({
-      query: body => ({
-        url: `/message`,
-        method: 'POST',
-        body,
-      }),
-    }),
     subscribePackage: builder.mutation({
       query: body => ({
         url: `subscription/subscribe`,
         method: 'POST',
         body,
+      }),
+    }),
+    getProducts: builder.query({
+      query: () => `/product/get`,
+      keepUnusedDataFor: 0,
+    }),
+    getProductsById: builder.query({
+      query: id => `/product/get/${id?.id}`,
+      keepUnusedDataFor: 0,
+    }),
+    getExperts: builder.query({
+      query: () => `/consultant/get`,
+      keepUnusedDataFor: 0,
+    }),
+    updateImage: builder.mutation({
+      query: body => ({
+        url: `general/upload-image`,
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       }),
     }),
   }),
@@ -127,19 +91,12 @@ export const {
   useChangePasswordMutation,
   useUpdateProfileMutation,
   useGetProfileQuery,
-  useGetConversationsQuery,
-  useJoinGroupMutation,
-  useGetMessagesQuery,
-  useLeaveGroupMutation,
-  useClearChatMutation,
-  useGetGroupsQuery,
   useGetSettingsQuery,
-  useSendMessageMutation,
-  useGetSuggestedGroupsQuery,
   useUploadImageMutation,
   useGetNotificationsQuery,
-  useGetPackagesQuery,
-  useGetQuestionsListQuery,
   useSubscribePackageMutation,
-  useGetContentQuery,
+  useGetProductsQuery,
+  useGetProductsByIdQuery,
+  useGetExpertsQuery,
+  useUpdateImageMutation,
 } = userApi;

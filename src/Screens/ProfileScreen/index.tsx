@@ -6,6 +6,9 @@ import styles from './styles';
 import {dummyImages, icons} from '../../Assets/Images';
 import Button from '../../component/Button';
 import {navigate} from '../../Utils/navigation';
+import useProfileController from '../../Controllers/useProfileController';
+import {selectUser} from '../../Redux/Slices/user';
+import {useSelector} from 'react-redux';
 
 const OPTIONS = [
   {
@@ -36,6 +39,9 @@ const OPTIONS = [
 
 export default function ProfileScreen() {
   const navigateToEdit = () => navigate('EditProfile');
+  const {values, functions} = useProfileController();
+  const user = useSelector(selectUser);
+  console.log('useruser =======================>', user);
 
   const renderOptions = ({id, icon, name, onPress}: any) => (
     <TouchableOpacity
@@ -57,12 +63,19 @@ export default function ProfileScreen() {
       style={styles.container}
       contentContainerStyle={styles.scrollContainer}>
       <View style={styles.profileImageContainer}>
-        <Image source={dummyImages.profile} style={styles.profileImage} />
+        <Image
+          source={
+            user?.profile_image
+              ? {uri: `https://projectstagingzone.com:18001/${user?.profile_image}`}
+              : dummyImages.profile
+          }
+          style={styles.profileImage}
+        />
         <CustomText weight="semiBold" style={styles.user_name}>
-          User12345
+          {user?.name}
         </CustomText>
         <CustomText weight="semiBold" style={styles.user_email}>
-          user123@gmail.com
+          {user?.email}
         </CustomText>
       </View>
       <Button

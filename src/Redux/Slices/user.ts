@@ -71,10 +71,9 @@ export const user = createSlice({
       (state, {payload}) => {
         console.log(
           'EDIT USER PROFILE PAYLOAD ======================================================================================================================>',
-          payload,
+          payload?.data,
         );
-        state.user = payload;
-        state.isLoggedIn = true;
+        state.user = payload?.data;
       },
     );
     builder.addMatcher(

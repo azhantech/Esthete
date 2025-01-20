@@ -17,7 +17,7 @@ import Toast from 'react-native-toast-message';
 // Form validation schema using Yup
 const SignUpSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
-  age: Yup.number().required('Age is required').positive().integer(),
+  gender: Yup.string().required('gender is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   phone: Yup.string().required('Phone is required'),
   password: Yup.string()
@@ -35,13 +35,11 @@ const SignUpScreen = () => {
     // You can handle the signup logic here with form values
 
     const data = {
-      fullName: values.name,
+      name: values.name,
       email: values?.email,
       password: values?.password,
-      roles: 'user',
-      phone: values?.countryCode + values?.phone,
-      age: values?.age,
-      countryCode: '+1',
+      phone: values?.phone,
+      gender: values?.gender,
     };
     console.log('Data from Signup', data);
 
@@ -78,7 +76,7 @@ const SignUpScreen = () => {
         <Formik
           initialValues={{
             name: '',
-            age: '',
+            gender: '',
             email: '',
             phone: '',
             password: '',
@@ -108,16 +106,15 @@ const SignUpScreen = () => {
               )}
 
               <Input
-                label="Age"
-                placeholder="Enter Your Age"
+                label="Gender"
+                placeholder="Enter Your gender"
                 required
-                value={values.age}
-                onChangeText={handleChange('age')}
-                onBlur={handleBlur('age')}
-                keyboardType="numeric"
+                value={values.gender}
+                onChangeText={handleChange('gender')}
+                onBlur={handleBlur('gender')}
               />
-              {touched.age && errors.age && (
-                <CustomText style={styles.error}>{errors.age}</CustomText>
+              {touched.gender && errors.gender && (
+                <CustomText style={styles.error}>{errors.gender}</CustomText>
               )}
 
               <Input

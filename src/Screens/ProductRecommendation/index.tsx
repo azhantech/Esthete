@@ -3,10 +3,17 @@ import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import HomeHeader from '../../component/HomeHeader';
 import {dummyImages, icons} from '../../Assets/Images';
-import {FlatList, Image, TouchableOpacity, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  RefreshControl,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import RecommendationCard from '../../component/RecommendationCard';
 import {goBack, navigate} from '../../Utils/navigation';
 import {heightPixel} from '../../Utils/helpers';
+import {useGetProductsQuery} from '../../Redux/Services/User';
 
 const ProductRecommendation = props => {
   useLayoutEffect(() => {
@@ -32,34 +39,10 @@ const ProductRecommendation = props => {
       },
     });
   }, [props?.navigation, props?.route?.params?.back]);
-  const PRODUCTS = [
-    {
-      id: '1',
-      image: dummyImages.product_1,
-      name: 'Product Recommendation',
-      type: 'Face Peel',
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      brand: 'Brand A',
-      purchase_link: 'www.abc.com',
-      recommendation_on: 'Profile Questionnaire',
-    },
-    {
-      id: '2',
-      image: dummyImages.product_2,
-      name: 'Facial Mask Lightening',
-      type: 'Face Peel',
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
-      brand: 'Brand A',
-      purchase_link: 'www.abc.com',
-      recommendation_on: 'Profile Questionnaire',
-    },
-  ];
+  const {data, isLoading, isError} = useGetProductsQuery({});
 
   const onPressProduct = (item: any) => {
     const _item = Object.assign({}, item);
-    delete _item.name;
     navigate('ProductDetail', {item: _item});
   };
 
@@ -82,7 +65,16 @@ const ProductRecommendation = props => {
 
       {/* Recommendations List */}
       <FlatList
-        data={PRODUCTS}
+        refreshing={isLoading}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoading}
+            onRefresh={() => {}}
+            tintColor={'#000'}
+          />
+        }
+        data={data?.data ?? []}
         keyExtractor={item => item.id}
         renderItem={renderItems}
         ItemSeparatorComponent={renderSeperator}

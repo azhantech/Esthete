@@ -82,8 +82,8 @@ android {
         applicationId "com.esthete"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
-        versionName "2.1"
+        versionCode 5
+        versionName "0.0.5"
     }
     signingConfigs {
         debug {

@@ -34,18 +34,18 @@ const MainNavigator = () => {
         />
       ) : (
         <>
-          <Stack.Screen
+          {/* <Stack.Screen
             name="Subscription"
             component={Subscription}
             options={{headerShown: false}}
-          />
+          /> */}
           <Stack.Screen
             name="DrawerNavigator"
             component={DrawerNavigator}
             options={{headerShown: false}}
           />
           <Stack.Screen name="Videos" component={Videos} />
-          <Stack.Screen name="Articles" component={Articles} />
+          <Stack.Screen name="Articles" component={Articles} /> 
           <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
           <Stack.Screen
             name="ExpertConsultation"

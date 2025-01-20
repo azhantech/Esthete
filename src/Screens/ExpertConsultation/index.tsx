@@ -1,16 +1,29 @@
 import React, {useLayoutEffect, useState} from 'react';
-import {FlatList, Image, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import {dummyImages, icons} from '../../Assets/Images';
 import CustomText from '../../component/Text';
 import {goBack} from '../../Utils/navigation';
 import {useNavigation} from '@react-navigation/native';
+import {
+  useGetExpertsQuery,
+  useGetProductsQuery,
+} from '../../Redux/Services/User';
+import colors from '../../Utils/colors';
 
 const ExpertConsultation = props => {
+  const {data, isLoading, isError} = useGetExpertsQuery({});
+  console.log(data, 'data');
+
   const [accept, setAccept] = useState<boolean>(false);
   const navigation = useNavigation();
-  // console.log('navigation ===>', navigationRef);
   useLayoutEffect(() => {
     props?.navigation.setOptions({
       headerLeft: () => {
@@ -34,16 +47,33 @@ const ExpertConsultation = props => {
       },
     });
   }, [props?.navigation, props?.route?.params?.back]);
-  const renderItem = () => {
+
+  if (isLoading) {
+    return (
+      <View style={styles.loading_view}>
+        <ActivityIndicator size={'large'} color={colors.primary} />
+      </View>
+    );
+  }
+
+  const renderItem = ({item}) => {
+    console.log(item, 'item');
     return (
       <TouchableOpacity activeOpacity={0.7} style={styles.renderItem}>
-        <Image source={dummyImages.consultation} style={styles.image} />
+        <Image
+          source={
+            item?.image
+              ? {
+                  uri: `https://projectstagingzone.com:18001/${item?.image}`,
+                }
+              : dummyImages.consultation
+          }
+          style={styles.image}
+        />
         <CustomText weight="semiBold" style={styles.title}>
-          Andien
+          {item?.title}
         </CustomText>
-        <CustomText style={styles.detailsTxt}>
-          Lorem Ipsum is simply dummy text of the printing and sit typesetting.
-        </CustomText>
+        <CustomText style={styles.detailsTxt}>{item?.description}</CustomText>
         <CustomText weight="semiBold" style={styles.book_now}>
           Book Now
         </CustomText>
@@ -57,7 +87,7 @@ const ExpertConsultation = props => {
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
       <FlatList
-        data={[1, 2, 3, 4, 5, 6, 7, 8]}
+        data={data?.data ?? []}
         renderItem={renderItem}
         ItemSeparatorComponent={renderSeperator}
         numColumns={2}
@@ -65,19 +95,6 @@ const ExpertConsultation = props => {
         contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
       />
-      {!accept && (
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => setAccept(prev => !prev)}
-          style={styles.touchable_container}>
-          <View style={styles.note_container}>
-            <CustomText weight="semiBold" style={styles.note}>
-              By Clicking On 'Book Now,' It Will Take You To The Website Where
-              The Product Will Be Available."
-            </CustomText>
-          </View>
-        </TouchableOpacity>
-      )}
     </ScreenWrapper>
   );
 };

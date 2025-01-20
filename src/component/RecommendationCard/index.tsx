@@ -12,12 +12,17 @@ export default function RecommendationCard({item, onPress}: any) {
       onPress={onPress}
       style={styles.container}>
       <View style={styles.image_container}>
-        <Image source={item?.image} style={styles.product_image} />
+        <Image
+          source={{
+            uri: `https://projectstagingzone.com:18001/${item?.image}`,
+          }}
+          style={styles.product_image}
+        />
       </View>
-      {item?.name && (
+      {item?.title && (
         <View style={styles.title_row}>
           <CustomText weight="semiBold" style={styles.name}>
-            {item.name}
+            {item.title}
           </CustomText>
           {item?.isSaved && (
             <TouchableOpacity
@@ -30,21 +35,23 @@ export default function RecommendationCard({item, onPress}: any) {
       )}
       <CustomText style={styles.type}>{item.type}</CustomText>
       <CustomText style={styles.description}>{item.description}</CustomText>
-      {item.purchase_link || item.brand ? (
+      {item.purchaseLink || item.brand ? (
         <View style={styles.row}>
           <CustomText style={styles.label}>
             Brand: <CustomText style={styles.value}>{item.brand}</CustomText>
           </CustomText>
           <CustomText style={styles.label}>
             Purchase Link:{' '}
-            <CustomText style={styles.value}>{item.purchase_link}</CustomText>
+            <CustomText style={styles.value}>{item.purchaseLink}</CustomText>
           </CustomText>
         </View>
       ) : null}
-      {item.recommendation_on ? (
+      {item.recommendationBasedOn ? (
         <View style={styles.row}>
           <CustomText style={styles.label}>Recommendation Based On:</CustomText>
-          <CustomText style={styles.value}>{item.recommendation_on}</CustomText>
+          <CustomText style={styles.value}>
+            {item.recommendationBasedOn}
+          </CustomText>
         </View>
       ) : null}
     </TouchableOpacity>

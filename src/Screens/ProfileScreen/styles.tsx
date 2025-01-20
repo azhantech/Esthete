@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
   profileImage: {
     height: heightPixel(137),
     width: heightPixel(137),
+    borderRadius: heightPixel(137 * 2) / 2,
+    resizeMode: 'cover',
     marginBottom: vh,
   },
   editButton: {

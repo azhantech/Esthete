@@ -36,4 +36,9 @@ export const styles = StyleSheet.create({
   button_text: {
     color: colors.black,
   },
+  loading_view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

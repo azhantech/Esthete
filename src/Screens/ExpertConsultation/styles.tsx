@@ -69,4 +69,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     backgroundColor: 'transparent',
   },
+  loading_view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

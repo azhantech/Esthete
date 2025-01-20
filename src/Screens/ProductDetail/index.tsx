@@ -3,19 +3,32 @@ import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import RecommendationCard from '../../component/RecommendationCard';
 import CustomText from '../../component/Text';
-import {View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import Button from '../../component/Button';
 import Modal from '../../component/Modal';
 import {icons} from '../../Assets/Images';
 import useToggle from '../../Hooks/useToggle';
 import {goBack} from '../../Utils/navigation';
+import {
+  useGetProductsByIdQuery,
+  useGetProductsQuery,
+} from '../../Redux/Services/User';
+import colors from '../../Utils/colors';
 
 const ProductDetail = ({route}: any) => {
   const item = route?.params?.item;
 
   const [open, setOpen, toggle] = useToggle();
   const [visible, setVisible, visibility] = useToggle();
-
+  // console.log('item', item);
+  const {data, isLoading, isError} = useGetProductsByIdQuery({id: item?._id});
+  if (isLoading) {
+    return (
+      <View style={styles.loading_view}>
+        <ActivityIndicator size={'large'} color={colors.primary} />
+      </View>
+    );
+  }
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
       <RecommendationCard item={item} />
@@ -24,23 +37,11 @@ const ProductDetail = ({route}: any) => {
         <CustomText weight="semiBold" style={styles.label}>
           Ingredients
         </CustomText>
-        <CustomText style={styles.value}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s
-        </CustomText>
-        <CustomText style={styles.value}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text.
-        </CustomText>
+        <CustomText style={styles.value}>{data?.data?.ingredients}</CustomText>
         <CustomText weight="semiBold" style={styles.label}>
           Benefits
         </CustomText>
-        <CustomText style={styles.value}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s
-        </CustomText>
+        <CustomText style={styles.value}>{data?.data?.benefits}</CustomText>
 
         <View style={styles.button_view}>
           <View style={styles.button_container}>
