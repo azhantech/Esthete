@@ -4,7 +4,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://projectstagingzone.com:18001/grwm/v1/apis',
+    baseUrl: 'http://projectstagingzone.com:18001/grwm/v1/api',
     prepareHeaders: (headers, {getState}) => {
       const token = (getState() as {user: {token: string}})?.user?.token;
       console.log('Bearer token ========================>', token);
