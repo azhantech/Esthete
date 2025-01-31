@@ -73,7 +73,7 @@ export default function EditProfile() {
               image?.uri
                 ? {uri: image?.uri}
                 : image
-                ? {uri: `https://projectstagingzone.com:18001/${user?.profile_image}`}
+                ? {uri: `http://projectstagingzone.com:18001/${user?.profile_image}`}
                 : dummyImages.profile
             }
             style={styles.profileImage}

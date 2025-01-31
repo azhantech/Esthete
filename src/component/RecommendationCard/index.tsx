@@ -14,7 +14,7 @@ export default function RecommendationCard({item, onPress}: any) {
       <View style={styles.image_container}>
         <Image
           source={{
-            uri: `https://projectstagingzone.com:18001/${item?.image}`,
+            uri: `http://projectstagingzone.com:18001/${item?.image}`,
           }}
           style={styles.product_image}
         />

@@ -57,14 +57,14 @@ const ExpertConsultation = props => {
   }
 
   const renderItem = ({item}) => {
-    console.log(item, 'item');
+    console.log(`http://projectstagingzone.com:18001/${item?.image}`, 'item');
     return (
       <TouchableOpacity activeOpacity={0.7} style={styles.renderItem}>
         <Image
           source={
             item?.image
               ? {
-                  uri: `https://projectstagingzone.com:18001/${item?.image}`,
+                  uri: `http://projectstagingzone.com:18001/${item?.image}`,
                 }
               : dummyImages.consultation
           }

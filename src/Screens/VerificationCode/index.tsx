@@ -15,7 +15,7 @@ import styles from './styles';
 import useVerifyPasswordController from '../../Controllers/useVerifyPasswordController';
 // Validation schema with Yup
 const validationSchema = Yup.object({
-  email: Yup.string().required('Verification is required'),
+  otp: Yup.string().required('Verification is required'),
 });
 
 const VerificationCode = () => {
@@ -40,7 +40,7 @@ const VerificationCode = () => {
 
         {/* Formik Form */}
         <Formik
-          initialValues={{email: ''}}
+          initialValues={{otp: ''}}
           validationSchema={validationSchema}
           onSubmit={functions.handlePasswordRecovery}>
           {({
@@ -60,13 +60,13 @@ const VerificationCode = () => {
                 keyboardType="number-pad"
                 label="Verification Code"
                 placeholder="Enter verification code"
-                value={values.email}
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
+                value={values.otp}
+                onChangeText={handleChange('otp')}
+                onBlur={handleBlur('otp')}
                 // Use your email icon
               />
-              {touched.email && errors.email && (
-                <CustomText style={styles.error}>{errors.email}</CustomText>
+              {touched.otp && errors.otp && (
+                <CustomText style={styles.error}>{errors.otp}</CustomText>
               )}
 
               <CustomText

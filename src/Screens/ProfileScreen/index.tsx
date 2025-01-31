@@ -65,7 +65,7 @@ export default function ProfileScreen() {
         <Image
           source={
             user?.profile_image
-              ? {uri: `https://projectstagingzone.com:18001/${user?.profile_image}`}
+              ? {uri: `http://projectstagingzone.com:18001/${user?.profile_image}`}
               : dummyImages.profile
           }
           style={styles.profileImage}

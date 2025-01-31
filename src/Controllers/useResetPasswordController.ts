@@ -15,7 +15,7 @@ const useResetPasswordController = () => {
   }) => {
     const payload = {
       email: email,
-      newPassword: values.password,
+      password: values.password,
     };
 
     resetPassword(payload)

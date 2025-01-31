@@ -22,21 +22,21 @@ export const authApi = createApi({
     }),
     forgotPassword: builder.mutation({
       query: body => ({
-        url: `auth/password-reset/request`,
+        url: `auth/forget-password`,
         method: 'POST',
         body,
       }),
     }),
     verify: builder.mutation({
       query: body => ({
-        url: `auth/password-reset/verify`,
+        url: `auth/verify-otp`,
         method: 'POST',
         body,
       }),
     }),
     setPassword: builder.mutation({
       query: body => ({
-        url: `auth/password-reset/reset`,
+        url: `auth/reset-password`,
         method: 'POST',
         body,
       }),

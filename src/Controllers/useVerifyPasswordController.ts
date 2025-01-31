@@ -9,11 +9,12 @@ const useVerifyPasswordController = () => {
 
   const [verifyPassword, {isLoading}] = useVerifyMutation();
 
-  const handlePasswordRecovery = async (values: {otp: string}) => {
+  const handlePasswordRecovery = async (values) => {
     const payload = {
       email: email,
       otp: values.otp,
     };
+console.log("values= ===>",payload);
 
     verifyPassword(payload)
       .unwrap()

@@ -45,21 +45,21 @@ const useProfileController = () => {
           });
       });
     }
-    // else {
-    //   updateProfile(data)
-    //     .then(res => {
-    //       Toast.show({
-    //         type: 'success',
-    //         text1: 'Profile Updated',
-    //         text2: 'Your profile has been updated successfully.',
-    //       });
-    //       console.log('response from update Profile', res);
-    //       goBack();
-    //     })
-    //     .catch(err => {
-    //       console.log('Error from update Profile', err);
-    //     });
-    // }
+    else {
+      updateProfile(data)
+        .then(res => {
+          Toast.show({
+            type: 'success',
+            text1: 'Profile Updated',
+            text2: 'Your profile has been updated successfully.',
+          });
+          console.log('response from update Profile', res);
+          goBack();
+        })
+        .catch(err => {
+          console.log('Error from update Profile', err);
+        });
+    }
   };
 
   const navigateToChangePassword = () => navigate('ChangePassword');
