@@ -12,6 +12,7 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 import {authApi} from './Services/Auth';
+import {CommunityFormApi} from './Services/CommunityForm';
 import {userApi} from './Services/User';
 import user from './Slices/user';
 import Toast from 'react-native-toast-message';
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
   [routeApi.reducerPath]: routeApi.reducer,
+  [CommunityFormApi.reducerPath]: CommunityFormApi.reducer,
 });
 const apiErrorHandler = store => next => action => {
   // console.log('action.payload?.data ===>', action.payload);
@@ -62,7 +64,8 @@ export const store = configureStore({
       },
     })
       .concat(authApi.middleware)
-      .concat(userApi.middleware),
+      .concat(userApi.middleware)
+      .concat(CommunityFormApi.middleware)
 });
 
 setupListeners(store.dispatch);

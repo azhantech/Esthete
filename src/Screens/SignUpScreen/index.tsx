@@ -46,6 +46,7 @@ const SignUpScreen = () => {
     signup(data)
       .unwrap()
       .then(res => {
+        console.log('Signup Response', res);
         if (!res?.error) {
           navigate('Signin');
         }
@@ -53,7 +54,7 @@ const SignUpScreen = () => {
       .catch(err => {
         Toast.show({
           text1: 'Error',
-          text2: err?.data?.error,
+          text2: err?.data?.message,
           type: 'error',
         });
 

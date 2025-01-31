@@ -21,7 +21,7 @@ const RequestNewThread = () => {
       <Formik
         validationSchema={validator}
         initialValues={values.initial}
-        onSubmit={() => {}}>
+        onSubmit={functions.onSubmit}>
         {({
           handleChange,
           handleBlur,
@@ -58,12 +58,16 @@ const RequestNewThread = () => {
 
             <View style={styles.button_view}>
               <View style={styles.button_container}>
-                <Button text="Submit" onPress={handleSubmit} />
+                <Button
+                  text="Submit"
+                  onPress={handleSubmit}
+                  isLoading={values.isLoading}
+                />
               </View>
               <View style={styles.button_container}>
                 <Button
                   text="Cancel"
-                  onPress={goBack}
+                  onPress={() => functions.CancelRequest()}
                   style={styles.button}
                   textStyle={styles.button_text}
                 />

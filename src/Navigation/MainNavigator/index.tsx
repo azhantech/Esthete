@@ -17,12 +17,13 @@ import MyGoals from '../../Screens/MyGoals';
 import GoalDetails from '../../Screens/GoalDetails';
 import SubscriptionLogs from '../../Screens/SubscriptionLogs';
 import ProductRecommendation from '../../Screens/ProductRecommendation';
-import { selectLoggedIn } from '../../Redux/Slices/user';
+import {selectLoggedIn, selectUser} from '../../Redux/Slices/user';
 
 const Stack = createStackNavigator();
 
 const MainNavigator = () => {
   const is_logged_in = useSelector(selectLoggedIn);
+  const user = useSelector(selectUser);
 
   return (
     <Stack.Navigator screenOptions={StackOptions}>
@@ -39,13 +40,20 @@ const MainNavigator = () => {
             component={Subscription}
             options={{headerShown: false}}
           /> */}
+          {!user?.preferences && (
+            <Stack.Screen
+              name="ProfileQuestionnaireNavigator"
+              component={ProfileQuestionnaireNavigator}
+              options={{headerShown: false}}
+            />
+          )}
           <Stack.Screen
             name="DrawerNavigator"
             component={DrawerNavigator}
             options={{headerShown: false}}
           />
           <Stack.Screen name="Videos" component={Videos} />
-          <Stack.Screen name="Articles" component={Articles} /> 
+          <Stack.Screen name="Articles" component={Articles} />
           <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
           <Stack.Screen
             name="ExpertConsultation"
@@ -57,11 +65,7 @@ const MainNavigator = () => {
           />
           <Stack.Screen name="RequestNewThread" component={RequestNewThread} />
           <Stack.Screen name="EditProfile" component={EditProfile} />
-          <Stack.Screen
-            name="ProfileQuestionnaireNavigator"
-            component={ProfileQuestionnaireNavigator}
-            options={{headerShown: false}}
-          />
+
           <Stack.Screen
             name="SavedProductsNavigator"
             component={SavedProductsNavigator}

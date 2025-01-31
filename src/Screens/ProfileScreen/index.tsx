@@ -9,14 +9,14 @@ import {navigate} from '../../Utils/navigation';
 import useProfileController from '../../Controllers/useProfileController';
 import {selectUser} from '../../Redux/Slices/user';
 import {useSelector} from 'react-redux';
-
+// {
+//   id: '1',
+//   icon: icons.profile_questionnaire,
+//   name: 'Profile Questionnaire',
+//   onPress: () => navigate('ProfileQuestionnaireNavigator'),
+// },
 const OPTIONS = [
-  {
-    id: '1',
-    icon: icons.profile_questionnaire,
-    name: 'Profile Questionnaire',
-    onPress: () => navigate('ProfileQuestionnaireNavigator'),
-  },
+  
   {
     id: '2',
     icon: icons.saved_products,
@@ -41,7 +41,6 @@ export default function ProfileScreen() {
   const navigateToEdit = () => navigate('EditProfile');
   const {values, functions} = useProfileController();
   const user = useSelector(selectUser);
-  console.log('useruser =======================>', user);
 
   const renderOptions = ({id, icon, name, onPress}: any) => (
     <TouchableOpacity

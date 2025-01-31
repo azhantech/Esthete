@@ -23,6 +23,7 @@ interface IButton {
   fontFamily?: keyof typeof fonts;
   icon?: number;
   isLoading?: boolean;
+  disabled?: boolean;
 }
 
 const Button: FC<IButton> = ({
@@ -34,6 +35,7 @@ const Button: FC<IButton> = ({
   fontFamily = 'OpenSans',
   icon,
   isLoading,
+  disabled = false,
 }) => {
   if (isLoading) {
     return (
@@ -48,6 +50,7 @@ const Button: FC<IButton> = ({
   }
   return (
     <TouchableOpacity
+      disabled={disabled}
       activeOpacity={0.7}
       onPress={onPress}
       style={[styles.buttonStyle, style]}>

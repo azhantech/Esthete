@@ -6,7 +6,8 @@ import Button from '../../component/Button';
 import CircleImage from '../../component/CircularImage';
 import CustomText from '../../component/Text';
 import styles from './styles';
-import {goBack, navigate} from '../../Utils/navigation';
+import {goBack, navigate, navigationRef} from '../../Utils/navigation';
+import Toast from 'react-native-toast-message';
 
 const ProfileCompletion = () => {
   const [selectedSkinConcerns, setSelectedSkinConcerns] = useState([]);
@@ -29,10 +30,32 @@ const ProfileCompletion = () => {
     {id: 2, text: 'Curly', image: dummyImages.hair.straight},
     {id: 3, text: 'Wavy', image: dummyImages.hair.curly},
     {id: 4, text: 'Straight', image: dummyImages.hair.straight},
-    {id: 5, text: 'Colly', image: dummyImages.hair.curly},
-    {id: 6, text: 'Curly', image: dummyImages.hair.colly},
   ];
+  const validateSelections = () => {
+    if (selectedSkinConcerns.length === 0) {
+      Toast.show({
+        type: 'error',
+        text1: 'Please select at least one skin concern',
+      });
+      return false;
+    }
+    if (selectedHairTypes.length === 0) {
+      Toast.show({
+        type: 'error',
+        text1: 'Please select at least one hair type',
+      });
+      return false;
+    }
+    return true;
+  };
 
+  const onSubmit = () => {
+    if (!validateSelections()) return;
+    navigationRef.navigate('ProfileCompletionFinal', {
+      selectedSkinConcerns,
+      selectedHairTypes,
+    });
+  };
   const handleSelect = (id, type) => {
     if (type === 'skin') {
       setSelectedSkinConcerns(prev => {
@@ -63,8 +86,8 @@ const ProfileCompletion = () => {
             <CircleImage
               image={item.image}
               text={item.text}
-              isSelected={selectedSkinConcerns.includes(item.id)}
-              onPress={() => handleSelect(item.id, 'skin')}
+              isSelected={selectedSkinConcerns.includes(item.text)}
+              onPress={() => handleSelect(item.text, 'skin')}
             />
           </View>
         ))}
@@ -80,8 +103,8 @@ const ProfileCompletion = () => {
             <CircleImage
               image={item.image}
               text={item.text}
-              isSelected={selectedHairTypes.includes(item?.id)}
-              onPress={() => handleSelect(item.id, 'hair')}
+              isSelected={selectedHairTypes.includes(item?.text)}
+              onPress={() => handleSelect(item.text, 'hair')}
             />
           </View>
         ))}
@@ -89,12 +112,14 @@ const ProfileCompletion = () => {
 
       {/* Button Section */}
       <View style={styles.buttonContainer}>
-        <Button text="Previous" style={styles.prevButton} onPress={goBack} />
+        {/* <Button text="Previous" style={styles.prevButton} onPress={goBack} /> */}
         <Button
           text="Next"
           style={styles.nextButton}
           textStyle={styles.nextButtonText}
-          onPress={() => navigate('ProfileCompletionFinal')}
+          onPress={() => {
+            onSubmit();
+          }}
         />
       </View>
     </ScreenWrapper>

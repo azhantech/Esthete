@@ -10,7 +10,7 @@ import colors from '../../Utils/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
   },
   sliding_banner: {
     height: heightPixel(186),
@@ -64,7 +64,6 @@ export const styles = StyleSheet.create({
     // fontSize: font(15),
     color: colors.dot_gray,
     fontSize: font(12),
-
   },
   bannerBtn: {
     width: '100%',
@@ -95,12 +94,14 @@ export const styles = StyleSheet.create({
   },
   concern_card: {
     alignItems: 'center',
+    marginTop: heightPixel(10),
   },
   concern_wrapper: {
     flexDirection: 'row',
     width: width,
     alignSelf: 'center',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   concern_name: {
     marginTop: heightPixel(10),

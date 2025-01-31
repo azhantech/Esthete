@@ -4,10 +4,10 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://projectstagingzone.com:18001/grwm/v1/api',
+    baseUrl: 'http://projectstagingzone.com:18001/grwm/v1/apis/',
     prepareHeaders: (headers, {getState}) => {
       const token = (getState() as {user: {token: string}})?.user?.token;
-      console.log('Bearer token ========================>', token);
+
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
@@ -27,7 +27,7 @@ export const userApi = createApi({
 
     changePassword: builder.mutation({
       query: body => ({
-        url: `/user/password`,
+        url: `user/password`,
         method: 'PUT',
         body,
       }),
@@ -83,6 +83,13 @@ export const userApi = createApi({
         },
       }),
     }),
+    updatePreferences: builder.mutation({
+      query: body => ({
+        url: `user/update-preferences`,
+        method: 'PUT',
+        body,
+      }),
+    }),
   }),
 });
 
@@ -99,4 +106,5 @@ export const {
   useGetProductsByIdQuery,
   useGetExpertsQuery,
   useUpdateImageMutation,
+  useUpdatePreferencesMutation
 } = userApi;

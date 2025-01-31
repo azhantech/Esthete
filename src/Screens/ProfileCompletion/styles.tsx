@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     width: width,
     marginVertical: vh * 3,
     alignSelf: 'center',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   nextButton: {
     backgroundColor: colors.auth_button,
     borderColor: colors.primary,
-    width: '45%',
+    width: '90%',
   },
   nextButtonText: {
     color: colors.black,

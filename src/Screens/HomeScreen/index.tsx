@@ -11,6 +11,8 @@ import CustomText from '../../component/Text';
 import {navigate} from '../../Utils/navigation';
 import colors from '../../Utils/colors';
 import Button from '../../component/Button';
+import {selectUser} from '../../Redux/Slices/user';
+import {useSelector} from 'react-redux';
 
 const SERVICES = [
   {
@@ -48,10 +50,21 @@ const HIAR_CONCERN = [
     name: 'Red',
   },
 ];
-
+const skinConcerns = [
+  {id: 2, text: 'Hair Loss', image: dummyImages.hair.straight},
+  {id: 1, text: 'Split Ends', image: dummyImages.hair.colly},
+  {id: 3, text: 'Dandruff', image: dummyImages.hair.curly},
+  {id: 4, text: 'Frizz', image: dummyImages.hair.straight},
+  {id: 6, text: 'Dullness', image: dummyImages.hair.colly},
+  {id: 5, text: 'Dryness', image: dummyImages.hair.colly},
+];
 const Home = () => {
   const {values, functions} = useHomeController();
-
+  const user = useSelector(selectUser);
+  const matchingConcerns = skinConcerns.filter(concern =>
+    user?.hairConcerns?.includes(concern.text),
+  );
+  console.log('user ------------das------->', matchingConcerns);
   const renderBanners = ({index}: any) => (
     <View
       style={{
@@ -130,15 +143,23 @@ const Home = () => {
     </TouchableOpacity>
   );
 
-  const renderHairConcern = ({id, icon, name}: any) => (
-    <TouchableOpacity key={id} activeOpacity={1} style={styles.concern_card}>
-      <Image source={icon} />
-      <CustomText style={styles.concern_name}>{name}</CustomText>
-    </TouchableOpacity>
-  );
+  const renderHairConcern = ({id, image, text}: any) => {
+    console.log('id', id);
+    return (
+      <TouchableOpacity key={id} activeOpacity={1} style={styles.concern_card}>
+        <Image source={image} />
+        <CustomText style={styles.concern_name}>{text}</CustomText>
+      </TouchableOpacity>
+    );
+  };
 
   return (
-    <ScreenWrapper mainContainerStyles={styles.container}>
+    <ScreenWrapper
+      mainContainerStyles={styles.container}
+      scroll
+      contentContainerStyle={{
+        paddingBottom: heightPixel(100),
+      }}>
       {/* Common Header */}
       <HomeHeader />
 
@@ -167,9 +188,11 @@ const Home = () => {
       </View>
 
       {/* Hair Concern Options */}
-      <View style={styles.concern_wrapper}>
-        {HIAR_CONCERN.map(renderHairConcern)}
-      </View>
+      {matchingConcerns?.length && (
+        <View style={styles.concern_wrapper}>
+          {matchingConcerns.map(renderHairConcern)}
+        </View>
+      )}
     </ScreenWrapper>
   );
 };

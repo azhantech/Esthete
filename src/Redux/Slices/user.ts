@@ -77,6 +77,12 @@ export const user = createSlice({
       },
     );
     builder.addMatcher(
+      userApi.endpoints.updatePreferences.matchFulfilled,
+      (state, {payload}) => {
+        state.user = payload?.data;
+      },
+    );
+    builder.addMatcher(
       userApi.endpoints.getSettings.matchFulfilled,
       (state, {payload}) => {
         console.log(

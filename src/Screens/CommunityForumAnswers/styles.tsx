@@ -8,11 +8,16 @@ import {
   widthPixel,
 } from '../../Utils/helpers';
 import colors from '../../Utils/colors';
+import fonts from '../../Assets/Fonts';
 
 export const styles = StyleSheet.create({
+  loading_container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
-    alignItems: 'center',
   },
   contentContainer: {
     paddingBottom: vh * 5,
@@ -27,6 +32,7 @@ export const styles = StyleSheet.create({
     borderColor: colors.dot_gray,
     paddingHorizontal: widthPixel(20),
     paddingVertical: heightPixel(15),
+    marginBottom: heightPixel(15),
   },
   header_container: {
     width: width,
@@ -69,7 +75,6 @@ export const styles = StyleSheet.create({
   },
   input_container: {
     width: width,
-    marginTop: heightPixel(20),
   },
   input_style: {
     borderColor: colors.auth_button,
@@ -79,5 +84,11 @@ export const styles = StyleSheet.create({
   input_text_style: {
     color: colors.white,
     paddingLeft: widthPixel(30),
+  },
+  no_answer_text: {
+    fontSize: font(14),
+    color: colors.primary,
+    marginBottom: heightPixel(20),
+    fontFamily: fonts.OpenSans.bold,
   },
 });

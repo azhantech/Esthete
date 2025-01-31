@@ -10,6 +10,11 @@ const Stack = createStackNavigator();
 const ProfileQuestionnaireNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="ProfileCompletion" component={ProfileCompletion} />
+      <Stack.Screen
+        name="ProfileCompletionFinal"
+        component={ProfileCompletionFinal}
+      />
       <Stack.Screen
         name="ProfileQuestionnaire"
         component={ProfileQuestionnaire}
@@ -18,11 +23,6 @@ const ProfileQuestionnaireNavigator = () => {
       <Stack.Screen
         name="ProfileQuestions1"
         component={ProfileCompletionAuth}
-      />
-      <Stack.Screen name="ProfileCompletion" component={ProfileCompletion} />
-      <Stack.Screen
-        name="ProfileCompletionFinal"
-        component={ProfileCompletionFinal}
       />
     </Stack.Navigator>
   );
