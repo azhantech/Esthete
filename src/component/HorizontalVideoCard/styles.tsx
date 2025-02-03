@@ -11,6 +11,8 @@ export const styles = StyleSheet.create({
   image: {
     height: heightPixel(154),
     width: widthPixel(228),
+    backgroundColor: colors.black,
+    borderRadius: widthPixel(15),
   },
   title: {
     fontSize: font(18),

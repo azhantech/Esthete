@@ -2,42 +2,30 @@ import React from 'react';
 import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import {dummyImages} from '../../Assets/Images';
-import {FlatList, View} from 'react-native';
+import {ActivityIndicator, FlatList, View} from 'react-native';
 import CommonCard from '../../component/CommonCard';
 import {heightPixel} from '../../Utils/helpers';
 import {navigate} from '../../Utils/navigation';
-
-const PRODUCTS = [
-  {
-    id: '1',
-    image: dummyImages.video_1,
-    name: 'Andien',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-  },
-  {
-    id: '2',
-    image: dummyImages.video_2,
-    name: 'Andien',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-  },
-  {
-    id: '3',
-    image: dummyImages.video_3,
-    name: 'Andien',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-  },
-];
-
-const navigateToDetails = () => navigate('ArticleDetail');
+import {useGetEducationContentQuery} from '../../Redux/Services/User';
+import colors from '../../Utils/colors';
 
 const Articles = () => {
+  const {data, isLoading, isError} = useGetEducationContentQuery({
+    type: 'article',
+  });
+
+  if (isLoading) {
+    return (
+      <View style={styles.loading_container}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
+
   const renderItems = ({item}: any) => (
     <CommonCard
       item={item}
-      onPress={navigateToDetails}
+      onPress={() => navigate('ArticleDetail', {id: item?._id})}
       image_height={heightPixel(123)}
       is_more_details
     />
@@ -48,7 +36,7 @@ const Articles = () => {
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
       <FlatList
-        data={PRODUCTS}
+        data={data ?? []}
         showsVerticalScrollIndicator={false}
         keyExtractor={item => item.id}
         renderItem={renderItems}

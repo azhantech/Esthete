@@ -64,7 +64,6 @@ const Home = () => {
   const matchingConcerns = skinConcerns.filter(concern =>
     user?.hairConcerns?.includes(concern.text),
   );
-  console.log('user ------------das------->', matchingConcerns);
   const renderBanners = ({index}: any) => (
     <View
       style={{

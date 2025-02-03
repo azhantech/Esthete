@@ -3,15 +3,29 @@ import {
   appShadow,
   font,
   heightPixel,
-  vw,
+  width,
   widthPixel,
 } from '../../Utils/helpers';
 import colors from '../../Utils/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    width: vw * 80,
-    marginTop: heightPixel(10),
+    flex: 1,
+    alignItems: 'center',
+    paddingHorizontal: widthPixel(20),
+  },
+  loading_container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  content_view: {
+    width: width,
+  },
+  value: {
+    fontSize: font(12),
+    marginTop: heightPixel(7),
+    lineHeight: font(20),
   },
   image_container: {
     width: '100%',
@@ -21,26 +35,13 @@ export const styles = StyleSheet.create({
     ...appShadow,
     marginBottom: heightPixel(10),
   },
-  product_image: {
-    height: '100%',
-    width: '100%',
-    resizeMode: 'cover',
-  },
   name: {
     fontSize: font(18),
+    width: '100%',
   },
   description: {
     marginTop: heightPixel(2),
     fontSize: font(12),
     lineHeight: font(20),
-  },
-  play_icon: {
-    position: 'absolute',
-    left: widthPixel(128),
-    top: heightPixel(55),
-  },
-  more_details: {
-    color: colors.primary,
-    marginTop: heightPixel(3),
   },
 });

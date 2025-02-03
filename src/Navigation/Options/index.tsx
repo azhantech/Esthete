@@ -92,7 +92,12 @@ const routes = [
   },
   {
     route_name: 'ArticleDetail',
-    title: 'ArticleDetail',
+    title: 'Article Detail',
+    back: true,
+  },
+  {
+    route_name: 'VideoDetail',
+    title: 'Video Detail',
     back: true,
   },
   {

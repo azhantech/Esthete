@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
     color: colors.primary,
     width: width,
   },
+  loading_container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   button: {
     width: width,
     marginBottom: heightPixel(10),

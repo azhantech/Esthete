@@ -12,4 +12,9 @@ export const styles = StyleSheet.create({
   content_container: {
     paddingBottom: heightPixel(30),
   },
+  loading_container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

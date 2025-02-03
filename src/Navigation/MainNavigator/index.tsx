@@ -18,6 +18,7 @@ import GoalDetails from '../../Screens/GoalDetails';
 import SubscriptionLogs from '../../Screens/SubscriptionLogs';
 import ProductRecommendation from '../../Screens/ProductRecommendation';
 import {selectLoggedIn, selectUser} from '../../Redux/Slices/user';
+import VideoDetail from '../../Screens/VideoDetail';
 
 const Stack = createStackNavigator();
 
@@ -55,6 +56,8 @@ const MainNavigator = () => {
           <Stack.Screen name="Videos" component={Videos} />
           <Stack.Screen name="Articles" component={Articles} />
           <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
+          <Stack.Screen name="VideoDetail" component={VideoDetail} />
+
           <Stack.Screen
             name="ExpertConsultation"
             component={ExpertConsultation}

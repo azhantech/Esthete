@@ -1,10 +1,11 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 // import {BASE_URL} from '@env';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://projectstagingzone.com:18001/grwm/v1/apis/',
+    baseUrl: 'http://projectstagingzone.com:18001/grwm/v1/apis',
     prepareHeaders: (headers, {getState}) => {
       const token = (getState() as {user: {token: string}})?.user?.token;
 
@@ -90,6 +91,18 @@ export const userApi = createApi({
         body,
       }),
     }),
+    getEducationContent: builder.query({
+      query: type => `/content/get?type=${type?.type}`,
+      keepUnusedDataFor: 0,
+    }),
+    getAllEducationContent: builder.query({
+      query: () => `/content/get`,
+      keepUnusedDataFor: 0,
+    }),
+    getEducationContentById: builder.query({
+      query: body => `/content/${body?.id}?type=${body?.type}`,
+      keepUnusedDataFor: 0,
+    }),
   }),
 });
 
@@ -106,5 +119,8 @@ export const {
   useGetProductsByIdQuery,
   useGetExpertsQuery,
   useUpdateImageMutation,
-  useUpdatePreferencesMutation
+  useUpdatePreferencesMutation,
+  useGetAllEducationContentQuery,
+  useGetEducationContentQuery,
+  useGetEducationContentByIdQuery,
 } = userApi;

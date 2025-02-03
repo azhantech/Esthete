@@ -50,7 +50,7 @@ const useLoginController = () => {
       .catch(err => {
         Toast.show({
           text1: 'Error',
-          text2: err?.data?.error,
+          text2: err?.data?.message,
           type: 'error',
         });
         console.log('err from Login --------->>', err);

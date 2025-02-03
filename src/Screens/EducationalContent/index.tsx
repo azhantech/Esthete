@@ -1,42 +1,18 @@
 import React, {useState} from 'react';
-import {FlatList, View} from 'react-native';
+import {ActivityIndicator, FlatList, View} from 'react-native';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
-import {dummyImages} from '../../Assets/Images';
 import Button from '../../component/Button';
 import CircleImage from '../../component/CircularImage';
 import CustomText from '../../component/Text';
 import styles from './styles';
 import HorizontalVideoCard from '../../component/HorizontalVideoCard';
 import {navigate} from '../../Utils/navigation';
+import {useGetAllEducationContentQuery} from '../../Redux/Services/User';
+import colors from '../../Utils/colors';
 
 const EducationalContent = () => {
   const [selectedSkinConcerns, setSelectedSkinConcerns] = useState([]);
-
-  const skinConcerns = [
-    {id: 1, text: 'Normal', image: dummyImages.skin.skinAcne},
-    {id: 2, text: 'Dry', image: dummyImages.skin.skinDry},
-    {id: 3, text: 'Oily', image: dummyImages.skin.skinOily},
-    {id: 4, text: 'Combination', image: dummyImages.skin.skinCombination},
-    {id: 5, text: 'Acne', image: dummyImages.skin.skinAcne},
-    {id: 6, text: 'Normal', image: dummyImages.skin.NormalSkin},
-  ];
-
-  const VIDEOS = [
-    {
-      id: '1',
-      image: dummyImages.video_small,
-      title: 'Andien',
-      description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
-    },
-    {
-      id: '2',
-      image: dummyImages.video_small,
-      title: 'Andien',
-      description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
-    },
-  ];
+  const {data, isLoading, isError} = useGetAllEducationContentQuery({});
 
   const handleSelect = id => {
     setSelectedSkinConcerns(prev => {
@@ -51,19 +27,32 @@ const EducationalContent = () => {
 
   const renderSeperator = () => <View style={styles.seperator} />;
 
+  if (isLoading) {
+    return (
+      <View style={styles.loading_container}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
+
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
       <CustomText style={styles.sectionTitle}>Recent Articles</CustomText>
       <View style={styles.items_wrapper}>
-        {skinConcerns.map((item, index) => (
-          <View key={item.id} style={{width: '30%'}}>
-            <CircleImage
-              image={item.image}
-              isSelected={selectedSkinConcerns.includes(item.id)}
-              onPress={() => handleSelect(item.id)}
-            />
-          </View>
-        ))}
+        {data?.articles?.map((item, index) => {
+          return (
+            <View key={item.id} style={{width: '30%'}}>
+              <CircleImage
+                image={{
+                  uri: `http://projectstagingzone.com:18001/${item.imageUrl}`,
+                }}
+                // isSelected={selectedSkinConcerns.includes(item.id)}
+                // onPress={() => handleSelect(item.id)}
+                onPress={() => navigate('ArticleDetail', {id: item?._id})}
+              />
+            </View>
+          );
+        })}
       </View>
 
       <Button
@@ -75,12 +64,13 @@ const EducationalContent = () => {
       <CustomText style={styles.sectionTitle}>Videos</CustomText>
       <View style={styles.horizontal_list_Container}>
         <FlatList
-          data={VIDEOS}
+          data={data?.videos ?? []}
           horizontal
           keyExtractor={item => item.id}
           contentContainerStyle={styles.content_container}
           renderItem={renderVideos}
           ItemSeparatorComponent={renderSeperator}
+          showsHorizontalScrollIndicator={false}
         />
       </View>
       <Button

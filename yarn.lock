@@ -3183,6 +3183,7 @@ __metadata:
     react-native-safe-area-context: ^4.11.0
     react-native-screens: ^3.34.0
     react-native-toast-message: ^2.2.1
+    react-native-video: ^6.10.0
     react-redux: ^9.1.2
     react-test-renderer: 18.3.1
     redux-persist: ^6.0.0
@@ -8805,6 +8806,16 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: c6b5d231b3b617b3d3d893023673534fe2cc0c5f32bb5fc4aecfe239e9de2fb9f0e9a4086d776e53daf3bc2376dce16dcec13e1b5cf1554dbf51808695fc2441
+  languageName: node
+  linkType: hard
+
+"react-native-video@npm:^6.10.0":
+  version: 6.10.0
+  resolution: "react-native-video@npm:6.10.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 6752e0d30bcb7e2c36861eacd8528e286b4831d1cdc6e903390e1ff361574816bad3c6a7ff0166546fa90386d71132f1e52a7d3ec93ecdb33f9413bee668f450
   languageName: node
   linkType: hard
 

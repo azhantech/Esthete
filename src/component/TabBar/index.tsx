@@ -52,10 +52,14 @@ const TabBar: FC<ITabBar> = ({navigation, descriptors, state}) => {
           <TouchableOpacity
             style={styles.item}
             onPress={onPress}
-            onLongPress={onLongPress}>
+            onLongPress={onLongPress}
+            key={(index + Date.now()).toString()}>
             {isFocused ? (
-              <View style={styles.selected_view}>
+              <View
+                style={styles.selected_view}
+                key={(index + Date.now()).toString()}>
                 <Image
+                  key={(index + Date.now()).toString()}
                   source={icon}
                   style={[
                     styles.icon,
@@ -69,6 +73,7 @@ const TabBar: FC<ITabBar> = ({navigation, descriptors, state}) => {
               </View>
             ) : (
               <Image
+                key={(index + Date.now()).toString()}
                 source={icon}
                 style={[
                   styles.icon,

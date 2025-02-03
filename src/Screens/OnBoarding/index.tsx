@@ -36,7 +36,8 @@ const OnBoarding = () => {
   return (
     <ImageBackground
       source={TABS[values.index]?.background}
-      style={styles.container}>
+      style={styles.container}
+      key={'ImageBackground'}>
       <View style={styles.header_wrapper}>
         <AuthHeader logo_white />
       </View>
@@ -48,9 +49,10 @@ const OnBoarding = () => {
           {TABS[values.index]?.subtitle}
         </CustomText>
         <View style={styles.paging_wrapper}>
-          {[0, 1, 2].map(item => (
+          {[0, 1, 2].map((item, index) => (
             <View
               style={[styles.dot, values.index == item && styles.active_dot]}
+              key={(index + Math.random() * 1000).toString()}
             />
           ))}
         </View>

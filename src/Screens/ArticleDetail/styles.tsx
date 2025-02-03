@@ -14,4 +14,9 @@ export const styles = StyleSheet.create({
     marginTop: heightPixel(7),
     lineHeight: font(20),
   },
+  loading_container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
