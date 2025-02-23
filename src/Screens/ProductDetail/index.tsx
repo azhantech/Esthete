@@ -10,18 +10,53 @@ import {icons} from '../../Assets/Images';
 import useToggle from '../../Hooks/useToggle';
 import {goBack} from '../../Utils/navigation';
 import {
+  useAcceptProductMutation,
   useGetProductsByIdQuery,
   useGetProductsQuery,
+  useRejectProductMutation,
 } from '../../Redux/Services/User';
 import colors from '../../Utils/colors';
+import {useSelector} from 'react-redux';
+import {selectUser} from '../../Redux/Slices/user';
 
 const ProductDetail = ({route}: any) => {
   const item = route?.params?.item;
+  const user = useSelector(selectUser);
 
   const [open, setOpen, toggle] = useToggle();
   const [visible, setVisible, visibility] = useToggle();
+  const [acceptProduct, {isLoading: acceptLoading}] =
+    useAcceptProductMutation();
+  const [rejectProduct, {isLoading: rejectLoading}] =
+    useRejectProductMutation();
+
   // console.log('item', item);
   const {data, isLoading, isError} = useGetProductsByIdQuery({id: item?._id});
+
+  const handleAccept = () => {
+    // setVisible();
+    acceptProduct({productId: item?._id})
+      .unwrap()
+      .then(res => {
+        // setVisible();
+        toggle();
+      })
+      .catch(err => {
+        console.log('err', err);
+      });
+  };
+  const handleReject = () => {
+    rejectProduct({productId: item?._id})
+      .unwrap()
+      .then(res => {
+        // setVisible();
+        visibility();
+      })
+      .catch(err => {
+        console.log('err', err);
+      });
+  };
+
   if (isLoading) {
     return (
       <View style={styles.loading_view}>
@@ -43,19 +78,28 @@ const ProductDetail = ({route}: any) => {
         </CustomText>
         <CustomText style={styles.value}>{data?.data?.benefits}</CustomText>
 
-        <View style={styles.button_view}>
-          <View style={styles.button_container}>
-            <Button text="Accept" onPress={toggle} />
+        {!data?.data?.saved && (
+          <View style={styles.button_view}>
+            <View style={styles.button_container}>
+              <Button
+                text="Accept"
+                onPress={handleAccept}
+                isLoading={acceptLoading}
+                disabled={acceptLoading || rejectLoading}
+              />
+            </View>
+            <View style={styles.button_container}>
+              <Button
+                text="Reject"
+                onPress={handleReject}
+                style={styles.button}
+                textStyle={styles.button_text}
+                disabled={acceptLoading || rejectLoading}
+                isLoading={rejectLoading}
+              />
+            </View>
           </View>
-          <View style={styles.button_container}>
-            <Button
-              text="Reject"
-              onPress={visibility}
-              style={styles.button}
-              textStyle={styles.button_text}
-            />
-          </View>
-        </View>
+        )}
       </View>
       <Modal
         open={open}

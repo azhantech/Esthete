@@ -11,6 +11,7 @@ import colors from '../../Utils/colors';
 export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
+    backgroundColor: colors.white,
   },
   sliding_banner: {
     height: heightPixel(186),

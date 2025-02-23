@@ -7,6 +7,7 @@ import {Image, TouchableOpacity, View} from 'react-native';
 import Button from '../../component/Button';
 import {dummyImages, icons} from '../../Assets/Images';
 import colors from '../../Utils/colors';
+import {useGetProductsByIdQuery} from '../../Redux/Services/User';
 
 const item = {
   true: {
@@ -280,7 +281,12 @@ const radioStep3 = [
 const SavedProductDetail = ({route}: any) => {
   const [submittingFeedback, setSubmittingFeedback] = useState(false);
   const [step, setStep] = useState(0);
-
+  const productID = route?.params?.item;
+  console.log('productID', productID);
+  const {data, isLoading, isError} = useGetProductsByIdQuery({
+    id: productID?.productId?._id,
+  });
+  console.log('data', data);
   const renderRadioOptions = (item: any) => (
     <TouchableOpacity activeOpacity={0.7} style={styles.radio_item}>
       <View
@@ -385,22 +391,12 @@ const SavedProductDetail = ({route}: any) => {
             Ingredients
           </CustomText>
           <CustomText style={styles.value}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
-          </CustomText>
-          <CustomText style={styles.value}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text.
+            {data?.data?.ingredients}
           </CustomText>
           <CustomText weight="semiBold" style={styles.label}>
             Benefits
           </CustomText>
-          <CustomText style={styles.value}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
-          </CustomText>
+          <CustomText style={styles.value}>{data?.data?.benefits}</CustomText>
         </View>
       )}
       {renderButtons()}

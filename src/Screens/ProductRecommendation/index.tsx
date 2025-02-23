@@ -1,4 +1,4 @@
-import React, {useLayoutEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import HomeHeader from '../../component/HomeHeader';
@@ -13,7 +13,12 @@ import {
 import RecommendationCard from '../../component/RecommendationCard';
 import {goBack, navigate} from '../../Utils/navigation';
 import {heightPixel} from '../../Utils/helpers';
-import {useGetProductsQuery} from '../../Redux/Services/User';
+import {
+  useGetProductsQuery,
+  useGetRecommendationProductsQuery,
+} from '../../Redux/Services/User';
+import {useIsFocused} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 const ProductRecommendation = props => {
   useLayoutEffect(() => {
@@ -39,7 +44,17 @@ const ProductRecommendation = props => {
       },
     });
   }, [props?.navigation, props?.route?.params?.back]);
-  const {data, isLoading, isError} = useGetProductsQuery({});
+  const isFocused = useIsFocused();
+  // const user = useSelector(selectUser);
+  const {data, isLoading, isError, refetch} = useGetRecommendationProductsQuery(
+    {},
+  );
+
+  console.log('data ===>', data);
+
+  useEffect(() => {
+    refetch();
+  }, [isFocused]);
 
   const onPressProduct = (item: any) => {
     const _item = Object.assign({}, item);

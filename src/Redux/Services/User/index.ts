@@ -5,7 +5,7 @@ import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://projectstagingzone.com:18001/grwm/v1/apis',
+    baseUrl: 'http://192.168.100.17:3000/grwm/v1/api/',
     prepareHeaders: (headers, {getState}) => {
       const token = (getState() as {user: {token: string}})?.user?.token;
 
@@ -52,7 +52,7 @@ export const userApi = createApi({
       keepUnusedDataFor: 0,
     }),
     getQuestions: builder.query({
-      query: () => `/questionnaire`,
+      query: () => `questionnaire`,
       keepUnusedDataFor: 0,
     }),
     subscribePackage: builder.mutation({
@@ -63,15 +63,38 @@ export const userApi = createApi({
       }),
     }),
     getProducts: builder.query({
-      query: () => `/product/get`,
+      query: () => `product/get`,
       keepUnusedDataFor: 0,
     }),
     getProductsById: builder.query({
-      query: id => `/product/get/${id?.id}`,
+      query: id => `product/get/${id?.id}`,
       keepUnusedDataFor: 0,
     }),
+    getRecommendationProducts: builder.query({
+      query: () => `product/suggested/get`,
+      keepUnusedDataFor: 0,
+    }),
+    acceptProduct: builder.mutation({
+      query: body => ({
+        url: `product/accept`,
+        method: 'POST',
+        body,
+      }),
+    }),
+    saveProduct: builder.query({
+      query: () => `product/saved/get`,
+      keepUnusedDataFor: 0,
+    }),
+    rejectProduct: builder.mutation({
+      query: body => ({
+        url: `product/reject`,
+        method: 'POST',
+        body,
+      }),
+    }),
+
     getExperts: builder.query({
-      query: () => `/consultant/get`,
+      query: () => `consultant/get`,
       keepUnusedDataFor: 0,
     }),
     updateImage: builder.mutation({
@@ -92,15 +115,15 @@ export const userApi = createApi({
       }),
     }),
     getEducationContent: builder.query({
-      query: type => `/content/get?type=${type?.type}`,
+      query: type => `content/get?type=${type?.type}`,
       keepUnusedDataFor: 0,
     }),
     getAllEducationContent: builder.query({
-      query: () => `/content/get`,
+      query: () => `content/get`,
       keepUnusedDataFor: 0,
     }),
     getEducationContentById: builder.query({
-      query: body => `/content/${body?.id}?type=${body?.type}`,
+      query: body => `content/${body?.id}?type=${body?.type}`,
       keepUnusedDataFor: 0,
     }),
   }),
@@ -123,4 +146,8 @@ export const {
   useGetAllEducationContentQuery,
   useGetEducationContentQuery,
   useGetEducationContentByIdQuery,
+  useGetRecommendationProductsQuery,
+  useAcceptProductMutation,
+  useRejectProductMutation,
+  useSaveProductQuery,
 } = userApi;
