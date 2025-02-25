@@ -9,24 +9,29 @@ import styles from './styles';
 import {navigationRef} from '../../Utils/navigation';
 
 const SetGoals = () => {
-  const [selectedItems, setSelectedItems] = useState({
-    step1: {skin: [], hair: []},
-    step2: {skin: [], hair: []},
-    step3: {skin: [], hair: []},
+    const [login, {isLoading}] = useLoginMutation();
+  
+  const [selections, setSelections] = useState({
+    skinType: '', // Single selection
+    skinTone: '', // Single selection
+    skinConcerns: [], // Multiple selections
+    hairType: '', // Single selection
+    hairConcerns: [], // Multiple selections
+    hairColor: '', // Single selection
   });
 
   const [step, setStep] = useState(1);
 
   const skinConcerns = [
-    {id: 1, text: 'Acne', image: dummyImages.skin.skinAcne},
-    {id: 2, text: 'Black/WhiteHeads', image: dummyImages.skin.skinDry},
-    {id: 3, text: 'Dark Undereyes', image: dummyImages.skin.skinOily},
+    {id: 1, text: 'Acne Scars', image: dummyImages.product_1},
+    {id: 2, text: 'Black/WhiteHeads', image: dummyImages.skin.skinOily},
+    {id: 3, text: 'Dark Undereyes', image: dummyImages.skin.skinDry},
     {id: 4, text: 'Dullness', image: dummyImages.skin.skinCombination},
     {id: 5, text: 'Hyper-Pigmentation', image: dummyImages.skin.skinAcne},
-    {id: 6, text: 'Roughness', image: dummyImages.skin.NormalSkin},
-    {id: 7, text: 'Large Pores', image: dummyImages.tone.Light},
-    {id: 8, text: 'Sensitivity', image: dummyImages.tone.MediumTone},
-    {id: 9, text: 'Wrinkles', image: dummyImages.tone.MediumSkin},
+    {id: 6, text: 'Roughness', image: dummyImages.tone.Light},
+    {id: 7, text: 'Large Pores', image: dummyImages.tone.Dark},
+    {id: 8, text: 'Sensitivity', image: dummyImages.tone.MediumDark},
+    {id: 9, text: 'Wrinkles', image: dummyImages.tone.Medium},
   ];
   const skinType = [
     {id: 1, text: 'Normal', image: dummyImages.skin.skinNormal},
@@ -34,24 +39,21 @@ const SetGoals = () => {
     {id: 3, text: 'oily', image: dummyImages.skin.skinOily},
     {id: 4, text: 'Combination', image: dummyImages.skin.skinCombination},
     {id: 5, text: 'Acne', image: dummyImages.skin.skinAcne},
-    {id: 6, text: 'Normal', image: dummyImages.skin.NormalSkin},
   ];
 
   const hairTypes = [
-    {id: 1, text: 'Coily', image: dummyImages.hair.colly},
+    {id: 1, text: 'Colly', image: dummyImages.hair.colly},
     {id: 2, text: 'Curly', image: dummyImages.hair.straight},
     {id: 3, text: 'Wavy', image: dummyImages.hair.curly},
     {id: 4, text: 'Straight', image: dummyImages.hair.straight},
-    {id: 5, text: 'Coily', image: dummyImages.hair.curly},
-    {id: 6, text: 'Curly', image: dummyImages.hair.colly},
   ];
   const hairConcern = [
-    {id: 1, text: 'Hair Loss', image: dummyImages.hair.straight},
-    {id: 2, text: 'Split Ends', image: dummyImages.hair.colly},
+    {id: 2, text: 'Hair Loss', image: dummyImages.hair.straight},
+    {id: 1, text: 'Split Ends', image: dummyImages.hair.colly},
     {id: 3, text: 'Dandruff', image: dummyImages.hair.curly},
-    {id: 4, text: 'Frizz', image: dummyImages.hair.curly},
-    {id: 5, text: 'Dullness', image: dummyImages.hair.colly},
-    {id: 6, text: 'Hair Loss', image: dummyImages.hair.straight},
+    {id: 4, text: 'Frizz', image: dummyImages.hair.straight},
+    {id: 6, text: 'Dullness', image: dummyImages.hair.colly},
+    {id: 5, text: 'Dryness', image: dummyImages.hair.colly},
   ];
   const hairColor = [
     {id: 1, text: 'Blonde', image: dummyImages.hair.straight},
@@ -61,44 +63,45 @@ const SetGoals = () => {
   const skinTone = [
     {id: 1, text: 'Light', image: dummyImages.tone.Light},
     {id: 2, text: 'Medium', image: dummyImages.tone.MediumTone},
-    {id: 3, text: 'Medium', image: dummyImages.tone.MediumSkin},
-    {id: 4, text: 'Medium', image: dummyImages.tone.Medium},
     {id: 5, text: 'Medium Dark', image: dummyImages.tone.MediumDark},
     {id: 6, text: 'Dark', image: dummyImages.tone.Dark},
   ];
+
+  const handleSingleSelect = (name: string, category: string) => {
+    setSelections(prev => ({
+      ...prev,
+      [category]: name,
+    }));
+  };
+
+  const handleMultipleSelect = (name: string, category: string) => {
+    setSelections(prev => ({
+      ...prev,
+      [category]: prev[category].includes(name)
+        ? prev[category].filter(item => item !== name)
+        : [...prev[category], name],
+    }));
+  };
 
   const stepArr = {
     1: {
       name: 'What’s your Skin Type?',
       subname: 'What’s Your Skin Tone?',
-      arr: skinType,
-      arr1: skinTone,
+      arr: {data: skinType, type: 'skinType', single: true},
+      arr1: {data: skinTone, type: 'skinTone', single: true},
     },
     2: {
       name: 'What’s your Skin Concern?',
       subname: 'What’s Your Hair Type?',
-      arr: skinConcerns,
-      arr1: hairTypes,
+      arr: {data: skinConcerns, type: 'skinConcerns', single: false},
+      arr1: {data: hairTypes, type: 'hairType', single: true},
     },
     3: {
       name: 'What’s your Hair Concern?',
       subname: 'What’s your Hair Colour?',
-      arr: hairConcern,
-      arr1: hairColor,
+      arr: {data: hairConcern, type: 'hairConcerns', single: false},
+      arr1: {data: hairColor, type: 'hairColor', single: true},
     },
-  };
-
-  const handleSelect = (id, type) => {
-    setSelectedItems(prev => {
-      const updatedStep = prev[`step${step}`][type].includes(id)
-        ? prev[`step${step}`][type].filter(val => val !== id)
-        : [...prev[`step${step}`][type], id];
-
-      return {
-        ...prev,
-        [`step${step}`]: {...prev[`step${step}`], [type]: updatedStep},
-      };
-    });
   };
 
   const renderBtn = () => {
@@ -139,12 +142,13 @@ const SetGoals = () => {
             style={styles.nextButton}
             textStyle={styles.nextButtonText}
             onPress={() => {
-              setSelectedItems({
-                step1: {skin: [], hair: []},
-                step2: {skin: [], hair: []},
-                step3: {skin: [], hair: []},
-              });
-              navigationRef.goBack();
+              console.log('selectedItems', selections);
+              // setSelectedItems({
+              //   step1: {skin: [], hair: []},
+              //   step2: {skin: [], hair: []},
+              //   step3: {skin: [], hair: []},
+              // });
+              // navigationRef.goBack();
             }}
           />
         </>
@@ -159,16 +163,28 @@ const SetGoals = () => {
         {stepArr[step]?.name}
       </CustomText>
       <View style={styles.items_wrapper}>
-        {stepArr[step]?.arr.map(item => (
-          <View key={item.id} style={{width: '30%', margin: '0%'}}>
-            <CircleImage
-              image={item.image}
-              text={item.text}
-              isSelected={selectedItems[`step${step}`].skin.includes(item.id)}
-              onPress={() => handleSelect(item.id, 'skin')}
-            />
-          </View>
-        ))}
+        {stepArr[step]?.arr?.data?.map(item => {
+          return (
+            <View key={item.id} style={{width: '33%'}}>
+              <CircleImage
+                image={item.image}
+                text={item.text}
+                isSelected={
+                  stepArr[step]?.arr?.single
+                    ? selections[`${stepArr[step]?.arr?.type}`] === item.text
+                    : selections[`${stepArr[step]?.arr?.type}`].includes(
+                        item.text,
+                      )
+                }
+                onPress={() =>
+                  stepArr[step]?.arr?.single
+                    ? handleSingleSelect(item.text, stepArr[step]?.arr?.type)
+                    : handleMultipleSelect(item.text, stepArr[step]?.arr?.type)
+                }
+              />
+            </View>
+          );
+        })}
       </View>
 
       {/* Hair Types */}
@@ -176,16 +192,28 @@ const SetGoals = () => {
         {stepArr[step]?.subname}
       </CustomText>
       <View style={styles.items_wrapper}>
-        {stepArr[step]?.arr1.map(item => (
-          <View key={item.id} style={{width: '30%'}}>
-            <CircleImage
-              image={item.image}
-              text={item.text}
-              isSelected={selectedItems[`step${step}`].hair.includes(item.id)}
-              onPress={() => handleSelect(item.id, 'hair')}
-            />
-          </View>
-        ))}
+        {stepArr[step]?.arr1?.data?.map(item => {
+          return (
+            <View key={item.id} style={{width: '33%'}}>
+              <CircleImage
+                image={item.image}
+                text={item.text}
+                isSelected={
+                  stepArr[step]?.arr1?.single
+                    ? selections[`${stepArr[step]?.arr1?.type}`] === item.text
+                    : selections[`${stepArr[step]?.arr1?.type}`].includes(
+                        item.text,
+                      )
+                }
+                onPress={() =>
+                  stepArr[step]?.arr1?.single
+                    ? handleSingleSelect(item.text, stepArr[step]?.arr1?.type)
+                    : handleMultipleSelect(item.text, stepArr[step]?.arr1?.type)
+                }
+              />
+            </View>
+          );
+        })}
       </View>
 
       {/* Button Section */}

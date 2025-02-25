@@ -126,6 +126,13 @@ export const userApi = createApi({
       query: body => `content/${body?.id}?type=${body?.type}`,
       keepUnusedDataFor: 0,
     }),
+    addGoal: builder.mutation({
+      query: body => ({
+        url: `goal/add`,
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
