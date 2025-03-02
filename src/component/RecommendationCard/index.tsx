@@ -5,6 +5,10 @@ import CustomText from '../Text';
 import {icons} from '../../Assets/Images';
 
 export default function RecommendationCard({item, onPress}: any) {
+  console.log(
+    'Item ================================ RecommendationCard>',
+    item,
+  );
   return (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -22,7 +26,7 @@ export default function RecommendationCard({item, onPress}: any) {
       {item?.title && (
         <View style={styles.title_row}>
           <CustomText weight="semiBold" style={styles.name}>
-            {item.title}
+            {item?.title}
           </CustomText>
           {item?.isSaved && (
             <TouchableOpacity
@@ -33,24 +37,24 @@ export default function RecommendationCard({item, onPress}: any) {
           )}
         </View>
       )}
-      <CustomText style={styles.type}>{item.type}</CustomText>
-      <CustomText style={styles.description}>{item.description}</CustomText>
-      {item.purchaseLink || item.brand ? (
+      <CustomText style={styles.type}>{item?.type}</CustomText>
+      <CustomText style={styles.description}>{item?.description}</CustomText>
+      {item?.purchaseLink || item?.brand ? (
         <View style={styles.row}>
           <CustomText style={styles.label}>
-            Brand: <CustomText style={styles.value}>{item.brand}</CustomText>
+            Brand: <CustomText style={styles.value}>{item?.brand}</CustomText>
           </CustomText>
           <CustomText style={styles.label}>
             Purchase Link:{' '}
-            <CustomText style={styles.value}>{item.purchaseLink}</CustomText>
+            <CustomText style={styles.value}>{item?.purchaseLink}</CustomText>
           </CustomText>
         </View>
       ) : null}
-      {item.recommendationBasedOn ? (
+      {item?.recommendationBasedOn ? (
         <View style={styles.row}>
           <CustomText style={styles.label}>Recommendation Based On:</CustomText>
           <CustomText style={styles.value}>
-            {item.recommendationBasedOn}
+            {item?.recommendationBasedOn}
           </CustomText>
         </View>
       ) : null}

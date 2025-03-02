@@ -6,11 +6,14 @@ import Button from '../../component/Button';
 import CircleImage from '../../component/CircularImage';
 import CustomText from '../../component/Text';
 import styles from './styles';
-import {navigationRef} from '../../Utils/navigation';
+import {goBack, navigationRef} from '../../Utils/navigation';
+import Input from '../../component/Input';
+import {useAddGoalMutation} from '../../Redux/Services/User';
+import Toast from 'react-native-toast-message';
 
 const SetGoals = () => {
-    const [login, {isLoading}] = useLoginMutation();
-  
+  const [addGoal, {isLoading}] = useAddGoalMutation();
+
   const [selections, setSelections] = useState({
     skinType: '', // Single selection
     skinTone: '', // Single selection
@@ -21,7 +24,7 @@ const SetGoals = () => {
   });
 
   const [step, setStep] = useState(1);
-
+  const [goalName, setGoalName] = useState('');
   const skinConcerns = [
     {id: 1, text: 'Acne Scars', image: dummyImages.product_1},
     {id: 2, text: 'Black/WhiteHeads', image: dummyImages.skin.skinOily},
@@ -103,7 +106,39 @@ const SetGoals = () => {
       arr1: {data: hairColor, type: 'hairColor', single: true},
     },
   };
-
+  const handleUpdateProduct = () => {
+    if (goalName == '') {
+      Toast.show({
+        text1: 'Error',
+        text2: 'Please Add your Group Name',
+        type: 'error',
+      });
+    } else {
+      console.log('Selection Product ==============>', selections);
+    }
+    addGoal({name: goalName, ...selections})
+      .unwrap()
+      .then(res => {
+        Toast.show({
+          type: 'success',
+          text1: res?.data?.message,
+          text2: 'Your profile has been updated successfully.',
+        });
+        setGoalName('');
+        setSelections({
+          skinType: '',
+          skinTone: '',
+          skinConcerns: [],
+          hairType: '',
+          hairConcerns: [],
+          hairColor: '',
+        });
+        goBack();
+      })
+      .catch(err => {
+        console.log('Err ============>', err);
+      });
+  };
   const renderBtn = () => {
     if (step === 1) {
       return (
@@ -136,20 +171,15 @@ const SetGoals = () => {
             text="Previous"
             style={styles.prevButton}
             onPress={() => setStep(e => e - 1)}
+            disabled={isLoading}
           />
           <Button
             text="Update"
             style={styles.nextButton}
             textStyle={styles.nextButtonText}
-            onPress={() => {
-              console.log('selectedItems', selections);
-              // setSelectedItems({
-              //   step1: {skin: [], hair: []},
-              //   step2: {skin: [], hair: []},
-              //   step3: {skin: [], hair: []},
-              // });
-              // navigationRef.goBack();
-            }}
+            onPress={handleUpdateProduct}
+            isLoading={isLoading}
+            disabled={isLoading}
           />
         </>
       );
@@ -158,6 +188,16 @@ const SetGoals = () => {
 
   return (
     <ScreenWrapper contentContainerStyle={styles.container} scroll>
+      {step == 1 && (
+        <View style={styles.inputContainer}>
+          <Input
+            placeholder="Enter goal name"
+            required
+            value={goalName}
+            onChangeText={setGoalName}
+          />
+        </View>
+      )}
       {/* Skin Concerns */}
       <CustomText weight="semiBold" style={styles.sectionTitle}>
         {stepArr[step]?.name}

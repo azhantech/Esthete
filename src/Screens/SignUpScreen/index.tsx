@@ -40,9 +40,8 @@ const SignUpScreen = () => {
       password: values?.password,
       phone: values?.phone,
       gender: values?.gender,
+      role: 'user',
     };
-    console.log('Data from Signup', data);
-
     signup(data)
       .unwrap()
       .then(res => {

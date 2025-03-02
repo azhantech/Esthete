@@ -92,7 +92,32 @@ export const userApi = createApi({
         body,
       }),
     }),
-
+    addGoal: builder.mutation({
+      query: body => ({
+        url: `goal/add`,
+        method: 'POST',
+        body,
+      }),
+    }),
+    getGoals: builder.query({
+      query: () => `goal/get`,
+      keepUnusedDataFor: 0,
+    }),
+    // getGoalById: builder.query({
+    //   query: id => `goal/get/goalId=${id?.id}`,
+    //   keepUnusedDataFor: 0,
+    // }),
+    getGoalById: builder.query({
+      query: id => {
+        try {
+          return `goal/get/${id?.id}`;
+        } catch (error) {
+          console.log('Error fetching goal by ID:', error);
+          throw error;
+        }
+      },
+      keepUnusedDataFor: 0,
+    }),
     getExperts: builder.query({
       query: () => `consultant/get`,
       keepUnusedDataFor: 0,
@@ -126,13 +151,6 @@ export const userApi = createApi({
       query: body => `content/${body?.id}?type=${body?.type}`,
       keepUnusedDataFor: 0,
     }),
-    addGoal: builder.mutation({
-      query: body => ({
-        url: `goal/add`,
-        method: 'POST',
-        body,
-      }),
-    }),
   }),
 });
 
@@ -157,4 +175,7 @@ export const {
   useAcceptProductMutation,
   useRejectProductMutation,
   useSaveProductQuery,
+  useAddGoalMutation,
+  useGetGoalsQuery,
+  useGetGoalByIdQuery,
 } = userApi;

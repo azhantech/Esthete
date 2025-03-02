@@ -45,7 +45,10 @@ const CommunityForum = () => {
           <CustomText weight="semiBold" style={styles.title}>
             {item?.title}
           </CustomText>
-          <CustomText weight="regular" style={styles.detailsTxt}>
+          <CustomText
+            weight="regular"
+            style={styles.detailsTxt}
+            numberOfLines={2}>
             {item?.description}
           </CustomText>
           <View style={styles.bottomContainer}>

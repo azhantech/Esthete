@@ -284,9 +284,9 @@ const SavedProductDetail = ({route}: any) => {
   const productID = route?.params?.item;
   console.log('productID', productID);
   const {data, isLoading, isError} = useGetProductsByIdQuery({
-    id: productID?.productId?._id,
+    id: productID?._id,
   });
-  console.log('data', data);
+  console.log('data', data?.data);
   const renderRadioOptions = (item: any) => (
     <TouchableOpacity activeOpacity={0.7} style={styles.radio_item}>
       <View
@@ -381,7 +381,7 @@ const SavedProductDetail = ({route}: any) => {
 
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
-      <RecommendationCard item={item[submittingFeedback]} />
+      <RecommendationCard item={data?.data} />
 
       {submittingFeedback ? (
         renderSteps[step as keyof typeof renderSteps]

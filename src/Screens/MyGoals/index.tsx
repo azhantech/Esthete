@@ -5,6 +5,7 @@ import Button from '../../component/Button';
 import {navigate} from '../../Utils/navigation';
 import {FlatList, TouchableOpacity, View} from 'react-native';
 import CustomText from '../../component/Text';
+import {useGetGoalsQuery} from '../../Redux/Services/User';
 
 const GOALS = [
   {
@@ -65,22 +66,25 @@ const GOALS = [
 ];
 
 const MyGoals = () => {
-  const renderItems = ({item}: any) => (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      style={styles.item}
-      onPress={() => navigate('GoalDetails')}>
-      <CustomText>{item?.title}</CustomText>
-      <CustomText style={styles.status_text}>{item?.status}</CustomText>
-    </TouchableOpacity>
-  );
+  const {data, isLoading, isError, refetch} = useGetGoalsQuery({});
+  const renderItems = ({item}: any) => {
+    return (
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={styles.item}
+        onPress={() => navigate('GoalDetails', {id: item?._id})}>
+        <CustomText>{item?.name}</CustomText>
+        <CustomText style={styles.status_text}>{item?.status}</CustomText>
+      </TouchableOpacity>
+    );
+  };
 
   const renderSeperator = () => <View style={styles.seperator} />;
 
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
       <FlatList
-        data={GOALS}
+        data={data?.data ?? []}
         keyExtractor={item => item.id}
         contentContainerStyle={styles.list_content}
         renderItem={renderItems}

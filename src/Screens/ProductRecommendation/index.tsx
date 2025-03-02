@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import RecommendationCard from '../../component/RecommendationCard';
 import {goBack, navigate} from '../../Utils/navigation';
-import {heightPixel} from '../../Utils/helpers';
+import {heightPixel, widthPixel} from '../../Utils/helpers';
 import {
   useGetProductsQuery,
   useGetRecommendationProductsQuery,
@@ -50,7 +50,7 @@ const ProductRecommendation = props => {
     {},
   );
 
-  console.log('data ===>', data);
+  console.log('data ==dassssssssssssssssss=>', data);
 
   useEffect(() => {
     refetch();
@@ -79,6 +79,7 @@ const ProductRecommendation = props => {
       <HomeHeader />
 
       {/* Recommendations List */}
+
       <FlatList
         refreshing={isLoading}
         showsVerticalScrollIndicator={false}

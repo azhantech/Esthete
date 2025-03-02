@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {font, heightPixel, vh, width} from '../../Utils/helpers';
+import {font, heightPixel, vh, width, widthPixel} from '../../Utils/helpers';
 import colors from '../../Utils/colors';
 
 const styles = StyleSheet.create({
@@ -33,6 +33,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: width,
     flexWrap: 'wrap',
+  },
+  inputContainer: {
+    marginVertical: heightPixel(20),
+    width: width,
+    paddingHorizontal: widthPixel(20),
   },
 });
 

@@ -9,12 +9,14 @@ export const styles = StyleSheet.create({
   },
   image_container: {
     height: heightPixel(147),
-    width: '100%',
+    width: '98%',
     backgroundColor: colors.white,
     borderRadius: heightPixel(7),
     overflow: 'hidden',
     ...appShadow,
+
     marginBottom: heightPixel(10),
+    alignSelf: 'center',
   },
   product_image: {
     height: '100%',
