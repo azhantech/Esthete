@@ -192,7 +192,7 @@ const GoalDetails = ({route}: any) => {
           {data?.data?.progressImages?.map((item, index) => (
             <Image
               key={index}
-              source={{uri: `http://192.168.100.17:3000/${item?.url}`}}
+              source={{uri: `http://projectstagingzone.com:18001/${item?.url}`}}
               style={[
                 styles.image,
                 index === 0 && {

@@ -5,7 +5,7 @@ import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://192.168.100.17:3000/grwm/v1/api/',
+    baseUrl: 'http://projectstagingzone.com:18001/grwm/v1/apis/',
     prepareHeaders: (headers, {getState}) => {
       const token = (getState() as {user: {token: string}})?.user?.token;
 

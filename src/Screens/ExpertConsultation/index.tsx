@@ -57,7 +57,6 @@ const ExpertConsultation = props => {
   }
 
   const renderItem = ({item}) => {
-    console.log(`http://projectstagingzone.com:18001/${item?.image}`, 'item');
     return (
       <TouchableOpacity activeOpacity={0.7} style={styles.renderItem}>
         <Image

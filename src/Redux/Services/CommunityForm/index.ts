@@ -5,7 +5,7 @@ import {create} from 'react-test-renderer';
 export const CommunityFormApi = createApi({
   reducerPath: 'CommunityFormApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://192.168.100.17:3000/grwm/v1/api/',
+    baseUrl: 'http://projectstagingzone.com:18001/grwm/v1/apis/',
     prepareHeaders: (headers, {getState}) => {
       const token = (getState() as {user: {token: string}})?.user?.token;
 
