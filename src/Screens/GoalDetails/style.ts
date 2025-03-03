@@ -14,6 +14,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: vw * 85,
   },
+  loading_container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     paddingHorizontal: vw * 10,
   },

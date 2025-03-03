@@ -3,9 +3,17 @@ import styles from './style';
 import Input from '../../component/Input';
 import Button from '../../component/Button';
 import {navigate} from '../../Utils/navigation';
-import {FlatList, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import CustomText from '../../component/Text';
 import {useGetGoalsQuery} from '../../Redux/Services/User';
+import {useEffect} from 'react';
+import {useIsFocused} from '@react-navigation/native';
+import colors from '../../Utils/colors';
 
 const GOALS = [
   {
@@ -66,7 +74,12 @@ const GOALS = [
 ];
 
 const MyGoals = () => {
+  const isFocused = useIsFocused();
+
   const {data, isLoading, isError, refetch} = useGetGoalsQuery({});
+  useEffect(() => {
+    refetch();
+  }, [isFocused]);
   const renderItems = ({item}: any) => {
     return (
       <TouchableOpacity
@@ -80,7 +93,13 @@ const MyGoals = () => {
   };
 
   const renderSeperator = () => <View style={styles.seperator} />;
-
+  if (isLoading) {
+    return (
+      <View style={styles.loading_container}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
   return (
     <ScreenWrapper mainContainerStyles={styles.container}>
       <FlatList

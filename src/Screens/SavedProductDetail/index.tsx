@@ -3,11 +3,20 @@ import {styles} from './styles';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import RecommendationCard from '../../component/RecommendationCard';
 import CustomText from '../../component/Text';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Image, TouchableOpacity, View} from 'react-native';
 import Button from '../../component/Button';
 import {dummyImages, icons} from '../../Assets/Images';
 import colors from '../../Utils/colors';
-import {useGetProductsByIdQuery} from '../../Redux/Services/User';
+import {
+  useGetProductQuestionsQuery,
+  useGetProductsByIdQuery,
+  useSubmitProductFeedbackMutation,
+} from '../../Redux/Services/User';
+import {font} from '../../Utils/helpers';
+import {selectUser} from '../../Redux/Slices/user';
+import {useSelector} from 'react-redux';
+import Toast from 'react-native-toast-message';
+import {goBack} from '../../Utils/navigation';
 
 const item = {
   true: {
@@ -280,52 +289,125 @@ const radioStep3 = [
 
 const SavedProductDetail = ({route}: any) => {
   const [submittingFeedback, setSubmittingFeedback] = useState(false);
+  const user = useSelector(selectUser);
   const [step, setStep] = useState(0);
   const productID = route?.params?.item;
-  console.log('productID', productID);
   const {data, isLoading, isError} = useGetProductsByIdQuery({
     id: productID?._id,
   });
-  console.log('data', data?.data);
-  const renderRadioOptions = (item: any) => (
-    <TouchableOpacity activeOpacity={0.7} style={styles.radio_item}>
-      <View
-        key={item.id}
-        style={[
-          styles.dot,
-          item.isSelected && {backgroundColor: colors.primary},
-        ]}
-      />
-      <CustomText style={styles.option}>{item.option}</CustomText>
-    </TouchableOpacity>
+
+  console.log('data ===================>', data?.data?.feebackSubmitted);
+  const [submitProductFeedback, {isLoading: submittingLoader}] =
+    useSubmitProductFeedbackMutation();
+  const [responses, setResponses] = useState<
+    Array<{questionId: string; answer: string}>
+  >([]);
+
+  const {data: questionsData, isLoading: isLoadingQuestions} =
+    useGetProductQuestionsQuery({id: productID?._id});
+
+  const handleOptionSelect = (questionId: string, answer: string) => {
+    setResponses(prev => {
+      const existing = prev.findIndex(r => r.questionId === questionId);
+      if (existing !== -1) {
+        const updated = [...prev];
+        updated[existing] = {questionId, answer};
+        return updated;
+      }
+      return [...prev, {questionId, answer}];
+    });
+  };
+  const isOptionSelected = (questionId: string, option: string) => {
+    return responses.some(
+      r => r.questionId === questionId && r.answer === option,
+    );
+  };
+
+  const handleOnSubmit = () => {
+    const data = {
+      productId: productID?._id,
+      userId: user?._id,
+      responses: responses,
+    };
+    if (responses?.length) {
+      submitProductFeedback(data)
+        .unwrap()
+        .then(res => {
+          Toast.show({
+            type: 'success',
+            text1: 'Success',
+            text2: res?.message,
+          });
+          goBack();
+        })
+        .catch(err => {
+          console.log(err, 'error ');
+          Toast.show({
+            text1: 'Error',
+            text2: err?.data?.error,
+            type: 'error',
+          });
+        });
+    } else {
+      Toast.show({
+        text1: 'Error',
+        text2: 'Please select answers for all questions.',
+        type: 'error',
+      });
+    }
+  };
+  const renderRadioOptions = (item: string, questionId: string) => (
+    <>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={styles.radio_item}
+        onPress={() => handleOptionSelect(questionId, item)}>
+        <View
+          key={item.id}
+          style={[
+            styles.dot,
+            isOptionSelected(questionId, item) && {
+              backgroundColor: colors.primary,
+            },
+          ]}
+        />
+        <CustomText style={styles.option}>{item}</CustomText>
+      </TouchableOpacity>
+    </>
   );
 
   const renderRadioRating = (item: any) => (
-    <TouchableOpacity activeOpacity={0.7} style={styles.rating_item}>
-      <View
-        key={item.id}
-        style={[
-          styles.dot,
-          item.isSelected && {backgroundColor: colors.primary},
-        ]}
-      />
-      <Image source={item.option} style={styles.image} />
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity activeOpacity={0.7} style={styles.rating_item}>
+        <View
+          key={item.id}
+          style={[
+            styles.dot,
+            item.isSelected && {backgroundColor: colors.primary},
+          ]}
+        />
+        <Image source={item.option} style={styles.image} />
+      </TouchableOpacity>
+    </>
   );
 
-  const renderRadioCard = (item: any) => (
-    <View key={item.id} style={styles.radio_card}>
-      <CustomText weight="semiBold">{item?.question}</CustomText>
-      {item?.rating ? (
-        <View style={styles.rating_container}>
-          {item?.options?.map(renderRadioRating)}
-        </View>
-      ) : (
-        <View style={styles.options_container}>
-          {item?.options?.map(renderRadioOptions)}
-        </View>
-      )}
-    </View>
+  const renderRadioCard = (item: any, index: number) => (
+    <>
+      <View key={item?._id} style={styles.radio_card}>
+        <CustomText weight="semiBold" style={{fontSize: font(12)}}>
+          {item?.questionText}
+        </CustomText>
+        {item?.rating ? (
+          <View style={styles.rating_container}>
+            {item?.options?.map(renderRadioRating)}
+          </View>
+        ) : (
+          <View style={styles.options_container}>
+            {item?.options?.map(res => renderRadioOptions(res, item?._id))}
+          </View>
+        )}
+      </View>
+    </>
   );
 
   const handleSteps = () => {
@@ -357,8 +439,10 @@ const SavedProductDetail = ({route}: any) => {
     step < 2 ? (
       <View style={styles.button_view}>
         <Button
-          text={renderFullButtonText[step as keyof typeof renderFullButtonText]}
-          onPress={handleSteps}
+          text={'Submit Feedback'}
+          onPress={handleOnSubmit}
+          isLoading={submittingLoader}
+          disabled={submittingLoader}
         />
       </View>
     ) : step <= 3 ? (
@@ -378,28 +462,38 @@ const SavedProductDetail = ({route}: any) => {
         />
       </View>
     ) : null;
-
+  if (isLoading) {
+    return (
+      <View style={styles.loading_view}>
+        <ActivityIndicator size={'large'} color={colors.primary} />
+      </View>
+    );
+  }
   return (
-    <ScreenWrapper mainContainerStyles={styles.container}>
+    <ScreenWrapper
+      mainContainerStyles={styles.container}
+      scroll
+      contentContainerStyle={{
+        alignItems: 'center',
+      }}>
       <RecommendationCard item={data?.data} />
-
-      {submittingFeedback ? (
-        renderSteps[step as keyof typeof renderSteps]
-      ) : (
-        <View style={styles.content_view}>
-          <CustomText weight="semiBold" style={styles.label}>
-            Ingredients
-          </CustomText>
-          <CustomText style={styles.value}>
-            {data?.data?.ingredients}
-          </CustomText>
-          <CustomText weight="semiBold" style={styles.label}>
-            Benefits
-          </CustomText>
-          <CustomText style={styles.value}>{data?.data?.benefits}</CustomText>
-        </View>
-      )}
-      {renderButtons()}
+      <View style={styles.content_view}>
+        <CustomText weight="semiBold" style={styles.label}>
+          Ingredients
+        </CustomText>
+        <CustomText style={styles.value} numberOfLines={2}>
+          {data?.data?.ingredients}
+        </CustomText>
+        <CustomText weight="semiBold" style={styles.label}>
+          Benefits
+        </CustomText>
+        <CustomText style={styles.value} numberOfLines={2}>
+          {data?.data?.benefits}
+        </CustomText>
+      </View>
+      {!data?.data?.feebackSubmitted &&
+        questionsData?.map((res, index) => renderRadioCard(res, index))}
+      {!data?.data?.feebackSubmitted && renderButtons()}
     </ScreenWrapper>
   );
 };

@@ -58,6 +58,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: vw * 10,
     paddingVertical: vh * 1.5,
   },
+  loading_view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   seperator: {
     height: vh * 2,
   },

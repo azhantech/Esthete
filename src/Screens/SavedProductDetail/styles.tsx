@@ -11,7 +11,6 @@ import colors from '../../Utils/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
   },
   content_view: {
     width: width,
@@ -83,5 +82,10 @@ export const styles = StyleSheet.create({
   },
   nextButtonText: {
     color: colors.black,
+  },
+  loading_view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

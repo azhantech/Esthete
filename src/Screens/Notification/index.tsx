@@ -1,38 +1,33 @@
-import {FlatList, Image, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import CustomText from '../../component/Text';
 import styles from './styles';
 import {icons} from '../../Assets/Images';
 import colors from '../../Utils/colors';
+import {useEffect, useState} from 'react';
+import {font, heightPixel} from '../../Utils/helpers';
 
 const Notification = () => {
-  const NotificationsData = [
-    {
-      id: '1',
-      content: 'Lorem Ipsum Dolor Sit Amet, Dolor Lorem,',
-      date: '01/01/2010',
-      time: '01:01 PM',
-    },
-    {
-      id: '2',
-      content: 'Lorem Ipsum Dolor Sit Amet, Dolor Lorem,',
-      date: '01/01/2010',
-      time: '01:01 PM',
-    },
-    {
-      id: '3',
-      content: 'Lorem Ipsum Dolor Sit Amet, Dolor Lorem,',
-      date: '01/01/2010',
-      time: '01:01 PM',
-    },
-    {
-      id: '4',
-      content: 'Lorem Ipsum Dolor Sit Amet, Dolor Lorem,',
-      date: '01/01/2010',
-      time: '01:01 PM',
-    },
-  ];
-
+  const [loader, setLoader] = useState(false);
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
+  if (loader) {
+    return (
+      <View style={styles.loading_view}>
+        <ActivityIndicator size={'large'} color={colors.primary} />
+      </View>
+    );
+  }
   const renderItem = ({item}: any) => (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -65,15 +60,27 @@ const Notification = () => {
         </TouchableOpacity>
       </View>
       <FlatList
-        data={NotificationsData}
+        data={[]}
         keyExtractor={item => item.id}
         renderItem={renderItem}
-        ListFooterComponent={
-          <TouchableOpacity activeOpacity={0.7} style={styles.viewAllBtn}>
-            <CustomText style={styles.markText}>Load more</CustomText>
-          </TouchableOpacity>
-        }
         ItemSeparatorComponent={() => <View style={styles.seperator} />}
+        ListEmptyComponent={
+          <View
+            style={{
+              alignSelf: 'center',
+              height: heightPixel(500),
+              justifyContent: 'center',
+            }}>
+            <CustomText
+              weight="bold"
+              style={{
+                fontSize: font(18),
+                color: colors.black,
+              }}>
+              No Notifications Found
+            </CustomText>
+          </View>
+        }
       />
     </ScreenWrapper>
   );

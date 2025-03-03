@@ -118,6 +118,25 @@ export const userApi = createApi({
       },
       keepUnusedDataFor: 0,
     }),
+    updateGoal: builder.mutation({
+      query: body => ({
+        url: `goal/update/${body?.id}`,
+        method: 'PUT',
+        body,
+      }),
+    }),
+
+    getProductQuestions: builder.query({
+      query: id => `productQuestion/get/${id?.id}`,
+      keepUnusedDataFor: 0,
+    }),
+    submitProductFeedback: builder.mutation({
+      query: body => ({
+        url: `product/feedback/submit`,
+        method: 'POST',
+        body,
+      }),
+    }),
     getExperts: builder.query({
       query: () => `consultant/get`,
       keepUnusedDataFor: 0,
@@ -178,4 +197,7 @@ export const {
   useAddGoalMutation,
   useGetGoalsQuery,
   useGetGoalByIdQuery,
+  useUpdateGoalMutation,
+  useGetProductQuestionsQuery,
+  useSubmitProductFeedbackMutation,
 } = userApi;

@@ -9,4 +9,9 @@ export const styles = StyleSheet.create({
   seperator: {
     height: heightPixel(5),
   },
+  loading_view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
