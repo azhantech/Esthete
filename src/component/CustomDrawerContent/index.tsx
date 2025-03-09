@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
-import CustomText from '../../component/Text'; // Assuming this is your custom text component
-import Button from '../../component/Button'; // Assuming you have a reusable button component
+import CustomText from '../../component/Text';
+import Button from '../../component/Button';
 import colors from '../../Utils/colors';
 import {font, heightPixel, vh, vw, widthPixel} from '../../Utils/helpers';
 import {drawerIcon, dummyImages, icons} from '../../Assets/Images'; // For the user image or any icons
@@ -10,13 +10,14 @@ import {navigateAndReplace, navigationRef} from '../../Utils/navigation';
 import Modal from '../Modal';
 import useToggle from '../../Hooks/useToggle';
 import fonts from '../../Assets/Fonts';
-import {useDispatch} from 'react-redux';
-import { setLogout } from '../../Redux/Slices/user';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectUser, setLogout} from '../../Redux/Slices/user';
 
 const CustomDrawerContent = (props: any) => {
   const [open, setOpen, toggle] = useToggle();
   const [selected, setSelected] = React.useState<number | null>(1);
-  console.log('props.state.index ==>', props.state.index);
+  const user = useSelector(selectUser);
+
   const dispatch = useDispatch();
   const handleLogout = () => {
     // navigateAndReplace('AuthNavigator');
@@ -95,23 +96,30 @@ const CustomDrawerContent = (props: any) => {
           })
         }>
         <Image
-          source={dummyImages.profile} // Replace with actual user image
+          source={
+            user?.profile_image
+              ? {
+                  uri: `http://projectstagingzone.com:18001/${user?.profile_image}`,
+                }
+              : dummyImages.profile
+          }
           style={styles.profileImage}
+          // Replace with actual user image
         />
         <View style={styles.profilNameSection}>
           <CustomText style={styles.profileName} weight="semiBold">
-            Lucy Green
+            {user?.name}
           </CustomText>
-          <CustomText style={styles.greetingText}>
+          {/* <CustomText style={styles.greetingText}>
             lorem lipsum dolor
-          </CustomText>
+          </CustomText> */}
         </View>
       </TouchableOpacity>
       {/* <View style={styles.seprator} /> */}
 
       {/* Menu Items */}
       <View style={styles.menuItems}>
-        {drawer.map((val, index) => {
+        {drawer?.map((val, index) => {
           return (
             <TouchableOpacity
               key={val?.id.toString()}

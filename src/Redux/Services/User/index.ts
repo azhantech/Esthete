@@ -170,6 +170,13 @@ export const userApi = createApi({
       query: body => `content/${body?.id}?type=${body?.type}`,
       keepUnusedDataFor: 0,
     }),
+    contactUS: builder.mutation({
+      query: body => ({
+        url: `feedback/create`,
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
@@ -200,4 +207,5 @@ export const {
   useUpdateGoalMutation,
   useGetProductQuestionsQuery,
   useSubmitProductFeedbackMutation,
+  useContactUSMutation
 } = userApi;
