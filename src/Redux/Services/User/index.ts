@@ -177,6 +177,16 @@ export const userApi = createApi({
         body,
       }),
     }),
+    getPackages: builder.query({
+      query: () => `package/get`,
+      keepUnusedDataFor: 0,
+    }),
+    subscribe: builder.mutation({
+      query: body => ({
+        url: `package/subscribe/${body?.id}`,
+        method: 'POST',
+      }),
+    }),
   }),
 });
 
@@ -207,5 +217,7 @@ export const {
   useUpdateGoalMutation,
   useGetProductQuestionsQuery,
   useSubmitProductFeedbackMutation,
-  useContactUSMutation
+  useContactUSMutation,
+  useGetPackagesQuery,
+  useSubscribeMutation,
 } = userApi;

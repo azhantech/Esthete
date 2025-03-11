@@ -1,3 +1,5 @@
+import {check} from 'react-native-permissions';
+
 export const generalImages = {
   appIcon: require('./generalImages/appIcon.png'),
 };
@@ -36,6 +38,7 @@ export const icons = {
   star_4: require('./icons/4-star.png'),
   star_5: require('./icons/5-star.png'),
   downArrow: require('./icons/downArrow.png'),
+  check: require('./icons/check.png'),
 };
 
 export const banners = {

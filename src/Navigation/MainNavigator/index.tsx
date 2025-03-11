@@ -36,11 +36,13 @@ const MainNavigator = () => {
         />
       ) : (
         <>
-          {/* <Stack.Screen
-            name="Subscription"
-            component={Subscription}
-            options={{headerShown: false}}
-          /> */}
+          {!user?.stripe_customer_id && (
+            <Stack.Screen
+              name="Subscription"
+              component={Subscription}
+              options={{headerShown: false}}
+            />
+          )}
           {!user?.preferences && (
             <Stack.Screen
               name="ProfileQuestionnaireNavigator"

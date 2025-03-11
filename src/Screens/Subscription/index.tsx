@@ -1,7 +1,13 @@
 import styles from './style';
 import CustomText from '../../component/Text';
-import {FlatList, ImageBackground, View} from 'react-native';
-import {backgroundImages} from '../../Assets/Images';
+import {
+  FlatList,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {backgroundImages, icons} from '../../Assets/Images';
 import Button from '../../component/Button';
 import {ScreenWrapper} from '../../component/ScreenWrapper';
 import {Formik} from 'formik';
@@ -10,6 +16,14 @@ import Input from '../../component/Input';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {navigate} from '../../Utils/navigation';
 import {heightPixel, vw} from '../../Utils/helpers';
+import {
+  useGetPackagesQuery,
+  useGetRecommendationProductsQuery,
+  useSubscribeMutation,
+} from '../../Redux/Services/User';
+import {useState} from 'react';
+import colors from '../../Utils/colors';
+import Toast from 'react-native-toast-message';
 
 const DATA = [
   {
@@ -62,6 +76,25 @@ const DATA = [
 
 const Subscription = () => {
   const {validator, values, functions} = useSubscriptionController();
+  const {data, isLoading, isError, refetch} = useGetPackagesQuery({});
+  const [selectedPackage, setSelectedPackage] = useState(null);
+  const [subscribe, {isLoading: subscriptionLoader}] = useSubscribeMutation();
+  const handleSubmit = () => {
+    if (!selectedPackage) {
+      Toast.show({
+        type: 'error',
+        text1: 'Please select a package',
+      });
+    } else {
+      subscribe({id: selectedPackage})
+        .then(res => {
+          console.log('Response from Subscribe', res);
+        })
+        .catch(err => {
+          console.log('Error from Subscribe', err);
+        });
+    }
+  };
 
   const renderForm = () => (
     <Formik
@@ -136,40 +169,47 @@ const Subscription = () => {
           {touched.cvv_number && errors.cvv_number && (
             <CustomText style={styles.error}>{errors.cvv_number}</CustomText>
           )}
-
-          <Button
-            text="Subscribe Now"
-            onPress={handleSubmit}
-            style={styles.button}
-          />
         </KeyboardAwareScrollView>
       )}
     </Formik>
   );
 
   const renderPackages = ({item}: any) => (
-    <View style={styles.package_container}>
+    <TouchableOpacity
+      style={styles.package_container}
+      onPress={() => {
+        setSelectedPackage(item?.id);
+      }}
+      activeOpacity={0.8}
+      key={item?.id}>
       <View style={styles.row}>
-        <View style={styles.dot} />
+        <View style={[styles.dot]}>
+          {selectedPackage && item?.id && (
+            <Image source={icons.check} style={styles.check_icon} />
+          )}
+        </View>
         <CustomText style={styles.package_name} weight="semiBold">
-          {item.package_name}
+          {item?.name}
         </CustomText>
       </View>
-      {item.features.map((feature: any) => (
-        <CustomText key={feature.id + item.id} style={styles.feature_text}>
-          {feature.feature}
-        </CustomText>
-      ))}
-      <CustomText weight="semiBold" style={styles.price_text}>
-        {item.price}
+      {/* {item?.features.map((feature: any) => ( */}
+      <CustomText style={styles.feature_text}>
+        Feature A (lorem lipsum dolor sit amit)
       </CustomText>
-    </View>
+      <CustomText style={styles.feature_text}>
+        Feature B (lorem lipsum dolor sit amit)
+      </CustomText>
+      {/* // ))} */}
+      <CustomText weight="semiBold" style={styles.price_text}>
+        {item?.price}
+      </CustomText>
+    </TouchableOpacity>
   );
 
   const packageSeperator = () => <View style={styles.seperator} />;
 
   return (
-    <ScreenWrapper style={styles.container} scroll>
+    <ScreenWrapper style={styles.container}>
       <ImageBackground
         style={styles.package_wrapper}
         source={backgroundImages.subscription}
@@ -177,18 +217,21 @@ const Subscription = () => {
           resizeMode: 'cover',
           width: '100%',
           height: heightPixel(480),
+          zIndex: -99,
         }}>
         <CustomText style={styles.title}>Subscription Package</CustomText>
-        <View style={styles.package_list_container}>
-          <FlatList
-            data={DATA}
-            keyExtractor={item => item.id}
-            renderItem={renderPackages}
-            ItemSeparatorComponent={packageSeperator}
-          />
-        </View>
+        <FlatList
+          data={data?.data ?? []}
+          keyExtractor={item => item.id}
+          renderItem={renderPackages}
+          ItemSeparatorComponent={packageSeperator}
+        />
       </ImageBackground>
-      {renderForm()}
+      <Button
+        text="Subscribe Now"
+        onPress={handleSubmit}
+        style={styles.button}
+      />
     </ScreenWrapper>
   );
 };

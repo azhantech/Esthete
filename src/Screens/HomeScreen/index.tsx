@@ -176,7 +176,7 @@ const Home = () => {
       </View>
 
       {/* Services Cards */}
-      <View style={styles.services_wrapper}>{SERVICES.map(renderService)}</View>
+      <View style={styles.services_wrapper}>{SERVICES?.map(renderService)}</View>
 
       {/* Hair Concern Question */}
       <View style={styles.question_container}>
@@ -189,7 +189,7 @@ const Home = () => {
       {/* Hair Concern Options */}
       {matchingConcerns?.length && (
         <View style={styles.concern_wrapper}>
-          {matchingConcerns.map(renderHairConcern)}
+          {matchingConcerns?.map(renderHairConcern)}
         </View>
       )}
     </ScreenWrapper>
